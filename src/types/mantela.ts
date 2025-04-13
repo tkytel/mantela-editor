@@ -22,8 +22,8 @@ export const ExtensionTypeEnum = z.enum([
 
 export const AboutMeSchema = z.object({
   name: z.string(),
-  preferredPrefix: z.array(z.string()).optional(),
-  identifier: z.string().optional(),
+  preferredPrefix: z.array(z.string()),
+  identifier: z.string(),
   sipUsername: z.string().optional(),
   sipPassword: z.string().optional(),
   sipServer: z.string().optional(),
@@ -36,6 +36,7 @@ export const ExtensionSchema = z.object({
   extension: z.string(),
   identifier: z.string().optional(),
   type: ExtensionTypeEnum.optional(),
+  transferTo: z.array(z.string()).optional(),
 });
 
 export const ProviderSchema = z.object({

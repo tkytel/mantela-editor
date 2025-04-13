@@ -1,7 +1,10 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
 import { generateExtensionIdentifier } from "../../helpers/Randomness";
-import Select from 'react-select';
+import Select, { MultiValue } from 'react-select';
+import Creatable from "react-select/creatable";
+
+type Option = { value: string; label: string; }
 
 export default function Extensions() {
     const [json, setJson] = useImmerAtom(BodyAtom);
@@ -36,6 +39,20 @@ export default function Extensions() {
                     });
                 };
 
+                // JSON 側から更新された prefix を、react-select/creatable でハンドルできる型に変換する
+                const selectedPrefixesIdentifier: Option[] = (json.data.extensions[idx].transferTo || []).map((value: string) => ({
+                    value,
+                    label: value,
+                }));
+            
+                // UI 側から更新された prefix を、react-select/creatable の要素を排除して JSON 側に反映させる
+                const handleChange = (selected: MultiValue<Option>) => {
+                    const values = selected ? selected.map((opt: any) => opt.value) : [];
+                    setJson((draft) => {
+                        draft.data.extensions[idx].transferTo = values;
+                    })
+                }
+
                 return (
                     <div
                         className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm mb-3 relative"
@@ -63,7 +80,7 @@ export default function Extensions() {
                             htmlFor="aboutMe.identifier"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
-                            名前
+                            名前 <span className="text-pink-500">*</span>
                         </label>
                         <div className="relative w-full">
                             <input
@@ -86,7 +103,7 @@ export default function Extensions() {
                             htmlFor="aboutMe.identifier"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
-                            番号
+                            番号 <span className="text-pink-500">*</span>
                         </label>
                         <div className="relative w-full">
                         <input
@@ -109,7 +126,7 @@ export default function Extensions() {
                             htmlFor="aboutMe.identifier"
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
-                            種別
+                            種別 <span className="text-pink-500">*</span>
                         </label>
                         <div className="relative w-full">
                         <Select
@@ -120,6 +137,35 @@ export default function Extensions() {
                         />
                         </div>
                     </div>
+
+                    {/* 転送先; transferTo を指定しなければならない場合に入力するフィールド */}
+                    {
+                        [
+                            "alias",
+                            "main",
+                            "switchboard"
+                        ].includes(val.type || "phone") &&
+                        (
+                            <div className="mb-5">
+                                <label
+                                    htmlFor="aboutMe.identifier"
+                                    className="block mb-2 text-sm font-medium text-gray-900"
+                                >
+                                    転送先 <span className="text-pink-500">*</span>
+                                    <small> (ただし、種別が特定のものである場合のみ)</small>
+                                </label>
+                                <div className="relative w-full">
+                                <Creatable
+                                    isClearable
+                                    isMulti
+                                    onChange={handleChange}
+                                    value={selectedPrefixesIdentifier}
+                                    placeholder="識別子を入力して、リターンキーを押してください..."
+                                />
+                                </div>
+                            </div>
+                        )
+                    }
 
                     {/* 識別子 */}
                     <div className="mb-5">
