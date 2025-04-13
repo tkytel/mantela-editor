@@ -36,7 +36,10 @@ export default function Extensions() {
                 };
 
                 return (
-                    <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm mb-3 relative">
+                    <div
+                        className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm mb-3 relative"
+                        key={idx}
+                    >
                     
                     {/* 削除 ボタン */}
                     <button
