@@ -62,7 +62,7 @@ export default function Editor() {
                 value={jsonStr}
                 onChange={onChange}
                 placeholder="ここに mantela.json を入力..."
-                height="35rem"
+                height="50rem"
                 className="text-lg"
                 extensions={[EditorView.lineWrapping, langs.json(), linter(jsonParseLinter())]}
             />
