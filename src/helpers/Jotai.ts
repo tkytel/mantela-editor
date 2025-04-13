@@ -1,4 +1,3 @@
-import { atom } from "jotai";
 import { atomWithImmer } from 'jotai-immer'
 
 import type { Mantela } from "../types/mantela"

@@ -22,7 +22,7 @@ export const ExtensionTypeEnum = z.enum([
 
 export const AboutMeSchema = z.object({
   name: z.string(),
-  preferredPrefix: z.union([z.string(), z.array(z.string())]).optional(),
+  preferredPrefix: z.array(z.string()).optional(),
   identifier: z.string().optional(),
   sipUsername: z.string().optional(),
   sipPassword: z.string().optional(),
