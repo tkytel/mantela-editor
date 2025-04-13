@@ -5,6 +5,7 @@ import Identifier from "./items/Identifier";
 import Name from "./items/Name";
 import PreferredPrefix from "./items/PreferredPrefix";
 import Extensions from "./items/Extensions";
+import Providers from "./items/Providers";
 
 export default function EditorUI() {
     const [json] = useImmerAtom(BodyAtom);
@@ -19,12 +20,20 @@ export default function EditorUI() {
                 と表示されている項目は、必須です。
             </p>
             <div className="max-h-[50rem] max-w-[95%]">
-                <p className="text-xl mb-2">局について</p>
+                <p className="text-xl mb-2">局</p>
                 <Identifier />
                 <Name />
                 <PreferredPrefix />
-                <p className="text-xl mb-2">局番について</p>
+
+                <hr />
+
+                <p className="text-xl mb-2 mt-2">局番</p>
                 <Extensions />
+
+                <hr />
+
+                <p className="text-xl mb-2 mt-2">外線</p>
+                <Providers />
             </div>
         </div>
     )}
