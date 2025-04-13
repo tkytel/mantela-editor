@@ -28,7 +28,7 @@ export default function PreferredPrefix() {
                 htmlFor="aboutMe.identifier"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
-                好ましいプレフィックス
+                好ましいプレフィックス <span className="text-pink-500">*</span>
             </label>
             <div className="relative w-full">
                 <Creatable

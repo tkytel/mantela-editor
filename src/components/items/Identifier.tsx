@@ -11,7 +11,7 @@ export default function Identifier() {
                 htmlFor="aboutMe.identifier"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
-                識別子
+                識別子 <span className="text-pink-500">*</span>
             </label>
             <div className="relative w-full">
                 <input

@@ -14,6 +14,10 @@ export default function EditorUI() {
     } else {
     return !(json.isLoading) && json.data && (
         <div className="overflow-y-auto">
+            <p className="text-right">
+                <span className="text-pink-500">*</span>
+                と表示されている項目は、必須です。
+            </p>
             <div className="max-h-[50rem] max-w-[95%]">
                 <p className="text-xl mb-2">局について</p>
                 <Identifier />

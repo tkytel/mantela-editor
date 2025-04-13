@@ -10,7 +10,7 @@ export default function Name() {
                 htmlFor="aboutMe.identifier"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
-                名前
+                名前 <span className="text-pink-500">*</span>
             </label>
             <div className="relative w-full">
                 <input
