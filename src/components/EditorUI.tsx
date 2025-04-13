@@ -20,7 +20,7 @@ export default function EditorUI() {
                 <span className="text-pink-500">*</span>
                 と表示されている項目は、必須です。
             </p>
-            <div className="max-h-[50rem] max-w-[95%]">
+            <div className="max-h-[90vh] max-w-[95%]">
                 <p className="text-xl mb-2">局</p>
                 <Identifier />
                 <Name />
