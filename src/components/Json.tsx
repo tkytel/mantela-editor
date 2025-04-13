@@ -2,9 +2,8 @@ import ReactCodeMirror, { basicSetup, EditorView } from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs"
 import { jsonParseLinter } from "@codemirror/lang-json"
 import { linter } from "@codemirror/lint";
-import { BodyAtom } from "../helper/Jotai";
+import { BodyAtom } from "../helpers/Jotai";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import type { Mantela } from "../types/mantela";
 import { MantelaSchema } from "../types/mantela";
 import { useImmerAtom } from "jotai-immer";
 
