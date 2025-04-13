@@ -1,10 +1,5 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
-import { generateExtensionIdentifier } from "../../helpers/Randomness";
-import Select, { MultiValue } from 'react-select';
-import Creatable from "react-select/creatable";
-
-type Option = { value: string; label: string; }
 
 export default function Extensions() {
     const [json, setJson] = useImmerAtom(BodyAtom);
