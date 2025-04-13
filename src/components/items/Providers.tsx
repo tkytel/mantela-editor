@@ -104,7 +104,7 @@ export default function Extensions() {
                             htmlFor={"providers[" + idx + "].mantela"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
-                            mantela.json
+                            mantela.json の URL
                         </label>
                         <div className="relative w-full">
                             <input
