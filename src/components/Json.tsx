@@ -14,7 +14,7 @@ export default function Editor() {
     const [parseErr, setParseErr] = useState("");
 
     const onChange = useCallback((val: SetStateAction<string>) => {
-        let newMantela = MantelaSchema.safeParse(JSON.parse(val.toString()))
+        const newMantela = MantelaSchema.safeParse(JSON.parse(val.toString()))
         if (newMantela.success) {
             setJson(draft => {
                 draft.data = newMantela.data
@@ -25,8 +25,7 @@ export default function Editor() {
         }
     }, []);
     useEffect(() => {
-        let s = JSON.stringify(json.data, null, 2)
-        setJsonStr(s)
+        setJsonStr(JSON.stringify(json.data, null, 2))
     },[json])
 
     return (
