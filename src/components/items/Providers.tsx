@@ -37,7 +37,7 @@ export default function Extensions() {
                     {/* 名前 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"providers[" + idx + "].name"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             名前 <span className="text-pink-500">*</span>
@@ -45,7 +45,7 @@ export default function Extensions() {
                         <div className="relative w-full">
                             <input
                                 type="text"
-                                id="aboutMe.identifier"
+                                id={"providers[" + idx + "].name"}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 onChange={
                                     (e) => setJson(draft => {
@@ -60,15 +60,15 @@ export default function Extensions() {
                     {/* プレフィックス */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"providers[" + idx + "].prefix"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             プレフィックス <span className="text-pink-500">*</span>
                         </label>
                         <div className="relative w-full">
                         <input
-                            type="text"
-                            id="aboutMe.identifier"
+                            type="number"
+                            id={"providers[" + idx + "].prefix"}
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             onChange={
                                 (e) => setJson(draft => {
@@ -83,7 +83,7 @@ export default function Extensions() {
                     {/* 識別子 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"providers[" + idx + "].identifier"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             識別子
@@ -91,7 +91,7 @@ export default function Extensions() {
                         <div className="relative w-full">
                             <input
                                 type="text"
-                                id="aboutMe.identifier"
+                                id={"providers[" + idx + "].identifier"}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 onChange={
                                     (e) => setJson(draft => {
@@ -106,15 +106,15 @@ export default function Extensions() {
                     {/* mantela.json */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"providers[" + idx + "].mantela"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             mantela.json
                         </label>
                         <div className="relative w-full">
                             <input
-                                type="text"
-                                id="aboutMe.identifier"
+                                type="url"
+                                id={"providers[" + idx + "].mantela"}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 onChange={
                                     (e) => setJson(draft => {

@@ -77,7 +77,7 @@ export default function Extensions() {
                     {/* 名前 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"extensions[" + idx + "].name"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             名前 <span className="text-pink-500">*</span>
@@ -85,7 +85,7 @@ export default function Extensions() {
                         <div className="relative w-full">
                             <input
                                 type="text"
-                                id="aboutMe.identifier"
+                                id={"extensions[" + idx + "].name"}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 onChange={
                                     (e) => setJson(draft => {
@@ -100,15 +100,15 @@ export default function Extensions() {
                     {/* 番号 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"extensions[" + idx + "].extension"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             番号 <span className="text-pink-500">*</span>
                         </label>
                         <div className="relative w-full">
                         <input
-                            type="text"
-                            id="aboutMe.identifier"
+                            type="number"
+                            id={"extensions[" + idx + "].extension"}
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             onChange={
                                 (e) => setJson(draft => {
@@ -123,7 +123,7 @@ export default function Extensions() {
                     {/* 種別 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"extensions[" + idx + "].type"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             種別 <span className="text-pink-500">*</span>
@@ -148,7 +148,7 @@ export default function Extensions() {
                         (
                             <div className="mb-5">
                                 <label
-                                    htmlFor="aboutMe.identifier"
+                                    htmlFor={"extensions[" + idx + "].transferTo"}
                                     className="block mb-2 text-sm font-medium text-gray-900"
                                 >
                                     転送先局番の識別子 <span className="text-pink-500">*</span>
@@ -170,7 +170,7 @@ export default function Extensions() {
                     {/* 識別子 */}
                     <div className="mb-5">
                         <label
-                            htmlFor="aboutMe.identifier"
+                            htmlFor={"extensions[" + idx + "].identifier"}
                             className="block mb-2 text-sm font-medium text-gray-900"
                         >
                             識別子
@@ -178,7 +178,7 @@ export default function Extensions() {
                         <div className="relative w-full">
                             <input
                                 type="text"
-                                id="aboutMe.identifier"
+                                id={"extensions[" + idx + "].identifier"}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 onChange={
                                     (e) => setJson(draft => {

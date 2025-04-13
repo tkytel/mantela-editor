@@ -1,4 +1,5 @@
 import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror";
+{/* @ts-ignore */}
 import { langs } from "@uiw/codemirror-extensions-langs"
 import { jsonParseLinter } from "@codemirror/lang-json"
 import { linter } from "@codemirror/lint";

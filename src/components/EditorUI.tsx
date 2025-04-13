@@ -6,6 +6,7 @@ import Name from "./items/Name";
 import PreferredPrefix from "./items/PreferredPrefix";
 import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
+import Sip from "./items/Sip";
 
 export default function EditorUI() {
     const [json] = useImmerAtom(BodyAtom);
@@ -24,6 +25,7 @@ export default function EditorUI() {
                 <Identifier />
                 <Name />
                 <PreferredPrefix />
+                <Sip />
 
                 <hr />
 

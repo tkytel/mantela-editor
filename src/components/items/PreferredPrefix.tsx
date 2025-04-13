@@ -25,7 +25,7 @@ export default function PreferredPrefix() {
     return (
         <div className="mb-5">
             <label
-                htmlFor="aboutMe.identifier"
+                htmlFor="aboutMe.preferredPrefix"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 好ましいプレフィックス <span className="text-pink-500">*</span>
