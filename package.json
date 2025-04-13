@@ -20,6 +20,7 @@
     "jotai-immer": "^0.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-select": "^5.10.1",
     "use-immer": "^0.11.0",
     "zod": "^3.24.2"
   },
