@@ -12,6 +12,7 @@ export default function Extensions() {
         { value: "dialphone", label: "ダイヤルパルスを用いる固定電話機" },
         { value: "fax", label: "ファクシミリ機" },
         { value: "information", label: "音声による情報提供を目的とした自動応答端末" },
+        { value: "conference", label: "会議室" },
         { value: "main", label: "コールキューや複数の端末に対する転送番号" },
         { value: "modem", label: "モデム端末" },
         { value: "music", label: "音声による情報提供を目的としない自動応答端末" },
