@@ -151,7 +151,7 @@ export default function Extensions() {
                                     htmlFor={"extensions[" + idx + "].transferTo"}
                                     className="block mb-2 text-sm font-medium text-gray-900"
                                 >
-                                    転送先局番の識別子 <span className="text-pink-500">*</span>
+                                    転送先端末の識別子 <span className="text-pink-500">*</span>
                                     <small> (ただし、種別が特定のものである場合のみ)</small>
                                 </label>
                                 <div className="relative w-full">
