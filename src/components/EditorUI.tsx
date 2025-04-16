@@ -29,7 +29,7 @@ export default function EditorUI() {
 
                 <hr />
 
-                <p className="text-xl mb-2 mt-2">局番</p>
+                <p className="text-xl mb-2 mt-2">内線番号</p>
                 <Extensions />
 
                 <hr />
