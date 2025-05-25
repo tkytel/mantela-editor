@@ -172,8 +172,8 @@ export default function Coordinates() {
                     placeholder="位置の海抜高度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={(e) => setAccuracy(e.target.value)}
-                    value={accuracy}
+                    onChange={(e) => setAltitude(e.target.value)}
+                    value={altitude}
                 />
             </div>
 
@@ -189,8 +189,8 @@ export default function Coordinates() {
                     placeholder="経緯度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.accuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={(e) => setAltitudeAccuracy(e.target.value)}
-                    value={altitudeAccuracy}
+                    onChange={(e) => setAccuracy(e.target.value)}
+                    value={accuracy}
                 />
             </div>
 
@@ -206,14 +206,8 @@ export default function Coordinates() {
                     placeholder="海抜高度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitudeAccuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.altitudeAccuracy = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.aboutMe.geolocationCoordinates?.altitudeAccuracy ?? 0.0}
+                    onChange={(e) => setAltitudeAccuracy(e.target.value)}
+                    value={altitudeAccuracy}
                 />
             </div>
             </>
