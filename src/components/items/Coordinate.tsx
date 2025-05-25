@@ -188,7 +188,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="位置の緯度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.latitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -207,7 +207,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="位置の経度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.longitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -226,7 +226,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="位置の海抜高度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -243,7 +243,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="経緯度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.accuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -260,7 +260,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="海抜高度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitudeAccuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
