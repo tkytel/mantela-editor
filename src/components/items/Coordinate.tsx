@@ -82,7 +82,7 @@ export default function Coordinates() {
 
     useEffect(() => {
         const num = Number(altitude)
-        if (!isNaN(num) && altitude !== "" && num > 0) {
+        if (!isNaN(num) && altitude !== "") {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.altitude = num
