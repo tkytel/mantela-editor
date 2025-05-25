@@ -18,3 +18,12 @@ export const BodyAtom = atomWithImmer({
     isLoading: false,
     data: getInitialMantela()
 })
+
+
+type FormErrorState = {
+  alerts: Record<string, string>
+}
+
+export const AlertAtom = atomWithImmer<FormErrorState>({
+  alerts: {},
+})
