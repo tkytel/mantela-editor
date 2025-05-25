@@ -27,6 +27,67 @@ export default function Coordinates() {
             setIsSetCoord(true)
         }
     }, [json.data.aboutMe.geolocationCoordinates])
+
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
+    const [altitude, setAltitude] = useState("");
+    const [accuracy, setAccuracy] = useState("");
+    const [altitudeAccuracy, setAltitudeAccuracy] = useState("");
+
+    useEffect(() => {
+        const num = parseFloat(latitude)
+        if (!isNaN(num) && latitude !== "") {
+            setJson(draft => {
+                if (draft.data.aboutMe.geolocationCoordinates) {
+                    draft.data.aboutMe.geolocationCoordinates.latitude = num
+                }
+            })
+        }
+    }, [latitude])
+
+    useEffect(() => {
+        const num = parseFloat(longitude)
+        if (!isNaN(num) && longitude !== "") {
+            setJson(draft => {
+                if (draft.data.aboutMe.geolocationCoordinates) {
+                    draft.data.aboutMe.geolocationCoordinates.longitude = num
+                }
+            })
+        }
+    }, [longitude])
+
+    useEffect(() => {
+        const num = parseFloat(altitude)
+        if (!isNaN(num) && altitude !== "") {
+            setJson(draft => {
+                if (draft.data.aboutMe.geolocationCoordinates) {
+                    draft.data.aboutMe.geolocationCoordinates.altitude = num
+                }
+            })
+        }
+    }, [altitude])
+
+    useEffect(() => {
+        const num = parseFloat(accuracy)
+        if (!isNaN(num) && accuracy !== "") {
+            setJson(draft => {
+                if (draft.data.aboutMe.geolocationCoordinates) {
+                    draft.data.aboutMe.geolocationCoordinates.accuracy = num
+                }
+            })
+        }
+    }, [accuracy])
+
+    useEffect(() => {
+        const num = parseFloat(altitudeAccuracy)
+        if (!isNaN(num) && altitudeAccuracy !== "") {
+            setJson(draft => {
+                if (draft.data.aboutMe.geolocationCoordinates) {
+                    draft.data.aboutMe.geolocationCoordinates.altitudeAccuracy = num
+                }
+            })
+        }
+    }, [altitudeAccuracy])
     
     return (
         <>
@@ -73,14 +134,10 @@ export default function Coordinates() {
                     placeholder="位置の緯度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.latitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.latitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.aboutMe.geolocationCoordinates?.latitude ?? 0.0}
+                    onChange={(e) => setLatitude(e.target.value)}
+                    value={latitude}
+                    min={-90}
+                    max={90}
                 />
             </div>
 
@@ -96,14 +153,10 @@ export default function Coordinates() {
                     placeholder="位置の経度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.longitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.longitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.aboutMe.geolocationCoordinates?.longitude ?? 0.0}
+                    onChange={(e) => setLongitude(e.target.value)}
+                    value={longitude}
+                    min={-180}
+                    max={180}
                 />
             </div>
 
@@ -119,14 +172,8 @@ export default function Coordinates() {
                     placeholder="位置の海抜高度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.altitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.aboutMe.geolocationCoordinates?.altitude ?? 0.0}
+                    onChange={(e) => setAccuracy(e.target.value)}
+                    value={accuracy}
                 />
             </div>
 
@@ -142,14 +189,8 @@ export default function Coordinates() {
                     placeholder="経緯度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.accuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.accuracy = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.aboutMe.geolocationCoordinates?.accuracy ?? 0.0}
+                    onChange={(e) => setAltitudeAccuracy(e.target.value)}
+                    value={altitudeAccuracy}
                 />
             </div>
 

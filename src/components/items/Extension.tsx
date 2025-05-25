@@ -64,7 +64,6 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
     useEffect(() => {
         const num = parseFloat(latitude)
         if (!isNaN(num) && latitude !== "") {
-            console.log(num)
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.latitude = num
@@ -335,6 +334,8 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setLatitude(e.target.value)}
                     value={latitude}
+                    min={-90}
+                    max={90}
                 />
             </div>
 
@@ -352,6 +353,8 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setLongitude(e.target.value)}
                     value={longitude}
+                    min={-180}
+                    max={180}
                 />
             </div>
 
