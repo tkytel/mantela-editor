@@ -101,7 +101,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
+                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
     }, [longitude])
