@@ -318,7 +318,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             { isSetCoord && (
             <>
             <p className="text-xl">設置場所</p>
-            <p className="text-sm mb-2">これらの値は、<a href="https://tkytel.github.io/CocoKano" className="underline">CocoKano</a> で取得できます</p>
+            <p className="text-sm mb-2">これらの値は、<a href="https://tkytel.github.io/CocoKano/" className="underline">CocoKano</a> で取得できます</p>
 
             <label
                 htmlFor="aboutMe.geolocationCoordinates.latitude"
