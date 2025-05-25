@@ -23,15 +23,11 @@ export const ExtensionTypeEnum = z.enum([
 
 export const geolocationCoordinatesSchema = z.object({
   latitude: z
-    .number()
-    .min(-90, { message: "latitude must be >= -90" })
-    .max(90, { message: "latitude must be <= 90" }),
+    .number().min(-90).max(90).optional(),
   longitude: z
-    .number()
-    .min(-180, { message: "longitude must be >= -180" })
-    .max(180, { message: "longitude must be <= 180" }),
+    .number().min(-180).max(180).optional(),
   altitude: z.number().or(z.null()).optional(),
-  accuracy: z.number().min(0),
+  accuracy: z.number().min(0).optional(),
   altitudeAccuracy: z.number().min(0).or(z.null()).optional(),
 });
 

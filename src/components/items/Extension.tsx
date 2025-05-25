@@ -55,6 +55,67 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
     }
 
     const [isSetCoord, setIsSetCoord] = useState(false);
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
+    const [altitude, setAltitude] = useState("");
+    const [accuracy, setAccuracy] = useState("");
+    const [altitudeAccuracy, setAltitudeAccuracy] = useState("");
+
+    useEffect(() => {
+        const num = parseFloat(latitude)
+        if (!isNaN(num) && latitude !== "") {
+            console.log(num)
+            setJson(draft => {
+                if (draft.data.extensions[idx].geolocationCoordinates) {
+                    draft.data.extensions[idx].geolocationCoordinates.latitude = num
+                }
+            })
+        }
+    }, [latitude])
+
+    useEffect(() => {
+        const num = parseFloat(longitude)
+        if (!isNaN(num) && longitude !== "") {
+            setJson(draft => {
+                if (draft.data.extensions[idx].geolocationCoordinates) {
+                    draft.data.extensions[idx].geolocationCoordinates.longitude = num
+                }
+            })
+        }
+    }, [longitude])
+
+    useEffect(() => {
+        const num = parseFloat(altitude)
+        if (!isNaN(num) && altitude !== "") {
+            setJson(draft => {
+                if (draft.data.extensions[idx].geolocationCoordinates) {
+                    draft.data.extensions[idx].geolocationCoordinates.altitude = num
+                }
+            })
+        }
+    }, [altitude])
+
+    useEffect(() => {
+        const num = parseFloat(accuracy)
+        if (!isNaN(num) && accuracy !== "") {
+            setJson(draft => {
+                if (draft.data.extensions[idx].geolocationCoordinates) {
+                    draft.data.extensions[idx].geolocationCoordinates.accuracy = num
+                }
+            })
+        }
+    }, [accuracy])
+
+    useEffect(() => {
+        const num = parseFloat(altitudeAccuracy)
+        if (!isNaN(num) && altitudeAccuracy !== "") {
+            setJson(draft => {
+                if (draft.data.extensions[idx].geolocationCoordinates) {
+                    draft.data.extensions[idx].geolocationCoordinates.altitudeAccuracy = num
+                }
+            })
+        }
+    }, [altitudeAccuracy])
 
     useEffect(() => {
         if (isSetCoord) {
@@ -261,7 +322,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             <p className="text-sm mb-2">これらの値は、<a href="https://tkytel.github.io/CocoKano" className="underline">CocoKano</a> で取得できます</p>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.latitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 緯度
@@ -272,19 +333,13 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     placeholder="位置の緯度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.latitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.extensions[idx].geolocationCoordinates) {
-                                draft.data.extensions[idx].geolocationCoordinates.latitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.extensions[idx].geolocationCoordinates?.latitude ?? ""}
+                    onChange={(e) => setLatitude(e.target.value)}
+                    value={latitude}
                 />
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.longitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経度
@@ -295,19 +350,13 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     placeholder="位置の経度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.longitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.extensions[idx].geolocationCoordinates) {
-                                draft.data.extensions[idx].geolocationCoordinates.longitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.extensions[idx].geolocationCoordinates?.longitude ?? ""}
+                    onChange={(e) => setLongitude(e.target.value)}
+                    value={longitude}
                 />
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.altitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度 [m]
@@ -318,19 +367,13 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     placeholder="位置の海抜高度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.extensions[idx].geolocationCoordinates) {
-                                draft.data.extensions[idx].geolocationCoordinates.altitude = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.extensions[idx].geolocationCoordinates?.altitude ?? ""}
+                    onChange={(e) => setAltitude(e.target.value)}
+                    value={altitude}
                 />
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.accuracy"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経緯度の精度 [m]
@@ -341,19 +384,13 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     placeholder="経緯度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.accuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.extensions[idx].geolocationCoordinates) {
-                                draft.data.extensions[idx].geolocationCoordinates.accuracy = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.extensions[idx].geolocationCoordinates?.accuracy ?? ""}
+                    onChange={(e) => setAccuracy(e.target.value)}
+                    value={accuracy}
                 />
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.altitudeAccuracy"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度の精度 [m]
@@ -364,14 +401,8 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                     placeholder="海抜高度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitudeAccuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={
-                        (e) => setJson(draft => {
-                            if (draft.data.extensions[idx].geolocationCoordinates) {
-                                draft.data.extensions[idx].geolocationCoordinates.altitudeAccuracy = parseFloat(e.target.value)
-                            }
-                        })
-                    }
-                    value={json.data.extensions[idx].geolocationCoordinates?.altitudeAccuracy ?? ""}
+                    onChange={(e) => setAltitudeAccuracy(e.target.value)}
+                    value={altitudeAccuracy}
                 />
             </div>
             </>

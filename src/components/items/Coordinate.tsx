@@ -69,7 +69,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="位置の緯度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.latitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -80,7 +80,7 @@ export default function Coordinates() {
                             }
                         })
                     }
-                    value={json.data.aboutMe.geolocationCoordinates?.latitude ?? ""}
+                    value={json.data.aboutMe.geolocationCoordinates?.latitude ?? 0.0}
                 />
             </div>
 
@@ -92,7 +92,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="位置の経度を十進数の角度で指定してください"
                     id="aboutMe.geolocationCoordinates.longitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -103,7 +103,7 @@ export default function Coordinates() {
                             }
                         })
                     }
-                    value={json.data.aboutMe.geolocationCoordinates?.longitude ?? ""}
+                    value={json.data.aboutMe.geolocationCoordinates?.longitude ?? 0.0}
                 />
             </div>
 
@@ -115,7 +115,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="位置の海抜高度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitude"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -126,7 +126,7 @@ export default function Coordinates() {
                             }
                         })
                     }
-                    value={json.data.aboutMe.geolocationCoordinates?.altitude ?? ""}
+                    value={json.data.aboutMe.geolocationCoordinates?.altitude ?? 0.0}
                 />
             </div>
 
@@ -138,18 +138,18 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="経緯度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.accuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={
                         (e) => setJson(draft => {
                             if (draft.data.aboutMe.geolocationCoordinates) {
-                                draft.data.aboutMe.geolocationCoordinates.altitude = parseFloat(e.target.value)
+                                draft.data.aboutMe.geolocationCoordinates.accuracy = parseFloat(e.target.value)
                             }
                         })
                     }
-                    value={json.data.aboutMe.geolocationCoordinates?.accuracy ?? ""}
+                    value={json.data.aboutMe.geolocationCoordinates?.accuracy ?? 0.0}
                 />
             </div>
 
@@ -161,7 +161,7 @@ export default function Coordinates() {
             </label>
             <div className="relative w-full mb-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="海抜高度の精度をメートル単位で指定してください"
                     id="aboutMe.geolocationCoordinates.altitudeAccuracy"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -172,7 +172,7 @@ export default function Coordinates() {
                             }
                         })
                     }
-                    value={json.data.aboutMe.geolocationCoordinates?.altitudeAccuracy ?? ""}
+                    value={json.data.aboutMe.geolocationCoordinates?.altitudeAccuracy ?? 0.0}
                 />
             </div>
             </>
