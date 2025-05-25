@@ -63,7 +63,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
     const [_, setAlerts] = useImmerAtom(AlertAtom);
 
     useEffect(() => {
-        const num = parseFloat(latitude)
+        const num = Number(latitude)
         if (!isNaN(num) && latitude !== "" && num > -90 && num < 90) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
@@ -71,21 +71,21 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 }
             })
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.latitude"]
             })
         } else if (latitude == ""){
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.latitude"]
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
+                draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
             })
         }
     }, [latitude])
 
     useEffect(() => {
-        const num = parseFloat(longitude)
+        const num = Number(longitude)
         if (!isNaN(num) && longitude !== "" && num > -180 && num < 180) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
@@ -93,21 +93,21 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 }
             })
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.longitude"]
             })
         } else if (longitude == ""){
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.longitude"]
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
+                draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
     }, [longitude])
 
     useEffect(() => {
-        const num = parseFloat(altitude)
+        const num = Number(altitude)
         if (!isNaN(num) && altitude !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
@@ -115,21 +115,21 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 }
             })
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitude"]
             })
-        } else if (longitude == ""){
+        } else if (altitude == ""){
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitude"]
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
+                draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
             })
         }
     }, [altitude])
 
     useEffect(() => {
-        const num = parseFloat(accuracy)
+        const num = Number(accuracy)
         if (!isNaN(num) && accuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
@@ -137,21 +137,21 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 }
             })
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.accuracy"]
             })
         } else if (accuracy == ""){
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.accuracy"]
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
+                draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
             })
         }
     }, [accuracy])
 
     useEffect(() => {
-        const num = parseFloat(altitudeAccuracy)
+        const num = Number(altitudeAccuracy)
         if (!isNaN(num) && altitudeAccuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
@@ -159,15 +159,15 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 }
             })
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
             })
         } else if (altitudeAccuracy == ""){
             setAlerts(draft => {
-                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
+                delete draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
             })
         } else {
             setAlerts(draft => {
-                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
+                draft.alerts["extensions.extension[" + idx + "].geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
             })
         }
     }, [altitudeAccuracy])
@@ -377,7 +377,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             <p className="text-sm mb-2">これらの値は、<a href="https://tkytel.github.io/CocoKano/" className="underline">CocoKano</a> で取得できます</p>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates.latitude"
+                htmlFor={"extensions[" + idx + "].extension.geolocationCoordinates.latitude"}
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 緯度
@@ -386,7 +386,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <input
                     type="text"
                     placeholder="位置の緯度を十進数の角度で指定してください"
-                    id="aboutMe.geolocationCoordinates.latitude"
+                    id={"extensions[" + idx + "].extension.geolocationCoordinates.latitude"}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setLatitude(e.target.value)}
                     value={latitude}
@@ -396,7 +396,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates.longitude"
+                htmlFor={"extensions[" + idx + "].extension.geolocationCoordinates.longitude"}
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経度
@@ -405,7 +405,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <input
                     type="text"
                     placeholder="位置の経度を十進数の角度で指定してください"
-                    id="aboutMe.geolocationCoordinates.longitude"
+                    id={"extensions[" + idx + "].extension.geolocationCoordinates.longitude"}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setLongitude(e.target.value)}
                     value={longitude}
@@ -415,7 +415,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates.altitude"
+                htmlFor={"extensions[" + idx + "].extension.geolocationCoordinates.altitude"}
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度 [m]
@@ -424,7 +424,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <input
                     type="text"
                     placeholder="位置の海抜高度をメートル単位で指定してください"
-                    id="aboutMe.geolocationCoordinates.altitude"
+                    id={"extensions[" + idx + "].extension.geolocationCoordinates.altitude"}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setAltitude(e.target.value)}
                     value={altitude}
@@ -432,7 +432,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates.accuracy"
+                htmlFor={"extensions[" + idx + "].extension.geolocationCoordinates.accuracy"}
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経緯度の精度 [m]
@@ -441,7 +441,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <input
                     type="text"
                     placeholder="経緯度の精度をメートル単位で指定してください"
-                    id="aboutMe.geolocationCoordinates.accuracy"
+                    id={"extensions[" + idx + "].extension.geolocationCoordinates.accuracy"}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setAccuracy(e.target.value)}
                     value={accuracy}
@@ -449,7 +449,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates.altitudeAccuracy"
+                htmlFor={"extensions[" + idx + "].extension.geolocationCoordinates.altitudeAccuracy"}
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度の精度 [m]
@@ -458,7 +458,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <input
                     type="text"
                     placeholder="海抜高度の精度をメートル単位で指定してください"
-                    id="aboutMe.geolocationCoordinates.altitudeAccuracy"
+                    id={"extensions[" + idx + "].extension.geolocationCoordinates.altitudeAccuracy"}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     onChange={(e) => setAltitudeAccuracy(e.target.value)}
                     value={altitudeAccuracy}
