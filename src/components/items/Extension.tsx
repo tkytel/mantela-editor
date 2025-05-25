@@ -108,37 +108,70 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
 
     useEffect(() => {
         const num = parseFloat(altitude)
-        if (!isNaN(num) && altitude !== "") {
+        if (!isNaN(num) && altitude !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.altitude = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"]
+            })
+        } else if (longitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
             })
         }
     }, [altitude])
 
     useEffect(() => {
         const num = parseFloat(accuracy)
-        if (!isNaN(num) && accuracy !== "") {
+        if (!isNaN(num) && accuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.accuracy = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"]
+            })
+        } else if (accuracy == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
             })
         }
     }, [accuracy])
 
     useEffect(() => {
         const num = parseFloat(altitudeAccuracy)
-        if (!isNaN(num) && altitudeAccuracy !== "") {
+        if (!isNaN(num) && altitudeAccuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.altitudeAccuracy = num
                 }
             })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
+            })
+        } else if (altitudeAccuracy == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
+            })
         }
     }, [altitudeAccuracy])
-
+    
     useEffect(() => {
         if (isSetCoord) {
             if (!json.data.extensions[idx].geolocationCoordinates) {

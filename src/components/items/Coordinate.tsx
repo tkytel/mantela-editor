@@ -37,7 +37,7 @@ export default function Coordinates() {
     const [altitudeAccuracy, setAltitudeAccuracy] = useState("");
 
     useEffect(() => {
-        const num = parseFloat(latitude)
+        const num = Number(latitude)
         if (!isNaN(num) && latitude !== "" && num > -90 && num < 90) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
@@ -59,7 +59,7 @@ export default function Coordinates() {
     }, [latitude])
 
     useEffect(() => {
-        const num = parseFloat(longitude)
+        const num = Number(longitude)
         if (!isNaN(num) && longitude !== "" && num > -180 && num < 180) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
@@ -81,34 +81,68 @@ export default function Coordinates() {
     }, [longitude])
 
     useEffect(() => {
-        const num = parseFloat(altitude)
-        if (!isNaN(num) && altitude !== "") {
+        const num = Number(altitude)
+        if (!isNaN(num) && altitude !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.altitude = num
                 }
             })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.altitude"]
+            })
+        } else if (altitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.altitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
+            })
         }
     }, [altitude])
 
     useEffect(() => {
-        const num = parseFloat(accuracy)
-        if (!isNaN(num) && accuracy !== "") {
+        const num = Number(accuracy)
+        if (!isNaN(num) && accuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.accuracy = num
                 }
             })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.accuracy"]
+            })
+        } else if (accuracy == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.accuracy"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
+            })
         }
     }, [accuracy])
 
     useEffect(() => {
-        const num = parseFloat(altitudeAccuracy)
-        if (!isNaN(num) && altitudeAccuracy !== "") {
+        const num = Number(altitudeAccuracy)
+        console.log(altitudeAccuracy)
+        if (!isNaN(num) && altitudeAccuracy !== "" && num > 0) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.altitudeAccuracy = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.altitudeAccuracy"]
+            })
+        } else if (altitudeAccuracy == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.altitudeAccuracy"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
             })
         }
     }, [altitudeAccuracy])
@@ -147,7 +181,7 @@ export default function Coordinates() {
             <p className="text-sm mb-2">これらの値は、<a href="https://tkytel.github.io/CocoKano/" className="underline">CocoKano</a> で取得できます</p>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.latitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 緯度
@@ -166,7 +200,7 @@ export default function Coordinates() {
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.longitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経度
@@ -185,7 +219,7 @@ export default function Coordinates() {
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.altitude"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度 [m]
@@ -202,7 +236,7 @@ export default function Coordinates() {
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.accuracy"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 経緯度の精度 [m]
@@ -219,7 +253,7 @@ export default function Coordinates() {
             </div>
 
             <label
-                htmlFor="aboutMe.geolocationCoordinates"
+                htmlFor="aboutMe.geolocationCoordinates.altitudeAccuracy"
                 className="block mb-2 text-sm font-medium text-gray-900"
             >
                 海抜高度の精度 [m]
