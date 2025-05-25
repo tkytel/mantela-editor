@@ -1,9 +1,11 @@
 import { useImmerAtom } from "jotai-immer";
-import { BodyAtom } from "../../helpers/Jotai";
+import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import { useEffect, useState } from "react";
 
 export default function Coordinates() {
     const [json, setJson] = useImmerAtom(BodyAtom);
+    const [_, setAlerts] = useImmerAtom(AlertAtom);
+    
     const [isSetCoord, setIsSetCoord] = useState(false);
 
     useEffect(() => {
@@ -36,22 +38,44 @@ export default function Coordinates() {
 
     useEffect(() => {
         const num = parseFloat(latitude)
-        if (!isNaN(num) && latitude !== "") {
+        if (!isNaN(num) && latitude !== "" && num > -90 && num < 90) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.latitude = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.latitude"]
+            })
+        } else if (latitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.latitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
             })
         }
     }, [latitude])
 
     useEffect(() => {
         const num = parseFloat(longitude)
-        if (!isNaN(num) && longitude !== "") {
+        if (!isNaN(num) && longitude !== "" && num > -180 && num < 180) {
             setJson(draft => {
                 if (draft.data.aboutMe.geolocationCoordinates) {
                     draft.data.aboutMe.geolocationCoordinates.longitude = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.longitude"]
+            })
+        } else if (longitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.geolocationCoordinates.longitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
     }, [longitude])

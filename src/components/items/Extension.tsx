@@ -5,7 +5,7 @@ import Select, { MultiValue } from 'react-select';
 import Creatable from "react-select/creatable";
 
 import { useImmerAtom } from "jotai-immer";
-import { BodyAtom } from "../../helpers/Jotai";
+import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import { useEffect, useState } from "react";
 
 type Option = { value: string; label: string; }
@@ -60,25 +60,48 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
     const [altitude, setAltitude] = useState("");
     const [accuracy, setAccuracy] = useState("");
     const [altitudeAccuracy, setAltitudeAccuracy] = useState("");
+    const [_, setAlerts] = useImmerAtom(AlertAtom);
 
     useEffect(() => {
         const num = parseFloat(latitude)
-        if (!isNaN(num) && latitude !== "") {
+        if (!isNaN(num) && latitude !== "" && num > -90 && num < 90) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.latitude = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"]
+            })
+        } else if (latitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
             })
         }
     }, [latitude])
 
     useEffect(() => {
         const num = parseFloat(longitude)
-        if (!isNaN(num) && longitude !== "") {
+        if (!isNaN(num) && longitude !== "" && num > -180 && num < 180) {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.longitude = num
                 }
+            })
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"]
+            })
+        } else if (longitude == ""){
+            setAlerts(draft => {
+                delete draft.alerts["aboutMe.extensions[" + idx + "].geolocationCoordinates.longitude"]
+            })
+        } else {
+            setAlerts(draft => {
+                draft.alerts["aboutMe.geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
     }, [longitude])
