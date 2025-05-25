@@ -108,7 +108,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
 
     useEffect(() => {
         const num = Number(altitude)
-        if (!isNaN(num) && altitude !== "" && num > 0) {
+        if (!isNaN(num) && altitude !== "") {
             setJson(draft => {
                 if (draft.data.extensions[idx].geolocationCoordinates) {
                     draft.data.extensions[idx].geolocationCoordinates.altitude = num
