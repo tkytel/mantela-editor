@@ -211,7 +211,7 @@ export default function Coordinates() {
                 />
             </div>
             </>
-            )}
-            </>
+        )}
+        </>
     )
 }
