@@ -231,7 +231,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
             <div className="flex mb-3">
                 <div className="flex items-center h-5">
                     <input
-                    id="helper-checkbox"
+                    id={`helper-checkbox-extension${idx}`}
                     aria-describedby="helper-checkbox-text"
                     type="checkbox"
                     checked={isSetCoord}
@@ -241,7 +241,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 </div>
                 <div className="ms-2 text-sm">
                     <label
-                    htmlFor="helper-checkbox"
+                    htmlFor={`helper-checkbox-extension${idx}`}
                     className="font-medium text-gray-900"
                     >
                     設置場所を指定する
