@@ -39,6 +39,7 @@ export const AboutMeSchema = z.object({
   sipPassword: z.string().optional(),
   sipServer: z.string().optional(),
   sipPort: z.string().optional(),
+  sipUri: z.string().optional(),
   geolocationCoordinates: geolocationCoordinatesSchema.optional(),
   unavailable: z.boolean().optional(),
 });
