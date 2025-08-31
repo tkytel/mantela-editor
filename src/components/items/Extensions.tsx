@@ -21,6 +21,7 @@ export default function Extensions() {
                         {
                             name: "",
                             extension: "",
+                            model: "",
                             type: "phone",
                             identifier: "",
                             image: "",
