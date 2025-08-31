@@ -23,6 +23,7 @@ export default function Extensions() {
                             extension: "",
                             type: "phone",
                             identifier: "",
+                            image: "",
                         }
                     )
                 });
