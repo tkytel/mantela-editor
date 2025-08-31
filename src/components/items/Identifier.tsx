@@ -26,8 +26,8 @@ export default function Identifier() {
                 draft.alerts["aboutMe.identifier"] = "局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。"
             })
         }
-    }, [identifier])
-    
+    }, [identifier, setJson, setAlerts])
+
     return (
         <div className="mb-5">
             <label

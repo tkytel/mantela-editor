@@ -16,7 +16,7 @@ export default function PreferredPrefix() {
 
     // UI 側から更新された prefix を、react-select/creatable の要素を排除して JSON 側に反映させる
     const handleChange = (selected: MultiValue<Option>) => {
-        const values = selected ? selected.map((opt: any) => opt.value) : [];
+        const values = selected ? selected.map((opt) => opt.value) : [];
         setJson((draft) => {
             draft.data.aboutMe.preferredPrefix = values;
         })
