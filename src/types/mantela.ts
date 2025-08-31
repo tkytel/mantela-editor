@@ -39,9 +39,10 @@ export const AboutMeSchema = z.object({
   sipPassword: z.string().optional(),
   sipServer: z.string().optional(),
   sipPort: z.string().optional(),
-  sipUri: z.string().optional(),
+  sipUri: z.url().optional(),
   geolocationCoordinates: geolocationCoordinatesSchema.optional(),
   unavailable: z.boolean().optional(),
+  image: z.url().optional(),
 });
 
 export const ExtensionSchema = z.object({
@@ -51,6 +52,7 @@ export const ExtensionSchema = z.object({
   type: ExtensionTypeEnum.optional(),
   transferTo: z.array(z.string()).optional(),
   geolocationCoordinates: geolocationCoordinatesSchema.optional(),
+  image: z.url().optional(),
 });
 
 export const ProviderSchema = z.object({
