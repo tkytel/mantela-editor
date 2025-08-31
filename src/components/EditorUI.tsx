@@ -8,6 +8,7 @@ import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
 import Sip from "./items/Sip";
 import Coordinates from "./items/Coordinate";
+import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
 
 export default function EditorUI() {
@@ -30,6 +31,7 @@ export default function EditorUI() {
                     <PreferredPrefix />
                     <Sip />
                     <Coordinates />
+                    <Unavailable />
                     <Image />
 
                     <hr />

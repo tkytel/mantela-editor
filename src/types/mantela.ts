@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 export const ExtensionTypeEnum = z.enum([
   "alias",
   "application",
@@ -60,6 +59,7 @@ export const ProviderSchema = z.object({
   prefix: z.string(),
   identifier: z.string().optional(),
   mantela: z.string().optional(),
+  unavailable: z.boolean().optional(),
 });
 
 export const MantelaSchema = z.object({

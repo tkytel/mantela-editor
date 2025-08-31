@@ -120,6 +120,36 @@ export default function Extensions() {
                             />
                         </div>
                     </div>
+
+                    {/* 利用不可 */}
+                    <div className="flex mb-3">
+                        <div className="flex items-center h-5">
+                            <input
+                                type="checkbox"
+                                id={"providers[" + idx + "].unavailable"}
+                                aria-describedby={"providers[" + idx + "].unavailable-text"}
+                                checked={val.unavailable}
+                                onChange={(e) => setJson(draft => {
+                                    draft.data.providers[idx].unavailable = e.target.checked
+                                })}
+                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                            />
+                        </div>
+                        <div className="ms-2 text-sm">
+                            <label
+                                htmlFor={"providers[" + idx + "].unavailable"}
+                                className="font-medium text-gray-900"
+                            >
+                                利用不可
+                            </label>
+                            <p
+                                id={"providers[" + idx + "].unavailable-text"}
+                                className="text-xs font-normal text-gray-500"
+                            >
+                                その交換局との通信が（一時的に）利用できないとき、有効にしてください。
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 )
             })
