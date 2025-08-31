@@ -9,32 +9,31 @@ import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import { useEffect, useState } from "react";
 
 type Option = { value: string; label: string; }
+const ExtensionTypeOptions = [
+    { value: "alias", label: "単一の端末に対する転送番号" },
+    { value: "application", label: "対話的な機能を有する自動応答端末" },
+    { value: "cellphone", label: "スマホでない携帯電話機" },
+    { value: "dialphone", label: "ダイヤルパルスを用いる固定電話機" },
+    { value: "fax", label: "ファクシミリ機" },
+    { value: "information", label: "音声による情報提供を目的とした自動応答端末" },
+    { value: "conference", label: "会議室" },
+    { value: "main", label: "コールキューや複数の端末に対する転送番号" },
+    { value: "modem", label: "モデム端末" },
+    { value: "music", label: "音声による情報提供を目的としない自動応答端末" },
+    { value: "other", label: "その他の端末" },
+    { value: "phone", label: "電話機" },
+    { value: "pushphone", label: "プッシュトーンを用いる固定電話機" },
+    { value: "reserved", label: "予約済の番号" },
+    { value: "smartphone", label: "スマートフォン" },
+    { value: "switchboard", label: "対話的に転送先を選択できる転送番号" },
+    { value: "unknown", label: "種別の不明な端末" },
+    { value: "unused", label: "使用されていない番号" },
+] as const satisfies Option[];
 
 export default function Extension({ extension, idx }: {extension: MantelaExtension, idx: number}) {
     const [json, setJson] = useImmerAtom(BodyAtom);
-    
-    const typeOptions = [
-            { value: "alias", label: "単一の端末に対する転送番号" },
-            { value: "application", label: "対話的な機能を有する自動応答端末" },
-            { value: "cellphone", label: "スマホでない携帯電話機" },
-            { value: "dialphone", label: "ダイヤルパルスを用いる固定電話機" },
-            { value: "fax", label: "ファクシミリ機" },
-            { value: "information", label: "音声による情報提供を目的とした自動応答端末" },
-            { value: "conference", label: "会議室" },
-            { value: "main", label: "コールキューや複数の端末に対する転送番号" },
-            { value: "modem", label: "モデム端末" },
-            { value: "music", label: "音声による情報提供を目的としない自動応答端末" },
-            { value: "other", label: "その他の端末" },
-            { value: "phone", label: "電話機" },
-            { value: "pushphone", label: "プッシュトーンを用いる固定電話機" },
-            { value: "reserved", label: "予約済の番号" },
-            { value: "smartphone", label: "スマートフォン" },
-            { value: "switchboard", label: "対話的に転送先を選択できる転送番号" },
-            { value: "unknown", label: "種別の不明な端末" },
-            { value: "unused", label: "使用されていない番号" },
-        ];
 
-    const handleTypeChange = (selected: any) => {
+    const handleTypeChange = (selected: typeof ExtensionTypeOptions[number] | null) => {
         setJson((draft) => {
             draft.data.extensions[idx].type = selected?.value;
         });
@@ -48,7 +47,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
 
     // UI 側から更新された prefix を、react-select/creatable の要素を排除して JSON 側に反映させる
     const handleChange = (selected: MultiValue<Option>) => {
-        const values = selected ? selected.map((opt: any) => opt.value) : [];
+        const values = selected ? selected.map(({value}) => value) : [];
         setJson((draft) => {
             draft.data.extensions[idx].transferTo = values;
         })
@@ -80,7 +79,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].identifier"] = "局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。"
             })
         }
-    }, [identifier])
+    }, [identifier, idx, setJson, setAlerts])
 
     useEffect(() => {
         const num = Number(latitude)
@@ -102,7 +101,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
             })
         }
-    }, [latitude])
+    }, [latitude, idx, setJson, setAlerts])
 
     useEffect(() => {
         const num = Number(longitude)
@@ -124,7 +123,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
-    }, [longitude])
+    }, [longitude, idx, setJson, setAlerts])
 
     useEffect(() => {
         const num = Number(altitude)
@@ -146,7 +145,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [altitude])
+    }, [altitude, idx, setJson, setAlerts])
 
     useEffect(() => {
         const num = Number(accuracy)
@@ -168,7 +167,7 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [accuracy])
+    }, [accuracy, idx, setJson, setAlerts])
 
     useEffect(() => {
         const num = Number(altitudeAccuracy)
@@ -190,8 +189,8 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [altitudeAccuracy])
-    
+    }, [altitudeAccuracy, idx, setJson, setAlerts])
+
     useEffect(() => {
         if (isSetCoord) {
             if (!json.data.extensions[idx].geolocationCoordinates) {
@@ -206,13 +205,13 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 })
             }
         }
-    }, [isSetCoord])
-    
+    }, [isSetCoord, idx, json.data.extensions, setJson])
+
     useEffect(() => {
         if (json.data.extensions[idx].geolocationCoordinates) {
             setIsSetCoord(true)
         }
-    }, [json.data.extensions[idx].geolocationCoordinates])
+    }, [idx, json.data.extensions])
 
     return (
         <div
@@ -315,9 +314,9 @@ export default function Extension({ extension, idx }: {extension: MantelaExtensi
                 <div className="relative w-full">
                 <Select
                     isClearable
-                    value={typeOptions.find((option) => option.value === json.data.extensions[idx].type)}
-                    onChange={(selected: any) => handleTypeChange(selected)}
-                    options={typeOptions}
+                    value={ExtensionTypeOptions.find((option) => option.value === json.data.extensions[idx].type)}
+                    onChange={handleTypeChange}
+                    options={ExtensionTypeOptions}
                 />
                 </div>
             </div>

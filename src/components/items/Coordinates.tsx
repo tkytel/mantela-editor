@@ -22,7 +22,7 @@ export default function Coordinates() {
                 })
             }
         }
-    }, [isSetCoord])
+    }, [isSetCoord, setJson, json.data.aboutMe.geolocationCoordinates])
 
     useEffect(() => {
         if (json.data.aboutMe.geolocationCoordinates) {
@@ -56,7 +56,7 @@ export default function Coordinates() {
                 draft.alerts["aboutMe.geolocationCoordinates.latitude"] = "緯度は -90 から 90 の間の数値である必要があります。"
             })
         }
-    }, [latitude])
+    }, [latitude, setAlerts, setJson])
 
     useEffect(() => {
         const num = Number(longitude)
@@ -78,7 +78,7 @@ export default function Coordinates() {
                 draft.alerts["aboutMe.geolocationCoordinates.longitude"] = "経度は -180 から 180 の間の数値である必要があります。"
             })
         }
-    }, [longitude])
+    }, [longitude, setAlerts, setJson])
 
     useEffect(() => {
         const num = Number(altitude)
@@ -100,7 +100,7 @@ export default function Coordinates() {
                 draft.alerts["aboutMe.geolocationCoordinates.altitude"] = "高度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [altitude])
+    }, [altitude, setAlerts, setJson])
 
     useEffect(() => {
         const num = Number(accuracy)
@@ -122,7 +122,7 @@ export default function Coordinates() {
                 draft.alerts["aboutMe.geolocationCoordinates.accuracy"] = "精度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [accuracy])
+    }, [accuracy, setAlerts, setJson])
 
     useEffect(() => {
         const num = Number(altitudeAccuracy)
@@ -145,8 +145,8 @@ export default function Coordinates() {
                 draft.alerts["aboutMe.geolocationCoordinates.altitudeAccuracy"] = "高度の精度は 0 以上の数値でなければなりません。"
             })
         }
-    }, [altitudeAccuracy])
-    
+    }, [altitudeAccuracy, setAlerts, setJson])
+
     return (
         <>
             <div className="flex mb-3">

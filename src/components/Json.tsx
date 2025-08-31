@@ -1,5 +1,4 @@
 import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror";
-{/* @ts-ignore */}
 import { langs } from "@uiw/codemirror-extensions-langs"
 import { jsonParseLinter } from "@codemirror/lang-json"
 import { linter } from "@codemirror/lint";
@@ -8,7 +7,7 @@ import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { MantelaSchema } from "../types/mantela";
 import { useImmerAtom } from "jotai-immer";
 
-export default function Editor() {
+export default function Json() {
     const [json, setJson] = useImmerAtom(BodyAtom);
     const [jsonStr, setJsonStr] = useState("");
     const [parseErr, setParseErr] = useState("");
@@ -23,7 +22,7 @@ export default function Editor() {
         } else {
             setParseErr(newMantela.error.message);
         }
-    }, []);
+    }, [setJson]);
     useEffect(() => {
         setJsonStr(JSON.stringify(json.data, null, 2))
     },[json])
