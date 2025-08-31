@@ -7,7 +7,7 @@ import { SetStateAction, useCallback, useEffect, useState } from "react";
 import { MantelaSchema } from "../types/mantela";
 import { useImmerAtom } from "jotai-immer";
 
-export default function Editor() {
+export default function Json() {
     const [json, setJson] = useImmerAtom(BodyAtom);
     const [jsonStr, setJsonStr] = useState("");
     const [parseErr, setParseErr] = useState("");

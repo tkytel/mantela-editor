@@ -1,7 +1,7 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
 
-export default function Extensions() {
+export default function Providers() {
     const [json, setJson] = useImmerAtom(BodyAtom);
     
     return (

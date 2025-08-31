@@ -7,7 +7,7 @@ import PreferredPrefix from "./items/PreferredPrefix";
 import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
 import Sip from "./items/Sip";
-import Coordinates from "./items/Coordinate";
+import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
 
