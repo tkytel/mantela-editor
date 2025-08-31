@@ -8,6 +8,7 @@ import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
 import Sip from "./items/Sip";
 import Coordinates from "./items/Coordinate";
+import Image from "./items/Image";
 
 export default function EditorUI() {
     const [json] = useImmerAtom(BodyAtom);
@@ -29,6 +30,7 @@ export default function EditorUI() {
                     <PreferredPrefix />
                     <Sip />
                     <Coordinates />
+                    <Image />
 
                     <hr />
 

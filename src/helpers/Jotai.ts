@@ -9,6 +9,7 @@ export const getInitialMantela = (): Mantela => ({
         identifier: "",
         name: "",
         preferredPrefix: [],
+        image: "",
     },
     extensions: [],
     providers: []
