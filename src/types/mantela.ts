@@ -48,6 +48,7 @@ export const ExtensionSchema = z.object({
   name: z.string(),
   extension: z.string(),
   identifier: z.string().optional(),
+  model: z.string().optional(),
   type: ExtensionTypeEnum.optional(),
   transferTo: z.array(z.string()).optional(),
   geolocationCoordinates: geolocationCoordinatesSchema.optional(),
