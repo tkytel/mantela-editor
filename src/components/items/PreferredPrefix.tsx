@@ -9,7 +9,10 @@ export default function PreferredPrefix() {
     const [json, setJson] = useImmerAtom(BodyAtom);
 
     // JSON 側から更新された prefix を、react-select/creatable でハンドルできる型に変換する
-    const selectedPrefixes: Option[] = (json.data.aboutMe.preferredPrefix || []).map((value: string) => ({
+    const preferredPrefix = json.data.aboutMe.preferredPrefix;
+    const selectedPrefixes: Option[] = (
+        Array.isArray(preferredPrefix) ? preferredPrefix : [preferredPrefix]
+    ).map((value: string) => ({
         value,
         label: value,
     }));
