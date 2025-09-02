@@ -32,7 +32,7 @@ export const geolocationCoordinatesSchema = z.object({
 
 export const AboutMeSchema = z.object({
   name: z.string(),
-  preferredPrefix: z.array(z.string()),
+  preferredPrefix: z.string().or(z.array(z.string())),
   identifier: z.string(),
   sipUsername: z.string().optional(),
   sipPassword: z.string().optional(),
