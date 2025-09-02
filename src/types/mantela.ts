@@ -37,8 +37,7 @@ export const AboutMeSchema = z.object({
 	sipPassword: z.string().optional(),
 	sipServer: z.string().optional(),
 	sipPort: z.string().optional(),
-	// FIXME: 配列でない場合は仕様違反なので排除する。
-	sipUri: z.url().or(z.array(z.url())).optional(),
+	sipUri: z.array(z.url()).optional(),
 	geolocationCoordinates: geolocationCoordinatesSchema.optional(),
 	unavailable: z.boolean().optional(),
 	image: z.url().optional(),
