@@ -5,7 +5,7 @@ import Name from "./items/Name";
 import PreferredPrefix from "./items/PreferredPrefix";
 import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
-import Sip from "./items/Sip";
+import SipUri from "./items/SipUri";
 import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
@@ -31,7 +31,7 @@ export default function EditorUI() {
 						<Identifier />
 						<Name />
 						<PreferredPrefix />
-						<Sip />
+						<SipUri />
 						<Coordinates />
 						<Unavailable />
 						<Image />
