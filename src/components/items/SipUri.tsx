@@ -10,12 +10,10 @@ export default function SipUri() {
 
 	// JSON 側から更新された sipUri を、react-select/creatable でハンドルできる型に変換する
 	const { sipUri } = json.data.aboutMe;
-	const selectedUris: Option[] = (sipUri ?? []).map(
-		(value: string) => ({
-			value,
-			label: value,
-		}),
-	);
+	const selectedUris: Option[] = (sipUri ?? []).map((value: string) => ({
+		value,
+		label: value,
+	}));
 
 	// UI 側から更新された sipUri を、react-select/creatable の要素を排除して JSON 側に反映させる
 	const handleChange = (selected: MultiValue<Option>) => {
@@ -29,11 +27,7 @@ export default function SipUri() {
 		<div className="mb-5">
 			<label htmlFor="aboutMe.sipUri" className="block mb-2 text-sm font-medium text-gray-900">
 				SIP URI (
-				<a
-					href="https://tools.ietf.org/html/rfc3261#section-19.1"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<a href="https://tools.ietf.org/html/rfc3261#section-19.1" target="_blank" rel="noopener noreferrer">
 					RFC 3261 §19.1 準拠
 				</a>
 				)
