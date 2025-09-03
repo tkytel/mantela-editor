@@ -1,8 +1,28 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
+import { MantelaSchema } from "../../types/mantela";
 
 export default function Providers() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
+
+	const fetchMantelaData = async (url: string, idx: number) => {
+		try {
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error("Failed to fetch mantela.json");
+			}
+
+			const validatedData = MantelaSchema.parse(await response.json());
+
+			setJson((draft) => {
+				draft.data.providers[idx].name = validatedData.aboutMe.name;
+				draft.data.providers[idx].identifier = validatedData.aboutMe.identifier;
+			});
+		} catch (error: unknown) {
+			/* eslint-disable-next-line no-alert */
+			alert(`mantela.jsonの取得に失敗しました。\n${error instanceof Error ? error.message : String(error)}`);
+		}
+	};
 
 	return (
 		<>
@@ -95,18 +115,32 @@ export default function Providers() {
 							>
 								mantela.json の URL
 							</label>
-							<div className="relative w-full">
-								<input
-									type="url"
-									id={"providers[" + idx + "].mantela"}
-									className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-									onChange={(e) => {
-										setJson((draft) => {
-											draft.data.providers[idx].mantela = e.target.value;
-										});
+							<div className="flex gap-2">
+								<div className="relative flex-1">
+									<input
+										type="url"
+										id={"providers[" + idx + "].mantela"}
+										className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+										onChange={(e) => {
+											setJson((draft) => {
+												draft.data.providers[idx].mantela = e.target.value;
+											});
+										}}
+										value={val.mantela}
+									/>
+								</div>
+								<button
+									type="button"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+									onClick={async () => {
+										if (val.mantela) {
+											await fetchMantelaData(val.mantela, idx);
+										}
 									}}
-									value={val.mantela}
-								/>
+									disabled={!val.mantela}
+								>
+									取得
+								</button>
 							</div>
 						</div>
 
