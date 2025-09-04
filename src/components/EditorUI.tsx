@@ -9,6 +9,7 @@ import SipUri from "./items/SipUri";
 import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
+import DeprecatedSip from "./items/DeprecatedSip";
 
 export default function EditorUI() {
 	const [json] = useImmerAtom(BodyAtom);
@@ -17,37 +18,37 @@ export default function EditorUI() {
 		return <p>Loading...</p>;
 	}
 
+	if (json.isLoading || !json.data) {
+		return null;
+	}
+
 	return (
-		!json.isLoading &&
-		json.data && (
-			<>
-				<div className="overflow-y-auto">
-					<p className="text-right">
-						<span className="text-pink-500">*</span>
-						と表示されている項目は、必須です。
-					</p>
-					<div className="max-h-[70vh] max-w-[95%]">
-						<p className="text-xl mb-2">局</p>
-						<Identifier />
-						<Name />
-						<PreferredPrefix />
-						<SipUri />
-						<Coordinates />
-						<Unavailable />
-						<Image />
+		<div className="overflow-y-auto">
+			<p className="text-right">
+				<span className="text-pink-500">*</span>
+				と表示されている項目は、必須です。
+			</p>
+			<div className="max-h-[70vh] max-w-[95%]">
+				<p className="text-xl mb-2">局</p>
+				<Identifier />
+				<Name />
+				<PreferredPrefix />
+				<SipUri />
+				<Coordinates />
+				<Unavailable />
+				<Image />
+				<DeprecatedSip />
 
-						<hr />
+				<hr />
 
-						<p className="text-xl mb-2 mt-2">内線番号</p>
-						<Extensions />
+				<p className="text-xl mb-2 mt-2">内線番号</p>
+				<Extensions />
 
-						<hr />
+				<hr />
 
-						<p className="text-xl mb-2 mt-2">外線</p>
-						<Providers />
-					</div>
-				</div>
-			</>
-		)
+				<p className="text-xl mb-2 mt-2">外線</p>
+				<Providers />
+			</div>
+		</div>
 	);
 }
