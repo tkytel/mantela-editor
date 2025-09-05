@@ -15,6 +15,13 @@ const initialSipData: SipUriData = {
 	host: "",
 	port: "",
 	transport: undefined,
+	// TODO: 必要なら対応する
+	// user
+	// method
+	// ttl
+	// maddr
+	// lr
+	// headers
 };
 
 export type SipUriModalProps = {
@@ -30,22 +37,29 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 	const sipUri = useMemo(() => {
 		const { scheme, usernameOrTelNumber, password, host, port, transport } = sipFormData;
 
-		/* prettier-ignore */
-		return `${scheme}:${usernameOrTelNumber}${
-            password ? `:${password}` : ""
-        }@${host}${
-            port ? `:${port}` : ""
-        }${
-            transport ? `;transport=${transport}` : ""
-        }`;
-		/* prettier-ignore-end */
+		const userInfo = usernameOrTelNumber ? `${usernameOrTelNumber}${password ? `:${password}` : ""}@` : "";
+		const hostport = port ? `${host}:${port}` : host;
+		const uriParameters = [
+			transport ? `;transport=${transport}` : "",
+			// TODO: 必要なら対応する
+			// user
+			// method
+			// ttl
+			// maddr
+			// lr
+			// headers
+		]
+			.filter(Boolean)
+			.join(";");
+
+		return `${scheme}:${userInfo}${hostport}${uriParameters ? `;${uriParameters}` : ""}`;
 	}, [sipFormData]);
 
 	const handleConfirm = useCallback(() => {
-		const { usernameOrTelNumber, host } = sipFormData;
+		const { host } = sipFormData;
 
-		if (!usernameOrTelNumber || !host) {
-			setError("ユーザー名/電話番号とホスト名は必須です。");
+		if (!host) {
+			setError("ホスト名は必須です。");
 			return;
 		}
 
@@ -128,7 +142,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 					</div>
 					<div>
 						<label htmlFor="sipUriModal.usernameOrTelNumber" className="block mb-2 text-sm font-medium text-gray-900">
-							ユーザー名/電話番号 <span className="text-red-500">*</span>
+							ユーザー名/電話番号
 						</label>
 						<input
 							type="text"
@@ -208,11 +222,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 					<div>
 						<label className="block mb-2 text-sm font-medium text-gray-900">追加される SIP URI</label>
 						<div className="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg p-2.5 font-mono break-all">
-							{sipFormData.usernameOrTelNumber || sipFormData.host ? (
-								sipUri
-							) : (
-								<span className="text-gray-500 italic">ユーザー名とホスト名を入力してください...</span>
-							)}
+							{sipFormData.host ? sipUri : <span className="text-gray-500 italic">ホスト名を入力してください...</span>}
 						</div>
 					</div>
 				</div>
