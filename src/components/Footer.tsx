@@ -17,7 +17,7 @@ export default function Footer() {
 						</a>
 					</li>
 					<li>
-						<a href="https://tkytel.github.io/mantela" className="hover:underline me-4 md:me-6">
+						<a href="https://tkytel.github.io/mantela/MANTELA" className="hover:underline me-4 md:me-6">
 							Mantela
 						</a>
 					</li>
