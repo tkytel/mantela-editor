@@ -9,7 +9,8 @@
     "lint": "xo .",
     "format": "xo . --fix",
     "preview": "vite preview",
-    "postinstall": "flowbite-react patch"
+    "postinstall": "flowbite-react patch",
+    "sb": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
@@ -29,6 +30,7 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@storybook/react-vite": "^9.1.4",
     "@swc-jotai/react-refresh": "^0.3.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -41,6 +43,7 @@
     "js-beautify": "^1.15.4",
     "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
+    "storybook": "^9.1.4",
     "tailwindcss": "3",
     "typescript": "~5.7.2",
     "uuid": "^11.1.0",
