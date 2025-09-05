@@ -45,7 +45,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 		const { usernameOrTelNumber, host } = sipFormData;
 
 		if (!usernameOrTelNumber || !host) {
-			setError("ユーザー名/電話番号とサーバーは必須です。");
+			setError("ユーザー名/電話番号とホスト名は必須です。");
 			return;
 		}
 
@@ -158,7 +158,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 					</div>
 					<div>
 						<label htmlFor="sipUriModal.host" className="block mb-2 text-sm font-medium text-gray-900">
-							ホスト <span className="text-red-500">*</span>
+							ホスト名 <span className="text-red-500">*</span>
 						</label>
 						<input
 							type="text"
@@ -211,7 +211,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 							{sipFormData.usernameOrTelNumber || sipFormData.host ? (
 								sipUri
 							) : (
-								<span className="text-gray-500 italic">ユーザー名とサーバーを入力してください</span>
+								<span className="text-gray-500 italic">ユーザー名とホスト名を入力してください...</span>
 							)}
 						</div>
 					</div>
