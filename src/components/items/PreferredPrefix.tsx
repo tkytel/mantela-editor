@@ -1,7 +1,6 @@
 import { useImmerAtom } from "jotai-immer";
-import Creatable from "react-select/creatable";
-import { type MultiValue } from "react-select";
 import { BodyAtom } from "../../helpers/Jotai";
+import { LabeledCreatableSelect } from "../commons";
 
 type Option = { value: string; label: string };
 
@@ -18,7 +17,7 @@ export default function PreferredPrefix() {
 	);
 
 	// UI 側から更新された prefix を、react-select/creatable の要素を排除して JSON 側に反映させる
-	const handleChange = (selected: MultiValue<Option>) => {
+	const handleChange = (selected: Array<{ label: string; value: string }>) => {
 		const values = selected ? selected.map((opt) => opt.value) : [];
 		setJson((draft) => {
 			draft.data.aboutMe.preferredPrefix = values;
@@ -26,19 +25,13 @@ export default function PreferredPrefix() {
 	};
 
 	return (
-		<div className="mb-5">
-			<label htmlFor="aboutMe.preferredPrefix" className="block mb-2 text-sm font-medium text-gray-900">
-				好ましいプレフィックス <span className="text-pink-500">*</span>
-			</label>
-			<div className="relative w-full">
-				<Creatable
-					isClearable
-					isMulti
-					onChange={handleChange}
-					value={selectedPrefixes}
-					placeholder="プレフィックスを入力して、リターンキーを押してください..."
-				/>
-			</div>
-		</div>
+		<LabeledCreatableSelect
+			id="aboutMe.preferredPrefix"
+			label="好ましいプレフィックス"
+			value={selectedPrefixes}
+			onChange={handleChange}
+			placeholder="プレフィックスを入力して、リターンキーを押してください..."
+			required
+		/>
 	);
 }

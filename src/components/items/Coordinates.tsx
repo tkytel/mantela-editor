@@ -1,6 +1,7 @@
 import { useImmerAtom } from "jotai-immer";
 import { useEffect, useState } from "react";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
+import { CheckboxField, SectionHeader, NumberField } from "../commons";
 
 export default function Coordinates() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
@@ -149,31 +150,18 @@ export default function Coordinates() {
 
 	return (
 		<>
-			<div className="flex mb-3">
-				<div className="flex items-center h-5">
-					<input
-						id="helper-checkbox"
-						aria-describedby="helper-checkbox-text"
-						type="checkbox"
-						checked={isSetCoord}
-						onChange={(e) => {
-							setIsSetCoord(e.target.checked);
-						}}
-						className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
-					/>
-				</div>
-				<div className="ms-2 text-sm">
-					<label htmlFor="helper-checkbox" className="font-medium text-gray-900">
-						設置場所を指定する
-					</label>
-					<p id="helper-checkbox-text" className="text-xs font-normal text-gray-500">
-						この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。
-					</p>
-				</div>
-			</div>
+			<CheckboxField
+				id="helper-checkbox"
+				label="設置場所を指定する"
+				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
+				checked={isSetCoord}
+				onChange={(checked) => {
+					setIsSetCoord(checked);
+				}}
+			/>
 			{isSetCoord && (
 				<>
-					<p className="text-xl">設置場所</p>
+					<SectionHeader>設置場所</SectionHeader>
 					<p className="text-sm mb-2">
 						これらの値は、
 						<a href="https://tkytel.github.io/cocokano/" className="underline">
@@ -182,104 +170,49 @@ export default function Coordinates() {
 						で取得できます
 					</p>
 
-					<label
-						htmlFor="aboutMe.geolocationCoordinates.latitude"
-						className="block mb-2 text-sm font-medium text-gray-900"
-					>
-						緯度
-					</label>
-					<div className="relative w-full mb-2">
-						<input
-							type="text"
-							placeholder="位置の緯度を十進数の角度で指定してください"
-							id="aboutMe.geolocationCoordinates.latitude"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							onChange={(e) => {
-								setLatitude(e.target.value);
-							}}
-							value={latitude}
-							min={-90}
-							max={90}
-						/>
-					</div>
+					<NumberField
+						id="aboutMe.geolocationCoordinates.latitude"
+						label="緯度"
+						placeholder="位置の緯度を十進数の角度で指定してください"
+						value={latitude}
+						onChange={setLatitude}
+						min={-90}
+						max={90}
+					/>
 
-					<label
-						htmlFor="aboutMe.geolocationCoordinates.longitude"
-						className="block mb-2 text-sm font-medium text-gray-900"
-					>
-						経度
-					</label>
-					<div className="relative w-full mb-2">
-						<input
-							type="text"
-							placeholder="位置の経度を十進数の角度で指定してください"
-							id="aboutMe.geolocationCoordinates.longitude"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							onChange={(e) => {
-								setLongitude(e.target.value);
-							}}
-							value={longitude}
-							min={-180}
-							max={180}
-						/>
-					</div>
+					<NumberField
+						id="aboutMe.geolocationCoordinates.longitude"
+						label="経度"
+						placeholder="位置の経度を十進数の角度で指定してください"
+						value={longitude}
+						onChange={setLongitude}
+						min={-180}
+						max={180}
+					/>
 
-					<label
-						htmlFor="aboutMe.geolocationCoordinates.altitude"
-						className="block mb-2 text-sm font-medium text-gray-900"
-					>
-						海抜高度 [m]
-					</label>
-					<div className="relative w-full mb-2">
-						<input
-							type="text"
-							placeholder="位置の海抜高度をメートル単位で指定してください"
-							id="aboutMe.geolocationCoordinates.altitude"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							onChange={(e) => {
-								setAltitude(e.target.value);
-							}}
-							value={altitude}
-						/>
-					</div>
+					<NumberField
+						id="aboutMe.geolocationCoordinates.altitude"
+						label="海抜高度 [m]"
+						placeholder="位置の海抜高度をメートル単位で指定してください"
+						value={altitude}
+						onChange={setAltitude}
+					/>
 
-					<label
-						htmlFor="aboutMe.geolocationCoordinates.accuracy"
-						className="block mb-2 text-sm font-medium text-gray-900"
-					>
-						経緯度の精度 [m]
-					</label>
-					<div className="relative w-full mb-2">
-						<input
-							type="text"
-							placeholder="経緯度の精度をメートル単位で指定してください"
-							id="aboutMe.geolocationCoordinates.accuracy"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							onChange={(e) => {
-								setAccuracy(e.target.value);
-							}}
-							value={accuracy}
-						/>
-					</div>
+					<NumberField
+						id="aboutMe.geolocationCoordinates.accuracy"
+						label="経緯度の精度 [m]"
+						placeholder="経緯度の精度をメートル単位で指定してください"
+						value={accuracy}
+						onChange={setAccuracy}
+					/>
 
-					<label
-						htmlFor="aboutMe.geolocationCoordinates.altitudeAccuracy"
-						className="block mb-2 text-sm font-medium text-gray-900"
-					>
-						海抜高度の精度 [m]
-					</label>
-					<div className="relative w-full mb-2">
-						<input
-							type="text"
-							placeholder="海抜高度の精度をメートル単位で指定してください"
-							id="aboutMe.geolocationCoordinates.altitudeAccuracy"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							onChange={(e) => {
-								setAltitudeAccuracy(e.target.value);
-							}}
-							value={altitudeAccuracy}
-						/>
-					</div>
+					<NumberField
+						id="aboutMe.geolocationCoordinates.altitudeAccuracy"
+						label="海抜高度の精度 [m]"
+						placeholder="海抜高度の精度をメートル単位で指定してください"
+						value={altitudeAccuracy}
+						onChange={setAltitudeAccuracy}
+					/>
 				</>
 			)}
 		</>

@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
+import { FormField, RadioGroup, SelectField, Modal, ErrorMessage } from "../commons";
 
 type SipUriData = {
 	scheme: "sip" | "sips";
@@ -77,156 +78,12 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 	if (!isOpen) return null;
 
 	return (
-		<div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
-			<div className="relative bg-white rounded-lg shadow-lg max-w-md w-full m-4">
-				<div className="flex items-center justify-between p-4 border-b">
-					<h3 className="text-lg font-semibold text-gray-900">SIP設定</h3>
-					<button
-						type="button"
-						className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
-						onClick={handleClose}
-					>
-						<svg
-							className="w-3 h-3"
-							aria-hidden="true"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 14 14"
-						>
-							<path
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-							/>
-						</svg>
-					</button>
-				</div>
-				<div className="p-6 space-y-4">
-					{error && (
-						<div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative mb-4">
-							<span className="block sm:inline">{error}</span>
-						</div>
-					)}
-					<div>
-						<label className="block mb-2 text-sm font-medium text-gray-900">プロトコル</label>
-						<div className="flex space-x-4">
-							<label className="flex items-center">
-								<input
-									type="radio"
-									name="sipScheme"
-									value="sip"
-									checked={sipFormData.scheme === "sip"}
-									onChange={(e) => {
-										setSipFormData((prev) => ({ ...prev, scheme: e.target.value as "sip" | "sips" }));
-									}}
-									className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-								/>
-								<span className="ml-2 text-sm font-medium text-gray-900">SIP (非暗号化)</span>
-							</label>
-							<label className="flex items-center">
-								<input
-									type="radio"
-									name="sipScheme"
-									value="sips"
-									checked={sipFormData.scheme === "sips"}
-									onChange={(e) => {
-										setSipFormData((prev) => ({ ...prev, scheme: e.target.value as "sip" | "sips" }));
-									}}
-									className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-								/>
-								<span className="ml-2 text-sm font-medium text-gray-900">SIPS (暗号化)</span>
-							</label>
-						</div>
-					</div>
-					<div>
-						<label htmlFor="sipUriModal.usernameOrTelNumber" className="block mb-2 text-sm font-medium text-gray-900">
-							ユーザー名/電話番号
-						</label>
-						<input
-							type="text"
-							id="sipUsernameOrTelNumber"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							value={sipFormData.usernameOrTelNumber}
-							onChange={(e) => {
-								setSipFormData((prev) => ({ ...prev, usernameOrTelNumber: e.target.value }));
-							}}
-							placeholder="SIP-TRUNK-ABCD1234 / 1234"
-						/>
-					</div>
-					<div>
-						<label htmlFor="sipUriModal.password" className="block mb-2 text-sm font-medium text-gray-900">
-							パスワード
-						</label>
-						<input
-							type="text"
-							id="sipUriModal.password"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							value={sipFormData.password}
-							onChange={(e) => {
-								setSipFormData((prev) => ({ ...prev, password: e.target.value }));
-							}}
-							placeholder="P4ssw0rd"
-						/>
-					</div>
-					<div>
-						<label htmlFor="sipUriModal.host" className="block mb-2 text-sm font-medium text-gray-900">
-							ホスト名 <span className="text-red-500">*</span>
-						</label>
-						<input
-							type="text"
-							id="sipUriModal.host"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							value={sipFormData.host}
-							onChange={(e) => {
-								setSipFormData((prev) => ({ ...prev, host: e.target.value }));
-							}}
-							placeholder="example.tail0000.ts.net / 192.0.2.0"
-						/>
-					</div>
-					<div>
-						<label htmlFor="sipPort" className="block mb-2 text-sm font-medium text-gray-900">
-							ポート
-						</label>
-						<input
-							type="number"
-							id="sipPort"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							value={sipFormData.port}
-							onChange={(e) => {
-								setSipFormData((prev) => ({ ...prev, port: e.target.value }));
-							}}
-							placeholder="5060"
-						/>
-					</div>
-
-					<div>
-						<label className="block mb-2 text-sm font-medium text-gray-900">トランスポート</label>
-						<select
-							id="sipTransport"
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-							value={sipFormData.transport ?? ""}
-							onChange={(e) => {
-								setSipFormData((prev) => ({ ...prev, transport: e.target.value as SipUriData["transport"] }));
-							}}
-						>
-							<option value="">選択しない</option>
-							<option value="udp">UDP (User Datagram Protocol)</option>
-							<option value="tcp">TCP (Transmission Control Protocol)</option>
-							<option value="sctp">SCTP (Stream Control Transmission Protocol)</option>
-							<option value="tls">TLS (Transport Layer Security)</option>
-						</select>
-					</div>
-
-					<div>
-						<label className="block mb-2 text-sm font-medium text-gray-900">追加される SIP URI</label>
-						<div className="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg p-2.5 font-mono break-all">
-							{sipFormData.host ? sipUri : <span className="text-gray-500 italic">ホスト名を入力してください...</span>}
-						</div>
-					</div>
-				</div>
-				<div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+		<Modal
+			isOpen={isOpen}
+			onClose={handleClose}
+			title="SIP設定"
+			footer={
+				<>
 					<button
 						type="button"
 						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -241,8 +98,88 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 					>
 						キャンセル
 					</button>
+				</>
+			}
+		>
+			{error && <ErrorMessage>{error}</ErrorMessage>}
+
+			<RadioGroup
+				label="プロトコル"
+				name="sipScheme"
+				value={sipFormData.scheme}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, scheme: value as "sip" | "sips" }));
+				}}
+				options={[
+					{ value: "sip", label: "SIP (非暗号化)" },
+					{ value: "sips", label: "SIPS (暗号化)" },
+				]}
+			/>
+
+			<FormField
+				id="sipUsernameOrTelNumber"
+				label="ユーザー名/電話番号"
+				value={sipFormData.usernameOrTelNumber}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, usernameOrTelNumber: value }));
+				}}
+				placeholder="SIP-TRUNK-ABCD1234 / 1234"
+			/>
+
+			<FormField
+				id="sipUriModal.password"
+				label="パスワード"
+				value={sipFormData.password}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, password: value }));
+				}}
+				placeholder="P4ssw0rd"
+			/>
+
+			<FormField
+				id="sipUriModal.host"
+				label="ホスト名"
+				required
+				value={sipFormData.host}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, host: value }));
+				}}
+				placeholder="example.tail0000.ts.net / 192.0.2.0"
+			/>
+
+			<FormField
+				id="sipPort"
+				label="ポート"
+				type="number"
+				value={sipFormData.port}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, port: value }));
+				}}
+				placeholder="5060"
+			/>
+
+			<SelectField
+				id="sipTransport"
+				label="トランスポート"
+				value={sipFormData.transport ?? ""}
+				onChange={(value) => {
+					setSipFormData((prev) => ({ ...prev, transport: value as SipUriData["transport"] }));
+				}}
+				options={[
+					{ value: "udp", label: "UDP (User Datagram Protocol)" },
+					{ value: "tcp", label: "TCP (Transmission Control Protocol)" },
+					{ value: "sctp", label: "SCTP (Stream Control Transmission Protocol)" },
+					{ value: "tls", label: "TLS (Transport Layer Security)" },
+				]}
+				placeholder="選択しない"
+			/>
+
+			<div>
+				<label className="block mb-2 text-sm font-medium text-gray-900">追加される SIP URI</label>
+				<div className="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg p-2.5 font-mono break-all">
+					{sipFormData.host ? sipUri : <span className="text-gray-500 italic">ホスト名を入力してください...</span>}
 				</div>
 			</div>
-		</div>
+		</Modal>
 	);
 }
