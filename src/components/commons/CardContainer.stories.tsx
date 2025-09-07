@@ -26,21 +26,25 @@ export const WithForm: Story = {
 				<h3 className="text-lg font-medium text-gray-900 mb-4">フォームカード</h3>
 				<div className="space-y-4">
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-1">
+						<label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">
 							名前 <span className="text-red-500">*</span>
 						</label>
 						<input
-							type="text"
 							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+							id="name"
 							placeholder="名前を入力してください"
+							type="text"
 						/>
 					</div>
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
+						<label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
+							メールアドレス
+						</label>
 						<input
-							type="email"
 							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+							id="email"
 							placeholder="email@example.com"
+							type="email"
 						/>
 					</div>
 				</div>

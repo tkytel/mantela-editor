@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon } from "./Icon";
 
 const meta: Meta<typeof Icon> = {
-	component: Icon,
 	argTypes: {
 		variant: {
 			control: { type: "select" },
 			options: ["info", "refresh", "delete"],
 		},
 	},
+	component: Icon,
 };
 
 export default meta;

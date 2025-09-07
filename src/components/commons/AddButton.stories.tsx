@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AddButton } from "./AddButton";
 
 const meta: Meta<typeof AddButton> = {
-	component: AddButton,
 	argTypes: {
+		onClick: { action: "clicked" },
 		variant: {
 			control: { type: "select" },
 			options: ["primary", "secondary", "purple"],
 		},
-		onClick: { action: "clicked" },
 	},
+	component: AddButton,
 };
 
 export default meta;

@@ -3,20 +3,20 @@ import { useState } from "react";
 import { Modal } from "./Modal";
 
 const meta: Meta<typeof Modal> = {
-	component: Modal,
-	parameters: {
-		layout: "fullscreen",
-	},
 	argTypes: {
+		children: {
+			control: "text",
+		},
 		isOpen: {
 			control: "boolean",
 		},
 		title: {
 			control: "text",
 		},
-		children: {
-			control: "text",
-		},
+	},
+	component: Modal,
+	parameters: {
+		layout: "fullscreen",
 	},
 };
 
@@ -25,34 +25,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
+		children: "これはモーダルの内容です。ここに任意のコンテンツを表示できます。",
 		isOpen: true,
 		title: "サンプルモーダル",
-		children: "これはモーダルの内容です。ここに任意のコンテンツを表示できます。",
 	},
 };
 
 export const WithFooter: Story = {
 	args: {
-		isOpen: true,
-		title: "確認ダイアログ",
 		children: "この操作を実行してもよろしいですか？",
 		footer: (
 			<div className="flex gap-2">
-				<button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+				<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button">
 					OK
 				</button>
-				<button type="button" className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+				<button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button">
 					キャンセル
 				</button>
 			</div>
 		),
+		isOpen: true,
+		title: "確認ダイアログ",
 	},
 };
 
 export const LargeContent: Story = {
 	args: {
-		isOpen: true,
-		title: "大きなコンテンツ",
 		children: (
 			<div>
 				<p className="mb-4">これは長いコンテンツを含むモーダルの例です。</p>
@@ -63,40 +61,43 @@ export const LargeContent: Story = {
 				</div>
 			</div>
 		),
+		isOpen: true,
+		title: "大きなコンテンツ",
 	},
 };
 
 export const Interactive: Story = {
+	args: {},
 	render(args) {
 		const [isOpen, setIsOpen] = useState(false);
 
 		return (
 			<div className="p-8">
 				<button
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 					onClick={() => {
 						setIsOpen(true);
 					}}
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
 				>
 					モーダルを開く
 				</button>
 				<Modal
 					{...args}
+					footer={
+						<button
+							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+							onClick={() => {
+								setIsOpen(false);
+							}}
+						>
+							閉じる
+						</button>
+					}
 					isOpen={isOpen}
 					onClose={() => {
 						setIsOpen(false);
 					}}
 					title="インタラクティブモーダル"
-					footer={
-						<button
-							onClick={() => {
-								setIsOpen(false);
-							}}
-							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-						>
-							閉じる
-						</button>
-					}
 				>
 					<p>このモーダルはボタンクリックで開閉できます。</p>
 					<p>×ボタンやフッターのボタンで閉じることができます。</p>
@@ -104,5 +105,4 @@ export const Interactive: Story = {
 			</div>
 		);
 	},
-	args: {},
 };

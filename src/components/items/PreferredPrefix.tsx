@@ -2,7 +2,7 @@ import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
 import { LabeledCreatableSelect } from "../commons";
 
-type Option = { value: string; label: string };
+type Option = { label: string; value: string };
 
 export default function PreferredPrefix() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
@@ -11,8 +11,8 @@ export default function PreferredPrefix() {
 	const { preferredPrefix } = json.data.aboutMe;
 	const selectedPrefixes: Option[] = (Array.isArray(preferredPrefix) ? preferredPrefix : [preferredPrefix]).map(
 		(value: string) => ({
-			value,
 			label: value,
+			value,
 		}),
 	);
 
@@ -28,10 +28,10 @@ export default function PreferredPrefix() {
 		<LabeledCreatableSelect
 			id="aboutMe.preferredPrefix"
 			label="好ましいプレフィックス"
-			value={selectedPrefixes}
 			onChange={handleChange}
 			placeholder="プレフィックスを入力して、リターンキーを押してください..."
 			required
+			value={selectedPrefixes}
 		/>
 	);
 }

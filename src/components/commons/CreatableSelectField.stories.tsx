@@ -2,15 +2,15 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CreatableSelectField } from "./CreatableSelectField";
 
 const meta: Meta<typeof CreatableSelectField> = {
-	component: CreatableSelectField,
 	argTypes: {
-		isMulti: {
-			control: "boolean",
-		},
 		isDisabled: {
 			control: "boolean",
 		},
+		isMulti: {
+			control: "boolean",
+		},
 	},
+	component: CreatableSelectField,
 };
 
 export default meta;
@@ -24,39 +24,39 @@ const defaultOptions = [
 export const Default: Story = {
 	args: {
 		id: "creatable-select",
-		value: defaultOptions,
-		placeholder: "オプションを選択または作成してください",
-		isMulti: true,
 		isDisabled: false,
+		isMulti: true,
+		placeholder: "オプションを選択または作成してください",
+		value: defaultOptions,
 	},
 };
 
 export const SingleSelect: Story = {
 	args: {
 		id: "single-select",
-		value: [defaultOptions[0]],
-		placeholder: "単一オプションを選択してください",
-		isMulti: false,
 		isDisabled: false,
+		isMulti: false,
+		placeholder: "単一オプションを選択してください",
+		value: [defaultOptions[0]],
 	},
 };
 
 export const Disabled: Story = {
 	args: {
 		id: "disabled-select",
-		value: defaultOptions,
-		placeholder: "無効化されたフィールド",
-		isMulti: true,
 		isDisabled: true,
+		isMulti: true,
+		placeholder: "無効化されたフィールド",
+		value: defaultOptions,
 	},
 };
 
 export const Empty: Story = {
 	args: {
 		id: "empty-select",
-		value: [],
-		placeholder: "新しいオプションを作成してください",
-		isMulti: true,
 		isDisabled: false,
+		isMulti: true,
+		placeholder: "新しいオプションを作成してください",
+		value: [],
 	},
 };

@@ -12,19 +12,19 @@ export default function Extensions() {
 				return <Extension extension={val} idx={idx} key={idx} />;
 			})}
 			<AddButton
+				label="局番を追加する"
 				onClick={() => {
 					setJson((draft) => {
 						draft.data.extensions.push({
-							name: "",
 							extension: "",
-							model: "",
-							type: "phone",
 							identifier: "",
 							image: "",
+							model: "",
+							name: "",
+							type: "phone",
 						});
 					});
 				}}
-				label="局番を追加する"
 				variant="purple"
 			/>
 		</>

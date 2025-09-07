@@ -2,34 +2,34 @@ import Creatable from "react-select/creatable";
 
 type CreatableSelectFieldProps = {
 	id: string;
-	value: Array<{ label: string; value: string }>;
+	isDisabled?: boolean;
+	isMulti?: boolean;
 	onChange?: (value: Array<{ label: string; value: string }>) => void;
 	placeholder?: string;
-	isMulti?: boolean;
-	isDisabled?: boolean;
+	value: Array<{ label: string; value: string }>;
 };
 
 export function CreatableSelectField({
 	id,
-	value,
+	isDisabled = false,
+	isMulti = true,
 	onChange,
 	placeholder = "",
-	isMulti = true,
-	isDisabled = false,
+	value,
 }: CreatableSelectFieldProps) {
 	return (
 		<div className="relative w-full">
 			<Creatable
+				className="text-sm"
+				classNamePrefix="react-select"
 				id={id}
+				isDisabled={isDisabled}
 				isMulti={isMulti}
-				value={value}
 				onChange={(newValue) => {
 					onChange?.(newValue as Array<{ label: string; value: string }>);
 				}}
 				placeholder={placeholder}
-				isDisabled={isDisabled}
-				className="text-sm"
-				classNamePrefix="react-select"
+				value={value}
 			/>
 		</div>
 	);

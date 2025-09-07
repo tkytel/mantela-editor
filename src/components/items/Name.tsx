@@ -9,13 +9,13 @@ export default function Name() {
 		<FormField
 			id="aboutMe.name"
 			label="名前"
-			value={json.data.aboutMe.name}
 			onChange={(value) => {
 				setJson((draft) => {
 					draft.data.aboutMe.name = value;
 				});
 			}}
 			required
+			value={json.data.aboutMe.name}
 		/>
 	);
 }

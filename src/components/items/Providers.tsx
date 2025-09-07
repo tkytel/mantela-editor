@@ -1,7 +1,7 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../../helpers/Jotai";
 import { MantelaSchema } from "../../types/mantela";
-import { CardContainer, DeleteButton, FormField, CheckboxField, AddButton, FormFieldWithButton } from "../commons";
+import { AddButton, CardContainer, CheckboxField, DeleteButton, FormField, FormFieldWithButton } from "../commons";
 
 export default function Providers() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
@@ -41,44 +41,44 @@ export default function Providers() {
 						<FormField
 							id={`providers[${idx}].name`}
 							label="名前"
-							required
-							type="text"
-							value={val.name}
 							onChange={(value) => {
 								setJson((draft) => {
 									draft.data.providers[idx].name = value;
 								});
 							}}
+							required
+							type="text"
+							value={val.name}
 						/>
 
 						<FormField
 							id={`providers[${idx}].prefix`}
 							label="プレフィックス"
-							type="text"
-							value={val.prefix ?? ""}
 							onChange={(value) => {
 								setJson((draft) => {
 									draft.data.providers[idx].prefix = value;
 								});
 							}}
+							type="text"
+							value={val.prefix ?? ""}
 						/>
 
 						<FormField
 							id={`providers[${idx}].identifier`}
 							label="識別子"
-							type="text"
-							value={val.identifier}
 							onChange={(value) => {
 								setJson((draft) => {
 									draft.data.providers[idx].identifier = value;
 								});
 							}}
+							type="text"
+							value={val.identifier}
 						/>
 
 						<FormFieldWithButton
+							buttonContent="取得"
 							id={`providers[${idx}].mantela`}
 							label="mantela.json の URL"
-							buttonContent="取得"
 							onButtonClick={async () => {
 								if (val.mantela) {
 									await fetchMantelaData(val.mantela, idx);
@@ -88,10 +88,10 @@ export default function Providers() {
 						/>
 
 						<CheckboxField
+							checked={val.unavailable ?? false}
+							description="その交換局との通信が（一時的に）利用できないとき、有効にしてください。"
 							id={`providers[${idx}].unavailable`}
 							label="利用不可"
-							description="その交換局との通信が（一時的に）利用できないとき、有効にしてください。"
-							checked={val.unavailable ?? false}
 							onChange={(checked) => {
 								setJson((draft) => {
 									draft.data.providers[idx].unavailable = checked;
@@ -102,18 +102,18 @@ export default function Providers() {
 				);
 			})}
 			<AddButton
-				variant="primary"
 				label="外線を追加する"
 				onClick={() => {
 					setJson((draft) => {
 						draft.data.providers.push({
-							name: "",
-							prefix: "",
 							identifier: "",
 							mantela: "",
+							name: "",
+							prefix: "",
 						});
 					});
 				}}
+				variant="primary"
 			/>
 		</>
 	);

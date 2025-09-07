@@ -36,11 +36,11 @@ export default function Json() {
 				<div className="px-4 pt-3 border border-gray-300 rounded-lg bg-gray-50 mb-2" role="alert">
 					<div className="flex items-center">
 						<svg
-							className="shrink-0 w-4 h-4 me-2"
 							aria-hidden="true"
-							xmlns="http://www.w3.org/2000/svg"
+							className="shrink-0 w-4 h-4 me-2"
 							fill="currentColor"
 							viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg"
 						>
 							<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
 						</svg>
@@ -62,12 +62,12 @@ export default function Json() {
 			)}
 
 			<ReactCodeMirror
-				value={jsonStr}
-				onChange={onChange}
-				placeholder="ここに mantela.json を入力..."
-				height="70vh"
 				className="text-base"
 				extensions={[EditorView.lineWrapping, langs.json(), linter(jsonParseLinter())]}
+				height="70vh"
+				onChange={onChange}
+				placeholder="ここに mantela.json を入力..."
+				value={jsonStr}
 			/>
 		</>
 	);
