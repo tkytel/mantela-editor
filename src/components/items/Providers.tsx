@@ -84,6 +84,11 @@ export default function Providers() {
 									await fetchMantelaData(val.mantela, idx);
 								}
 							}}
+							onChange={(value) => {
+								setJson((draft) => {
+									draft.data.providers[idx].mantela = value;
+								});
+							}}
 							value={val.mantela ?? ""}
 						/>
 
