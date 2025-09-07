@@ -1,8 +1,7 @@
 import { useImmerAtom } from "jotai-immer";
-import Creatable from "react-select/creatable";
-import { type MultiValue } from "react-select";
 import { useCallback, useState } from "react";
 import { BodyAtom } from "../../helpers/Jotai";
+import { FormFieldWithAction, CreatableSelectField } from "../commons";
 import SipUriModal, { type SipUriModalProps } from "./SipUriModal";
 
 type Option = { value: string; label: string };
@@ -18,7 +17,7 @@ export default function SipUri() {
 		label: value,
 	}));
 
-	const handleChange = useCallback((selected: MultiValue<Option>) => {
+	const handleChange = useCallback((selected: Array<{ label: string; value: string }>) => {
 		const values = selected ? selected.map((opt) => opt.value) : [];
 		setJson((draft) => {
 			draft.data.aboutMe.sipUri = values;
@@ -36,34 +35,35 @@ export default function SipUri() {
 	}, []);
 
 	return (
-		<div className="mb-5">
-			<div className="flex items-center justify-between mb-2">
-				<label htmlFor="aboutMe.sipUri" className="text-sm font-medium text-gray-900">
+		<FormFieldWithAction
+			id="aboutMe.sipUri"
+			label={
+				<>
 					SIP URI (
 					<a href="https://tools.ietf.org/html/rfc3261#section-19.1" target="_blank" rel="noopener noreferrer">
 						RFC 3261 §19.1 準拠
 					</a>
 					)
-				</label>
+				</>
+			}
+			actionButton={
 				<button
 					type="button"
-					className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center"
+					className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-0.5 text-center"
 					onClick={() => {
 						setIsModalOpen(true);
 					}}
 				>
 					+ SIP設定
 				</button>
-			</div>
-			<div className="relative w-full">
-				<Creatable
-					isClearable
-					isMulti
-					onChange={handleChange}
-					value={selectedUris}
-					placeholder="SIP URI を入力して、リターンキーを押してください..."
-				/>
-			</div>
+			}
+		>
+			<CreatableSelectField
+				id="aboutMe.sipUri"
+				value={selectedUris}
+				onChange={handleChange}
+				placeholder="SIP URI を入力して、リターンキーを押してください..."
+			/>
 
 			<SipUriModal
 				isOpen={isModalOpen}
@@ -72,6 +72,6 @@ export default function SipUri() {
 				}}
 				onConfirm={handleSipConfirm}
 			/>
-		</div>
+		</FormFieldWithAction>
 	);
 }
