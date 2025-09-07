@@ -41,7 +41,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 		const userInfo = usernameOrTelNumber ? `${usernameOrTelNumber}${password ? `:${password}` : ""}@` : "";
 		const hostport = port ? `${host}:${port}` : host;
 		const uriParameters = [
-			transport ? `;transport=${transport}` : "",
+			transport ? `transport=${transport}` : "",
 			// TODO: 必要なら対応する
 			// user
 			// method
