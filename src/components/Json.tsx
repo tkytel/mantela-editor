@@ -32,9 +32,7 @@ export default function Json() {
 
 	return (
 		<>
-			{parseErr === "" ? (
-				<></>
-			) : (
+			{parseErr !== "" && (
 				<div className="px-4 pt-3 border border-gray-300 rounded-lg bg-gray-50 mb-2" role="alert">
 					<div className="flex items-center">
 						<svg
