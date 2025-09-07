@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "bunx --bun vite",
     "build": "tsc -b && vite build",
-    "lint": "xo .",
+    "lint": "bun run conc \"npm:lint:*\"",
+    "lint:xo": "xo .",
+    "lint:tsc": "tsc -p tsconfig.app.json -p tsconfig.node.json --noEmit",
     "format": "xo . --fix",
     "preview": "vite preview",
     "postinstall": "flowbite-react patch",
@@ -37,6 +39,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "jotai-devtools": "^0.11.0",
