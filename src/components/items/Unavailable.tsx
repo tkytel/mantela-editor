@@ -7,10 +7,10 @@ export default function Unavailable() {
 
 	return (
 		<CheckboxField
+			checked={json.data.aboutMe.unavailable ?? false}
+			description="交換局が（一時的に）利用できないとき、有効にしてください。"
 			id="aboutMe-unavailable"
 			label="利用不可"
-			description="交換局が（一時的に）利用できないとき、有効にしてください。"
-			checked={json.data.aboutMe.unavailable ?? false}
 			onChange={(checked) => {
 				setJson((draft) => {
 					draft.data.aboutMe.unavailable = checked;

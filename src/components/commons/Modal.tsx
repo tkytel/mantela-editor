@@ -2,14 +2,14 @@ import { type ReactNode } from "react";
 import { Icon } from "./Icon";
 
 type ModalProps = {
+	children: ReactNode;
+	footer?: ReactNode;
 	isOpen: boolean;
 	onClose?: () => void;
 	title: ReactNode;
-	children: ReactNode;
-	footer?: ReactNode;
 };
 
-export function Modal({ isOpen, onClose, title, children, footer }: ModalProps) {
+export function Modal({ children, footer, isOpen, onClose, title }: ModalProps) {
 	if (!isOpen) return null;
 
 	return (
@@ -18,9 +18,9 @@ export function Modal({ isOpen, onClose, title, children, footer }: ModalProps) 
 				<div className="flex items-center justify-between p-4 border-b">
 					<h3 className="text-lg font-semibold text-gray-900">{title}</h3>
 					<button
-						type="button"
 						className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
 						onClick={onClose}
+						type="button"
 					>
 						<Icon variant="cancel" />
 					</button>

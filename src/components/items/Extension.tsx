@@ -4,39 +4,39 @@ import { useEffect, useState } from "react";
 import { generateExtensionIdentifier } from "../../helpers/Randomness";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import {
-	SectionHeader,
 	CardContainer,
+	CheckboxField,
 	DeleteButton,
 	FormField,
-	SelectField,
-	NumberField,
-	CheckboxField,
 	FormFieldWithButton,
-	LabeledCreatableSelect,
 	Icon,
+	LabeledCreatableSelect,
+	NumberField,
+	SectionHeader,
+	SelectField,
 } from "../commons";
 import type { MantelaExtension } from "../../types/mantela";
 
-type Option = { value: string; label: string };
+type Option = { label: string; value: string };
 const ExtensionTypeOptions = [
-	{ value: "alias", label: "単一の端末に対する転送番号" },
-	{ value: "application", label: "対話的な機能を有する自動応答端末" },
-	{ value: "cellphone", label: "スマホでない携帯電話機" },
-	{ value: "dialphone", label: "ダイヤルパルスを用いる固定電話機" },
-	{ value: "fax", label: "ファクシミリ機" },
-	{ value: "information", label: "音声による情報提供を目的とした自動応答端末" },
-	{ value: "conference", label: "会議室" },
-	{ value: "main", label: "コールキューや複数の端末に対する転送番号" },
-	{ value: "modem", label: "モデム端末" },
-	{ value: "music", label: "音声による情報提供を目的としない自動応答端末" },
-	{ value: "other", label: "その他の端末" },
-	{ value: "phone", label: "電話機" },
-	{ value: "pushphone", label: "プッシュトーンを用いる固定電話機" },
-	{ value: "reserved", label: "予約済の番号" },
-	{ value: "smartphone", label: "スマートフォン" },
-	{ value: "switchboard", label: "対話的に転送先を選択できる転送番号" },
-	{ value: "unknown", label: "種別の不明な端末" },
-	{ value: "unused", label: "使用されていない番号" },
+	{ label: "単一の端末に対する転送番号", value: "alias" },
+	{ label: "対話的な機能を有する自動応答端末", value: "application" },
+	{ label: "スマホでない携帯電話機", value: "cellphone" },
+	{ label: "ダイヤルパルスを用いる固定電話機", value: "dialphone" },
+	{ label: "ファクシミリ機", value: "fax" },
+	{ label: "音声による情報提供を目的とした自動応答端末", value: "information" },
+	{ label: "会議室", value: "conference" },
+	{ label: "コールキューや複数の端末に対する転送番号", value: "main" },
+	{ label: "モデム端末", value: "modem" },
+	{ label: "音声による情報提供を目的としない自動応答端末", value: "music" },
+	{ label: "その他の端末", value: "other" },
+	{ label: "電話機", value: "phone" },
+	{ label: "プッシュトーンを用いる固定電話機", value: "pushphone" },
+	{ label: "予約済の番号", value: "reserved" },
+	{ label: "スマートフォン", value: "smartphone" },
+	{ label: "対話的に転送先を選択できる転送番号", value: "switchboard" },
+	{ label: "種別の不明な端末", value: "unknown" },
+	{ label: "使用されていない番号", value: "unused" },
 ] as const satisfies Option[];
 
 export default function Extension({ extension, idx }: { extension: MantelaExtension; idx: number }) {
@@ -44,8 +44,8 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 
 	// JSON 側から更新された prefix を、react-select/creatable でハンドルできる型に変換する
 	const selectedPrefixesIdentifier: Option[] = (extension.transferTo ?? []).map((value: string) => ({
-		value,
 		label: value,
+		value,
 	}));
 
 	// UI 側から更新された prefix を、react-select/creatable の要素を排除して JSON 側に反映させる
@@ -204,11 +204,11 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 		if (isSetCoord && !json.data.extensions[idx].geolocationCoordinates) {
 			setJson((draft) => {
 				draft.data.extensions[idx].geolocationCoordinates = {
+					accuracy: 0,
+					altitude: 0,
+					altitudeAccuracy: 0,
 					latitude: 0,
 					longitude: 0,
-					altitude: 0,
-					accuracy: 0,
-					altitudeAccuracy: 0,
 				};
 			});
 		}
@@ -233,8 +233,6 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 			<FormField
 				id={`extensions[${idx}].name`}
 				label="名前"
-				type="text"
-				value={json.data.extensions[idx].name}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.extensions[idx].name = value;
@@ -242,13 +240,13 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				}}
 				placeholder="システムの内部名を記入してください"
 				required={true}
+				type="text"
+				value={json.data.extensions[idx].name}
 			/>
 			{/* モデル */}
 			<FormField
 				id={`extensions[${idx}].model`}
 				label="端末のモデル・型式名"
-				type="text"
-				value={json.data.extensions[idx].model ?? ""}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.extensions[idx].model = value;
@@ -256,13 +254,13 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				}}
 				placeholder="端末のモデル・型式名を記入してください"
 				required={false}
+				type="text"
+				value={json.data.extensions[idx].model ?? ""}
 			/>
 			{/* 番号 */}
 			<FormField
 				id={`extensions[${idx}].extension`}
 				label="番号"
-				type="text"
-				value={json.data.extensions[idx].extension}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.extensions[idx].extension = value;
@@ -270,53 +268,55 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				}}
 				placeholder="内線番号を入力してください"
 				required={true}
+				type="text"
+				value={json.data.extensions[idx].extension}
 			/>
 			{/* 種別 */}
 			<SelectField
 				id={`extensions[${idx}].type`}
 				label="種別"
-				options={ExtensionTypeOptions}
-				value={ExtensionTypeOptions.find((option) => option.value === json.data.extensions[idx].type)?.value ?? ""}
 				onChange={(selectedValue) => {
 					setJson((draft) => {
 						draft.data.extensions[idx].type = selectedValue as typeof extension.type;
 					});
 				}}
+				options={ExtensionTypeOptions}
 				placeholder="種別を選択してください"
+				value={ExtensionTypeOptions.find((option) => option.value === json.data.extensions[idx].type)?.value ?? ""}
 			/>
 			{/* 転送先; transferTo を指定しなければならない場合に入力するフィールド */}
 			{["alias", "main", "switchboard"].includes(json.data.extensions[idx].type ?? "phone") && (
 				<LabeledCreatableSelect
 					id={`extensions[${idx}].transferTo`}
 					label="転送先局番の識別子"
-					value={selectedPrefixesIdentifier}
+					note=" (ただし、種別が特定のものである場合のみ)"
 					onChange={handleChange}
 					placeholder="識別子を入力して、リターンキーを押してください..."
 					required={true}
-					note=" (ただし、種別が特定のものである場合のみ)"
+					value={selectedPrefixesIdentifier}
 				/>
 			)}
 			{/* 識別子 */}
 			<FormFieldWithButton
+				buttonContent={<Icon variant="refresh" />}
 				id={`extensions[${idx}].identifier`}
 				label="識別子"
-				type="text"
-				value={identifier}
-				onChange={(value) => {
-					setIdentifier(value);
-				}}
 				onButtonClick={() => {
 					setIdentifier(generateExtensionIdentifier());
 				}}
-				buttonContent={<Icon variant="refresh" />}
+				onChange={(value) => {
+					setIdentifier(value);
+				}}
 				placeholder="識別子を入力してください"
 				required={false}
+				type="text"
+				value={identifier}
 			/>{" "}
 			<CheckboxField
+				checked={isSetCoord}
+				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
 				id={`helper-checkbox-extension${idx}`}
 				label="設置場所を指定する"
-				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
-				checked={isSetCoord}
 				onChange={(checked) => {
 					setIsSetCoord(checked);
 				}}
@@ -326,7 +326,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 					<SectionHeader>設置場所</SectionHeader>
 					<p className="text-sm mb-2">
 						これらの値は、
-						<a href="https://tkytel.github.io/cocokano/" className="underline">
+						<a className="underline" href="https://tkytel.github.io/cocokano/">
 							CocoKano
 						</a>{" "}
 						で取得できます
@@ -335,55 +335,55 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 					<NumberField
 						id={`extensions[${idx}].extension.geolocationCoordinates.latitude`}
 						label="緯度"
-						placeholder="位置の緯度を十進数の角度で指定してください"
-						value={latitude}
+						max={90}
+						min={-90}
 						onChange={(value) => {
 							setLatitude(value);
 						}}
-						min={-90}
-						max={90}
+						placeholder="位置の緯度を十進数の角度で指定してください"
+						value={latitude}
 					/>
 
 					<NumberField
 						id={`extensions[${idx}].extension.geolocationCoordinates.longitude`}
 						label="経度"
-						placeholder="位置の経度を十進数の角度で指定してください"
-						value={longitude}
+						max={180}
+						min={-180}
 						onChange={(value) => {
 							setLongitude(value);
 						}}
-						min={-180}
-						max={180}
+						placeholder="位置の経度を十進数の角度で指定してください"
+						value={longitude}
 					/>
 
 					<NumberField
 						id={`extensions[${idx}].extension.geolocationCoordinates.altitude`}
 						label="海抜高度 [m]"
-						placeholder="位置の海抜高度をメートル単位で指定してください"
-						value={altitude}
 						onChange={(value) => {
 							setAltitude(value);
 						}}
+						placeholder="位置の海抜高度をメートル単位で指定してください"
+						value={altitude}
 					/>
 
 					<NumberField
 						id={`extensions[${idx}].extension.geolocationCoordinates.accuracy`}
 						label="経緯度の精度 [m]"
-						placeholder="経緯度の精度をメートル単位で指定してください"
-						value={accuracy}
 						onChange={(value) => {
 							setAccuracy(value);
 						}}
+						placeholder="経緯度の精度をメートル単位で指定してください"
+						value={accuracy}
 					/>
 
 					<NumberField
 						id={`extensions[${idx}].extension.geolocationCoordinates.altitudeAccuracy`}
 						label="海抜高度の精度 [m]"
-						placeholder="海抜高度の精度をメートル単位で指定してください"
-						value={altitudeAccuracy}
 						onChange={(value) => {
 							setAltitudeAccuracy(value);
 						}}
+						placeholder="海抜高度の精度をメートル単位で指定してください"
+						value={altitudeAccuracy}
 					/>
 				</>
 			)}
@@ -391,8 +391,6 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 			<FormField
 				id={`extensions[${idx}].image`}
 				label="端末に関連する画像の URL"
-				type="url"
-				value={json.data.extensions[idx].image ?? ""}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.extensions[idx].image = value;
@@ -400,6 +398,8 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				}}
 				placeholder="画像のURLを入力してください"
 				required={false}
+				type="url"
+				value={json.data.extensions[idx].image ?? ""}
 			/>
 		</CardContainer>
 	);

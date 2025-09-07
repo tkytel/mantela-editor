@@ -11,35 +11,35 @@ export default function DeprecatedSip() {
 			<FormField
 				id="aboutMe.sipUsername"
 				label="SIP ユーザー名"
-				type="text"
-				value={json.data.aboutMe.sipUsername}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.aboutMe.sipUsername = value;
 					});
 				}}
+				type="text"
+				value={json.data.aboutMe.sipUsername}
 			/>
 			<FormField
 				id="aboutMe.sipPassword"
 				label="SIP パスワード"
-				type="text"
-				value={json.data.aboutMe.sipPassword}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.aboutMe.sipPassword = value;
 					});
 				}}
+				type="text"
+				value={json.data.aboutMe.sipPassword}
 			/>
 			<FormField
 				id="aboutMe.sipServer"
 				label="SIP サーバー"
-				type="text"
-				value={json.data.aboutMe.sipServer}
 				onChange={(value) => {
 					setJson((draft) => {
 						draft.data.aboutMe.sipServer = value;
 					});
 				}}
+				type="text"
+				value={json.data.aboutMe.sipServer}
 			/>
 		</details>
 	);

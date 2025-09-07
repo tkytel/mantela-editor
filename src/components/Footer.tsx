@@ -7,27 +7,27 @@ export default function Footer() {
 				</span>
 				<ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
 					<li>
-						<a href="https://tkytel.github.io/" className="hover:underline me-4 md:me-6">
+						<a className="hover:underline me-4 md:me-6" href="https://tkytel.github.io/">
 							東京広域電話網
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/tkytel/mantela-editor" className="hover:underline me-4 md:me-6">
+						<a className="hover:underline me-4 md:me-6" href="https://github.com/tkytel/mantela-editor">
 							GitHub リポジトリ
 						</a>
 					</li>
 					<li>
-						<a href="https://tkytel.github.io/mantela/MANTELA" className="hover:underline me-4 md:me-6">
+						<a className="hover:underline me-4 md:me-6" href="https://tkytel.github.io/mantela/MANTELA">
 							Mantela
 						</a>
 					</li>
 					<li>
-						<a href="https://tkytel.github.io/mantela-viewer" className="hover:underline me-4 md:me-6">
+						<a className="hover:underline me-4 md:me-6" href="https://tkytel.github.io/mantela-viewer">
 							Mantela Viewer
 						</a>
 					</li>
 					<li>
-						<a href="https://tkytel.github.io/mantela-router" className="hover:underline me-4 md:me-6">
+						<a className="hover:underline me-4 md:me-6" href="https://tkytel.github.io/mantela-router">
 							Mantela Router
 						</a>
 					</li>

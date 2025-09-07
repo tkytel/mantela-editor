@@ -32,15 +32,15 @@ export default function Identifier() {
 
 	return (
 		<FormFieldWithButton
+			buttonContent={<Icon variant="refresh" />}
 			id="aboutMe.identifier"
 			label="識別子"
-			value={identifier}
-			onChange={setIdentifier}
 			onButtonClick={() => {
 				setIdentifier(uuidv4());
 			}}
-			buttonContent={<Icon variant="refresh" />}
+			onChange={setIdentifier}
 			required
+			value={identifier}
 		/>
 	);
 }

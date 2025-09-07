@@ -1,7 +1,7 @@
 import { useImmerAtom } from "jotai-immer";
 import { useEffect, useState } from "react";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
-import { CheckboxField, SectionHeader, NumberField } from "../commons";
+import { CheckboxField, NumberField, SectionHeader } from "../commons";
 
 export default function Coordinates() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
@@ -13,11 +13,11 @@ export default function Coordinates() {
 		if (isSetCoord && !json.data.aboutMe.geolocationCoordinates) {
 			setJson((draft) => {
 				draft.data.aboutMe.geolocationCoordinates = {
+					accuracy: 0,
+					altitude: 0,
+					altitudeAccuracy: 0,
 					latitude: 0,
 					longitude: 0,
-					altitude: 0,
-					accuracy: 0,
-					altitudeAccuracy: 0,
 				};
 			});
 		}
@@ -151,10 +151,10 @@ export default function Coordinates() {
 	return (
 		<>
 			<CheckboxField
+				checked={isSetCoord}
+				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
 				id="helper-checkbox"
 				label="設置場所を指定する"
-				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
-				checked={isSetCoord}
 				onChange={(checked) => {
 					setIsSetCoord(checked);
 				}}
@@ -164,7 +164,7 @@ export default function Coordinates() {
 					<SectionHeader>設置場所</SectionHeader>
 					<p className="text-sm mb-2">
 						これらの値は、
-						<a href="https://tkytel.github.io/cocokano/" className="underline">
+						<a className="underline" href="https://tkytel.github.io/cocokano/">
 							CocoKano
 						</a>{" "}
 						で取得できます
@@ -173,45 +173,45 @@ export default function Coordinates() {
 					<NumberField
 						id="aboutMe.geolocationCoordinates.latitude"
 						label="緯度"
+						max={90}
+						min={-90}
+						onChange={setLatitude}
 						placeholder="位置の緯度を十進数の角度で指定してください"
 						value={latitude}
-						onChange={setLatitude}
-						min={-90}
-						max={90}
 					/>
 
 					<NumberField
 						id="aboutMe.geolocationCoordinates.longitude"
 						label="経度"
+						max={180}
+						min={-180}
+						onChange={setLongitude}
 						placeholder="位置の経度を十進数の角度で指定してください"
 						value={longitude}
-						onChange={setLongitude}
-						min={-180}
-						max={180}
 					/>
 
 					<NumberField
 						id="aboutMe.geolocationCoordinates.altitude"
 						label="海抜高度 [m]"
+						onChange={setAltitude}
 						placeholder="位置の海抜高度をメートル単位で指定してください"
 						value={altitude}
-						onChange={setAltitude}
 					/>
 
 					<NumberField
 						id="aboutMe.geolocationCoordinates.accuracy"
 						label="経緯度の精度 [m]"
+						onChange={setAccuracy}
 						placeholder="経緯度の精度をメートル単位で指定してください"
 						value={accuracy}
-						onChange={setAccuracy}
 					/>
 
 					<NumberField
 						id="aboutMe.geolocationCoordinates.altitudeAccuracy"
 						label="海抜高度の精度 [m]"
+						onChange={setAltitudeAccuracy}
 						placeholder="海抜高度の精度をメートル単位で指定してください"
 						value={altitudeAccuracy}
-						onChange={setAltitudeAccuracy}
 					/>
 				</>
 			)}

@@ -9,13 +9,13 @@ export default function Image() {
 		<FormField
 			id="aboutMe.image"
 			label="交換局に関連する画像の URL"
-			type="url"
-			value={json.data.aboutMe.image ?? ""}
 			onChange={(value) => {
 				setJson((draft) => {
 					draft.data.aboutMe.image = value;
 				});
 			}}
+			type="url"
+			value={json.data.aboutMe.image ?? ""}
 		/>
 	);
 }

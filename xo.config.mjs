@@ -1,4 +1,6 @@
 import globals from "globals";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import perfectionist from "eslint-plugin-perfectionist";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 /** @type import('xo').FlatXoConfig */
@@ -10,34 +12,34 @@ const xoConfig = [
 			globals: globals.browser,
 			parserOptions: {
 				projectService: {
-					defaultProject: "./tsconfig.json",
 					allowDefaultProject: ["*.cjs", "*.mjs"],
+					defaultProject: "./tsconfig.json",
 				},
-				tsconfigRootDir: import.meta.dirname,
 				sourceType: "module",
+				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 		linterOptions: {
 			reportUnusedDisableDirectives: true,
 		},
 		plugins: {
+			perfectionist,
 			"react-refresh": reactRefresh,
 		},
 		prettier: true,
 		rules: {
-			// "func-style": ["error", "declaration", { allowArrowFunctions: false }],
-
 			"@stylistic/block-spacing": "off",
 			"@stylistic/indent-binary-ops": "off",
+			"@stylistic/jsx-sort-props": "error",
 			"@stylistic/member-delimiter-style": "off",
 			"@stylistic/no-mixed-operators": "off",
 			"@stylistic/object-curly-spacing": ["error", "always"],
 
-			"@typescript-eslint/triple-slash-reference": "off",
 			"@typescript-eslint/naming-convention": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 			"@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+			"@typescript-eslint/triple-slash-reference": "off",
 
 			"import-x/extensions": "off",
 			"import-x/no-anonymous-default-export": "off",
@@ -45,11 +47,30 @@ const xoConfig = [
 			"n/file-extension-in-import": "off",
 			"n/prefer-global/process": "off",
 
-			"unicorn/filename-case": "off",
-			"unicorn/prefer-module": "off",
-			"unicorn/prevent-abbreviations": "off",
+			...perfectionist.configs["recommended-alphabetical"].rules,
+			"perfectionist/sort-imports": "off",
 
 			"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+			"unicorn/filename-case": "off",
+			"unicorn/prefer-module": "off",
+
+			"unicorn/prevent-abbreviations": "off",
+		},
+	},
+	{
+		files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
+		languageOptions: {
+			parserOptions: {
+				ecmaFeatures: {
+					jsx: true,
+				},
+			},
+		},
+		plugins: {
+			"jsx-a11y": jsxA11y,
+		},
+		rules: {
+			...jsxA11y.configs.strict.rules,
 		},
 	},
 	{

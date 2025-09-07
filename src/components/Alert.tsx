@@ -25,8 +25,8 @@ export default function Alert() {
 
 	return (
 		<div
-			id="top-alert-additional-content-5"
 			className="absolute top-0 left-1/4 transform -translate-x-1/2 p-4 border border-gray-300 rounded-lg bg-gray-50 max-w-2xl opacity-[.85]"
+			id="top-alert-additional-content-5"
 			role="alert"
 		>
 			<div className="flex items-center">

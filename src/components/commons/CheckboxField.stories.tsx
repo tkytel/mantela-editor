@@ -10,45 +10,45 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
+		checked: false,
 		id: "checkbox-default",
 		label: "チェックボックス",
-		checked: false,
 	},
 };
 
 export const Checked: Story = {
 	args: {
+		checked: true,
 		id: "checkbox-checked",
 		label: "チェック済み",
-		checked: true,
 	},
 };
 
 export const WithDescription: Story = {
 	args: {
+		checked: false,
+		description: "この設定を有効にすると、追加機能が利用できるようになります。",
 		id: "checkbox-with-desc",
 		label: "設定を有効にする",
-		description: "この設定を有効にすると、追加機能が利用できるようになります。",
-		checked: false,
 	},
 };
 
 export const LongDescription: Story = {
 	args: {
-		id: "checkbox-long-desc",
-		label: "利用規約に同意する",
+		checked: false,
 		description:
 			"このサービスを利用するには、利用規約とプライバシーポリシーに同意していただく必要があります。詳細については、各ドキュメントをご確認ください。",
-		checked: false,
+		id: "checkbox-long-desc",
+		label: "利用規約に同意する",
 	},
 };
 
 export const CheckedWithDescription: Story = {
 	args: {
+		checked: true,
+		description: "重要なお知らせやアップデート情報をメールで受け取ります。",
 		id: "checkbox-checked-desc",
 		label: "メール通知を受け取る",
-		description: "重要なお知らせやアップデート情報をメールで受け取ります。",
-		checked: true,
 	},
 };
 
@@ -56,9 +56,9 @@ export const MultipleCheckboxes: Story = {
 	decorators: [
 		() => (
 			<div className="space-y-4 w-80">
-				<CheckboxField id="option1" label="オプション 1" description="最初のオプションです。" checked={true} />
-				<CheckboxField id="option2" label="オプション 2" description="2番目のオプションです。" checked={false} />
-				<CheckboxField id="option3" label="オプション 3" checked={false} />
+				<CheckboxField checked={true} description="最初のオプションです。" id="option1" label="オプション 1" />
+				<CheckboxField checked={false} description="2番目のオプションです。" id="option2" label="オプション 2" />
+				<CheckboxField checked={false} id="option3" label="オプション 3" />
 			</div>
 		),
 	],

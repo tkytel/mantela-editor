@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ErrorMessage } from "./ErrorMessage";
 
 const meta: Meta<typeof ErrorMessage> = {
-	component: ErrorMessage,
 	argTypes: {
 		children: {
 			control: "text",
 		},
 	},
+	component: ErrorMessage,
 };
 
 export default meta;
