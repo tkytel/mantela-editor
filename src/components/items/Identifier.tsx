@@ -1,17 +1,16 @@
 import { useImmerAtom } from "jotai-immer";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import { FormFieldWithButton, Icon } from "../commons";
 
 export default function Identifier() {
-	const [_json, setJson] = useImmerAtom(BodyAtom);
+	const [json, setJson] = useImmerAtom(BodyAtom);
 	const [_alerts, setAlerts] = useImmerAtom(AlertAtom);
 
-	const [identifier, setIdentifier] = useState("");
-
 	useEffect(() => {
-		if (identifier !== "" && /^[\u0021-\u007E]+$/.test(identifier)) {
+		const { identifier } = json.data.aboutMe;
+		if (identifier && /^[\u0021-\u007E]+$/.test(identifier)) {
 			setJson((draft) => {
 				draft.data.aboutMe.identifier = identifier;
 			});
@@ -28,7 +27,7 @@ export default function Identifier() {
 					"局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。";
 			});
 		}
-	}, [identifier, setJson, setAlerts]);
+	}, [json.data.aboutMe.identifier, setJson, setAlerts]);
 
 	return (
 		<FormFieldWithButton
@@ -36,11 +35,17 @@ export default function Identifier() {
 			id="aboutMe.identifier"
 			label="識別子"
 			onButtonClick={() => {
-				setIdentifier(uuidv4());
+				setJson((draft) => {
+					draft.data.aboutMe.identifier = uuidv4();
+				});
 			}}
-			onChange={setIdentifier}
+			onChange={(value) => {
+				setJson((draft) => {
+					draft.data.aboutMe.identifier = value;
+				});
+			}}
 			required
-			value={identifier}
+			value={json.data.aboutMe.identifier}
 		/>
 	);
 }

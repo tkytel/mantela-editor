@@ -1,21 +1,19 @@
 import { type MultiValue } from "react-select";
 import { useImmerAtom } from "jotai-immer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { generateExtensionIdentifier } from "../../helpers/Randomness";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import {
 	CardContainer,
-	CheckboxField,
 	DeleteButton,
 	FormField,
 	FormFieldWithButton,
 	Icon,
 	LabeledCreatableSelect,
-	NumberField,
-	SectionHeader,
 	SelectField,
 } from "../commons";
 import type { MantelaExtension } from "../../types/mantela";
+import Coordinates from "./Coordinates";
 
 type Option = { label: string; value: string };
 const ExtensionTypeOptions = [
@@ -56,17 +54,11 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 		});
 	};
 
-	const [isSetCoord, setIsSetCoord] = useState(false);
-	const [identifier, setIdentifier] = useState("");
-	const [latitude, setLatitude] = useState("");
-	const [longitude, setLongitude] = useState("");
-	const [altitude, setAltitude] = useState("");
-	const [accuracy, setAccuracy] = useState("");
-	const [altitudeAccuracy, setAltitudeAccuracy] = useState("");
 	const [_, setAlerts] = useImmerAtom(AlertAtom);
 
 	useEffect(() => {
-		if (identifier !== "" && /^[\u0021-\u007E]+$/.test(identifier)) {
+		const { identifier } = json.data.extensions[idx];
+		if (identifier && /^[\u0021-\u007E]+$/.test(identifier)) {
 			setJson((draft) => {
 				draft.data.extensions[idx].identifier = identifier;
 			});
@@ -83,142 +75,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 					"局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。";
 			});
 		}
-	}, [identifier, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		const num = Number(latitude);
-		if (!Number.isNaN(num) && latitude !== "" && num > -90 && num < 90) {
-			setJson((draft) => {
-				if (draft.data.extensions[idx].geolocationCoordinates) {
-					draft.data.extensions[idx].geolocationCoordinates.latitude = num;
-				}
-			});
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.latitude"];
-			});
-		} else if (latitude === "") {
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.latitude"];
-			});
-		} else {
-			setAlerts((draft) => {
-				draft.alerts["extensions[" + idx + "].geolocationCoordinates.latitude"] =
-					"緯度は -90 から 90 の間の数値である必要があります。";
-			});
-		}
-	}, [latitude, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		const num = Number(longitude);
-		if (!Number.isNaN(num) && longitude !== "" && num > -180 && num < 180) {
-			setJson((draft) => {
-				if (draft.data.extensions[idx].geolocationCoordinates) {
-					draft.data.extensions[idx].geolocationCoordinates.longitude = num;
-				}
-			});
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.longitude"];
-			});
-		} else if (longitude === "") {
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.longitude"];
-			});
-		} else {
-			setAlerts((draft) => {
-				draft.alerts["extensions[" + idx + "].geolocationCoordinates.longitude"] =
-					"経度は -180 から 180 の間の数値である必要があります。";
-			});
-		}
-	}, [longitude, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		const num = Number(altitude);
-		if (!Number.isNaN(num) && altitude !== "") {
-			setJson((draft) => {
-				if (draft.data.extensions[idx].geolocationCoordinates) {
-					draft.data.extensions[idx].geolocationCoordinates.altitude = num;
-				}
-			});
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitude"];
-			});
-		} else if (altitude === "") {
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitude"];
-			});
-		} else {
-			setAlerts((draft) => {
-				draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitude"] =
-					"高度は 0 以上の数値でなければなりません。";
-			});
-		}
-	}, [altitude, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		const num = Number(accuracy);
-		if (!Number.isNaN(num) && accuracy !== "" && num > 0) {
-			setJson((draft) => {
-				if (draft.data.extensions[idx].geolocationCoordinates) {
-					draft.data.extensions[idx].geolocationCoordinates.accuracy = num;
-				}
-			});
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.accuracy"];
-			});
-		} else if (accuracy === "") {
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.accuracy"];
-			});
-		} else {
-			setAlerts((draft) => {
-				draft.alerts["extensions[" + idx + "].geolocationCoordinates.accuracy"] =
-					"精度は 0 以上の数値でなければなりません。";
-			});
-		}
-	}, [accuracy, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		const num = Number(altitudeAccuracy);
-		if (!Number.isNaN(num) && altitudeAccuracy !== "" && num > 0) {
-			setJson((draft) => {
-				if (draft.data.extensions[idx].geolocationCoordinates) {
-					draft.data.extensions[idx].geolocationCoordinates.altitudeAccuracy = num;
-				}
-			});
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"];
-			});
-		} else if (altitudeAccuracy === "") {
-			setAlerts((draft) => {
-				delete draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"];
-			});
-		} else {
-			setAlerts((draft) => {
-				draft.alerts["extensions[" + idx + "].geolocationCoordinates.altitudeAccuracy"] =
-					"高度の精度は 0 以上の数値でなければなりません。";
-			});
-		}
-	}, [altitudeAccuracy, idx, setJson, setAlerts]);
-
-	useEffect(() => {
-		if (isSetCoord && !json.data.extensions[idx].geolocationCoordinates) {
-			setJson((draft) => {
-				draft.data.extensions[idx].geolocationCoordinates = {
-					accuracy: 0,
-					altitude: 0,
-					altitudeAccuracy: 0,
-					latitude: 0,
-					longitude: 0,
-				};
-			});
-		}
-	}, [isSetCoord, idx, json.data.extensions, setJson]);
-
-	useEffect(() => {
-		if (json.data.extensions[idx].geolocationCoordinates) {
-			setIsSetCoord(true);
-		}
-	}, [idx, json.data.extensions]);
+	}, [json.data.extensions[idx].identifier, idx, setJson, setAlerts]);
 
 	return (
 		<CardContainer key={idx}>
@@ -302,91 +159,24 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				id={`extensions[${idx}].identifier`}
 				label="識別子"
 				onButtonClick={() => {
-					setIdentifier(generateExtensionIdentifier());
+					setJson((draft) => {
+						draft.data.extensions[idx].identifier = generateExtensionIdentifier();
+					});
 				}}
 				onChange={(value) => {
-					setIdentifier(value);
+					setJson((draft) => {
+						draft.data.extensions[idx].identifier = value;
+					});
 				}}
 				placeholder="識別子を入力してください"
 				required={false}
 				type="text"
-				value={identifier}
-			/>{" "}
-			<CheckboxField
-				checked={isSetCoord}
-				description="この値は明らかに設定する必要がありません！覚悟を持って有効にしてください。"
-				id={`helper-checkbox-extension${idx}`}
-				label="設置場所を指定する"
-				onChange={(checked) => {
-					setIsSetCoord(checked);
-				}}
+				value={json.data.extensions[idx].identifier ?? ""}
 			/>
-			{isSetCoord && (
-				<>
-					<SectionHeader>設置場所</SectionHeader>
-					<p className="text-sm mb-2">
-						これらの値は、
-						<a className="underline" href="https://tkytel.github.io/cocokano/">
-							CocoKano
-						</a>{" "}
-						で取得できます
-					</p>
 
-					<NumberField
-						id={`extensions[${idx}].extension.geolocationCoordinates.latitude`}
-						label="緯度"
-						max={90}
-						min={-90}
-						onChange={(value) => {
-							setLatitude(value);
-						}}
-						placeholder="位置の緯度を十進数の角度で指定してください"
-						value={latitude}
-					/>
+			{/* 設置場所 */}
+			<Coordinates extensionIndex={idx} mode="extension" />
 
-					<NumberField
-						id={`extensions[${idx}].extension.geolocationCoordinates.longitude`}
-						label="経度"
-						max={180}
-						min={-180}
-						onChange={(value) => {
-							setLongitude(value);
-						}}
-						placeholder="位置の経度を十進数の角度で指定してください"
-						value={longitude}
-					/>
-
-					<NumberField
-						id={`extensions[${idx}].extension.geolocationCoordinates.altitude`}
-						label="海抜高度 [m]"
-						onChange={(value) => {
-							setAltitude(value);
-						}}
-						placeholder="位置の海抜高度をメートル単位で指定してください"
-						value={altitude}
-					/>
-
-					<NumberField
-						id={`extensions[${idx}].extension.geolocationCoordinates.accuracy`}
-						label="経緯度の精度 [m]"
-						onChange={(value) => {
-							setAccuracy(value);
-						}}
-						placeholder="経緯度の精度をメートル単位で指定してください"
-						value={accuracy}
-					/>
-
-					<NumberField
-						id={`extensions[${idx}].extension.geolocationCoordinates.altitudeAccuracy`}
-						label="海抜高度の精度 [m]"
-						onChange={(value) => {
-							setAltitudeAccuracy(value);
-						}}
-						placeholder="海抜高度の精度をメートル単位で指定してください"
-						value={altitudeAccuracy}
-					/>
-				</>
-			)}
 			{/* 画像 */}
 			<FormField
 				id={`extensions[${idx}].image`}

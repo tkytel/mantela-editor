@@ -34,7 +34,7 @@ export default function EditorUI() {
 				<Name />
 				<PreferredPrefix />
 				<SipUri />
-				<Coordinates />
+				<Coordinates mode="aboutMe" />
 				<Unavailable />
 				<Image />
 				<DeprecatedSip />
