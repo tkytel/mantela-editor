@@ -1,0 +1,72 @@
+{
+  "name": "mantela-editor",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+  "forwardPorts": [
+    5173,
+    6006
+  ],
+  "features": {
+    "ghcr.io/devcontainers-extra/features/mise:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "installOhMyZshConfig": true,
+      "upgradePackages": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "EditorConfig.EditorConfig",
+        "github.copilot",
+        "hverlin.mise-vscode",
+        "oven.bun-vscode",
+        "samverschueren.linter-xo",
+        "yoavbls.pretty-ts-errors"
+      ],
+      "settings": {
+        "bun.runtime": "/home/vscode/.local/share/mise/shims/bun",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.scrollback": 100000,
+        "xo.enable": true,
+        "xo.format.enable": true,
+        "[javascript][typescript][typescriptreact]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.xo": "explicit"
+          },
+          "editor.defaultFormatter": "samverschueren.linter-xo",
+          "editor.formatOnSave": true
+        },
+        "[json][yaml][markdown]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.xo": "explicit"
+          },
+          "editor.defaultFormatter": "samverschueren.linter-xo",
+          "editor.formatOnSave": true
+        },
+        "workbench.colorCustomizations": {
+          "editorIndentGuide.background1": "#b22222",
+          "editorIndentGuide.background2": "#ff4500",
+          "editorIndentGuide.background3": "#ffd700",
+          "editorIndentGuide.background4": "#228b22",
+          "editorIndentGuide.background5": "#000080",
+          "editorIndentGuide.background6": "#8b008b",
+          "editorIndentGuide.activeBackground1": "#fff",
+          "editorIndentGuide.activeBackground2": "#fff",
+          "editorIndentGuide.activeBackground3": "#fff",
+          "editorIndentGuide.activeBackground4": "#fff",
+          "editorIndentGuide.activeBackground5": "#fff",
+          "editorIndentGuide.activeBackground6": "#fff"
+        },
+        "files.associations": {
+          "*.css": "tailwindcss"
+        }
+      }
+    }
+  },
+  "mounts": [],
+  "containerEnv": {},
+  "remoteEnv": {}
+}
