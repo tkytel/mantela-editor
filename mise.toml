@@ -1,0 +1,8 @@
+[tools]
+bun = "latest"
+
+[tasks.format]
+run = "bun format"
+
+[tasks.lint]
+run = "bun lint"
