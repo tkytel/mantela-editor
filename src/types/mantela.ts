@@ -52,6 +52,7 @@ export const ExtensionSchema = z.object({
 	name: z.string(),
 	transferTo: z.array(z.string()).optional(),
 	type: ExtensionTypeEnum.optional(),
+	unavailable: z.boolean().optional(),
 });
 
 export const ProviderSchema = z.object({
