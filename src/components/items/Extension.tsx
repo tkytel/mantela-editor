@@ -5,6 +5,7 @@ import { generateExtensionIdentifier } from "../../helpers/Randomness";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import {
 	CardContainer,
+	CheckboxField,
 	DeleteButton,
 	FormField,
 	FormFieldWithButton,
@@ -34,7 +35,7 @@ const ExtensionTypeOptions = [
 	{ label: "スマートフォン", value: "smartphone" },
 	{ label: "対話的に転送先を選択できる転送番号", value: "switchboard" },
 	{ label: "種別の不明な端末", value: "unknown" },
-	{ label: "使用されていない番号", value: "unused" },
+	{ label: "使用されていない番号 (この選択肢は非推奨です！)", value: "unused" },
 ] as const satisfies Option[];
 
 export default function Extension({ extension, idx }: { extension: MantelaExtension; idx: number }) {
@@ -190,6 +191,19 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				required={false}
 				type="url"
 				value={json.data.extensions[idx].image ?? ""}
+			/>
+
+			{/* 利用不可 */}
+			<CheckboxField
+				checked={json.data.extensions[idx].unavailable ?? false}
+				description="その交換局との通信が（一時的に）利用できないとき、有効にしてください。"
+				id={`extensions[${idx}].unavailable`}
+				label="利用不可"
+				onChange={(checked) => {
+					setJson((draft) => {
+						draft.data.extensions[idx].unavailable = checked;
+					});
+				}}
 			/>
 		</CardContainer>
 	);
