@@ -1,8 +1,10 @@
 import { atomWithImmer } from "jotai-immer";
 import type { Mantela } from "../types/mantela";
 
+export const defaultMantelaSchemaUrl = "https://tkytel.github.io/mantela/0.1/mantela.schema.json";
+
 export const getInitialMantela = (): Mantela => ({
-	$schema: "https://tkytel.github.io/mantela/0.1/mantela.schema.json",
+	$schema: defaultMantelaSchemaUrl,
 	aboutMe: {
 		identifier: "",
 		name: "",

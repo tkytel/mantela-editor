@@ -15,11 +15,16 @@
     "sb": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^14.2.1",
+    "@codemirror/autocomplete": "^6.18.7",
+    "@codemirror/commands": "^6.8.1",
     "@codemirror/lang-json": "^6.0.1",
     "@codemirror/lint": "^6.8.5",
+    "@codemirror/view": "^6.38.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@uiw/codemirror-extensions-langs": "^4.23.10",
     "@uiw/react-codemirror": "^4.23.10",
+    "codemirror-json-schema": "^0.8.1",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.11.7",
     "immer": "^10.1.1",
@@ -29,6 +34,7 @@
     "react-dom": "^19.0.0",
     "react-select": "^5.10.1",
     "use-immer": "^0.11.0",
+    "vite-plugin-node-polyfills": "^0.24.0",
     "zod": "^4.1.5"
   },
   "devDependencies": {
@@ -58,5 +64,9 @@
   },
   "prettier": {
     "bracketSpacing": true
-  }
+  },
+  "trustedDependencies": [
+    "@swc/core",
+    "unrs-resolver"
+  ]
 }
