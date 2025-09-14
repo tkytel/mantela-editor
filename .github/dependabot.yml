@@ -1,0 +1,16 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: monthly
+- package-ecosystem: bun
+  directory: /
+  schedule:
+    interval: monthly
+  groups:
+    dependencies:
+      dependency-type: production
+    dev-dependencies:
+      dependency-type: development
