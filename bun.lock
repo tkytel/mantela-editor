@@ -39,6 +39,7 @@
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-perfectionist": "^4.15.0",
         "eslint-plugin-react-refresh": "^0.4.20",
+        "eslint-plugin-unused-imports": "^4.2.0",
         "globals": "^15.15.0",
         "jotai-devtools": "^0.11.0",
         "js-beautify": "^1.15.4",
@@ -982,6 +983,8 @@
     "eslint-plugin-react-refresh": ["eslint-plugin-react-refresh@0.4.20", "", { "peerDependencies": { "eslint": ">=8.40" } }, "sha512-XpbHQ2q5gUF8BGOX4dHe+71qoirYMhApEPZ7sfhF/dNnOF1UXnCMGZf79SFTBO7Bz5YEIT4TMieSlJBWhP9WBA=="],
 
     "eslint-plugin-unicorn": ["eslint-plugin-unicorn@59.0.1", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.25.9", "@eslint-community/eslint-utils": "^4.5.1", "@eslint/plugin-kit": "^0.2.7", "ci-info": "^4.2.0", "clean-regexp": "^1.0.0", "core-js-compat": "^3.41.0", "esquery": "^1.6.0", "find-up-simple": "^1.0.1", "globals": "^16.0.0", "indent-string": "^5.0.0", "is-builtin-module": "^5.0.0", "jsesc": "^3.1.0", "pluralize": "^8.0.0", "regexp-tree": "^0.1.27", "regjsparser": "^0.12.0", "semver": "^7.7.1", "strip-indent": "^4.0.0" }, "peerDependencies": { "eslint": ">=9.22.0" } }, "sha512-EtNXYuWPUmkgSU2E7Ttn57LbRREQesIP1BiLn7OZLKodopKfDXfBUkC/0j6mpw2JExwf43Uf3qLSvrSvppgy8Q=="],
+
+    "eslint-plugin-unused-imports": ["eslint-plugin-unused-imports@4.2.0", "", { "peerDependencies": { "@typescript-eslint/eslint-plugin": "^8.0.0-0 || ^7.0.0 || ^6.0.0 || ^5.0.0", "eslint": "^9.0.0 || ^8.0.0" }, "optionalPeers": ["@typescript-eslint/eslint-plugin"] }, "sha512-hLbJ2/wnjKq4kGA9AUaExVFIbNzyxYdVo49QZmKCnhk5pc9wcYRbfgLHvWJ8tnsdcseGhoUAddm9gn/lt+d74w=="],
 
     "eslint-rule-docs": ["eslint-rule-docs@1.1.235", "", {}, "sha512-+TQ+x4JdTnDoFEXXb3fDvfGOwnyNV7duH8fXWTPD1ieaBmB8omj7Gw/pMBBu4uI2uJCCU8APDaQJzWuXnTsH4A=="],
 
