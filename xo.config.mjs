@@ -2,6 +2,7 @@ import globals from "globals";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import perfectionist from "eslint-plugin-perfectionist";
 import reactRefresh from "eslint-plugin-react-refresh";
+import unusedImports from "eslint-plugin-unused-imports";
 
 /** @type import('xo').FlatXoConfig */
 const xoConfig = [
@@ -25,6 +26,7 @@ const xoConfig = [
 		plugins: {
 			perfectionist,
 			"react-refresh": reactRefresh,
+			"unused-imports": unusedImports,
 		},
 		prettier: true,
 		rules: {
@@ -38,7 +40,7 @@ const xoConfig = [
 			"@typescript-eslint/naming-convention": "off",
 			"@typescript-eslint/no-dynamic-delete": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
-			"@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+			"@typescript-eslint/no-unused-vars": "off",
 			"@typescript-eslint/triple-slash-reference": "off",
 
 			"import-x/extensions": "off",
@@ -51,10 +53,21 @@ const xoConfig = [
 			"perfectionist/sort-imports": "off",
 
 			"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+
 			"unicorn/filename-case": "off",
 			"unicorn/prefer-module": "off",
-
 			"unicorn/prevent-abbreviations": "off",
+
+			"unused-imports/no-unused-imports": "error",
+			"unused-imports/no-unused-vars": [
+				"warn",
+				{
+					args: "after-used",
+					argsIgnorePattern: "^_",
+					vars: "all",
+					varsIgnorePattern: "^_",
+				},
+			],
 		},
 	},
 	{
