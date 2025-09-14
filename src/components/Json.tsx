@@ -1,23 +1,57 @@
-import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror";
-import { langs } from "@uiw/codemirror-extensions-langs";
-import { jsonParseLinter } from "@codemirror/lang-json";
-import { linter } from "@codemirror/lint";
-import { type SetStateAction, useCallback, useEffect, useState } from "react";
+import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "@uiw/react-codemirror";
+import {
+	handleRefresh,
+	jsonCompletion,
+	jsonSchemaHover,
+	jsonSchemaLinter,
+	stateExtensions,
+	updateSchema,
+} from "codemirror-json-schema";
+import { $RefParser } from "@apidevtools/json-schema-ref-parser";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useImmerAtom } from "jotai-immer";
-import { BodyAtom } from "../helpers/Jotai";
+import { linter } from "@codemirror/lint";
+import { hoverTooltip } from "@codemirror/view";
+import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
 import { MantelaSchema } from "../types/mantela";
+import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
+
+// JSONSchema7
+type Schema = NonNullable<Parameters<typeof updateSchema>[1]>;
+
+const extensions = [
+	jsonLang(),
+	linter(jsonParseLinter()),
+	linter(jsonSchemaLinter(), {
+		needsRefresh: handleRefresh,
+	}),
+	jsonLanguage.data.of({
+		autocomplete: jsonCompletion(),
+	}),
+	hoverTooltip(jsonSchemaHover()),
+	stateExtensions(),
+];
 
 export default function Json() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
 	const [jsonStr, setJsonStr] = useState("");
 	const [parseErr, setParseErr] = useState("");
+	const [schemaUrl, setSchemaUrl] = useState<string>(defaultMantelaSchemaUrl);
 
-	const onChange = useCallback(
-		(val: SetStateAction<string>) => {
+	const editorRef = useRef<ReactCodeMirrorRef>(null);
+
+	const handleChange = useCallback<NonNullable<ReactCodeMirrorProps["onChange"]>>(
+		(val) => {
 			const newMantela = MantelaSchema.safeParse(JSON.parse(val.toString()));
 			if (newMantela.success) {
+				const { data } = newMantela;
+
+				if (data.$schema) {
+					setSchemaUrl(data.$schema);
+				}
+
 				setJson((draft) => {
-					draft.data = newMantela.data;
+					draft.data = data;
 				});
 				setParseErr("");
 			} else {
@@ -26,9 +60,34 @@ export default function Json() {
 		},
 		[setJson],
 	);
+
 	useEffect(() => {
 		setJsonStr(JSON.stringify(json.data, null, 2));
 	}, [json]);
+
+	useEffect(() => {
+		const fetchSchema = async () => {
+			try {
+				const parser = new $RefParser();
+				const dereferencedSchema = await parser.dereference(schemaUrl, {
+					continueOnError: false,
+					resolve: {
+						external: true,
+					},
+				});
+				const currentView = editorRef?.current?.view;
+				if (currentView && dereferencedSchema) {
+					updateSchema(currentView, dereferencedSchema as Schema);
+				}
+			} catch (error) {
+				console.error("Failed to fetch or dereference schema:", error);
+			}
+		};
+
+		(async () => {
+			await fetchSchema();
+		})();
+	}, [schemaUrl]);
 
 	return (
 		<>
@@ -61,12 +120,13 @@ export default function Json() {
 				</div>
 			)}
 
-			<ReactCodeMirror
+			<CodeMirror
 				className="text-base"
-				extensions={[EditorView.lineWrapping, langs.json(), linter(jsonParseLinter())]}
+				extensions={extensions}
 				height="70vh"
-				onChange={onChange}
+				onChange={handleChange}
 				placeholder="ここに mantela.json を入力..."
+				ref={editorRef}
 				value={jsonStr}
 			/>
 		</>
