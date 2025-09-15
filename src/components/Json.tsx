@@ -10,11 +10,13 @@ import {
 import { $RefParser } from "@apidevtools/json-schema-ref-parser";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useImmerAtom } from "jotai-immer";
+import { useAtomValue } from "jotai";
 import { linter } from "@codemirror/lint";
 import { hoverTooltip } from "@codemirror/view";
 import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
 import { MantelaSchema } from "../types/mantela";
 import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
+import { ResolvedThemeAtom } from "../helpers/Theme";
 import { Icon } from "./commons";
 
 // JSONSchema7
@@ -38,6 +40,7 @@ export default function Json() {
 	const [jsonStr, setJsonStr] = useState("");
 	const [parseErr, setParseErr] = useState("");
 	const [schemaUrl, setSchemaUrl] = useState<string>(defaultMantelaSchemaUrl);
+	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
 
 	const editorRef = useRef<ReactCodeMirrorRef>(null);
 
@@ -112,6 +115,7 @@ export default function Json() {
 				onChange={handleChange}
 				placeholder="ここに mantela.json を入力..."
 				ref={editorRef}
+				theme={resolvedTheme}
 				value={jsonStr}
 			/>
 		</>

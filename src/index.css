@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+	@apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+}
+
+/* Scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	@apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply bg-gray-400 dark:bg-gray-600 rounded-md;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Scrollbar styles for Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(156 163 175) rgb(243 244 246); /* thumb track */
+}
+
+.dark * {
+	scrollbar-color: rgb(75 85 99) rgb(31 41 55); /* thumb track for dark mode */
+}

@@ -14,3 +14,4 @@ export { NumberField } from "./NumberField";
 export { RadioGroup } from "./RadioGroup";
 export { SectionHeader } from "./SectionHeader";
 export { SelectField } from "./SelectField";
+export { default as ThemeToggle } from "./ThemeToggle";

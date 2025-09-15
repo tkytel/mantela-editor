@@ -38,7 +38,7 @@ export default function SipUri() {
 		<FormFieldWithAction
 			actionButton={
 				<button
-					className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-0.5 text-center"
+					className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-0.5 text-center dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-blue-400"
 					onClick={() => {
 						setIsModalOpen(true);
 					}}
@@ -51,10 +51,10 @@ export default function SipUri() {
 			label={
 				<>
 					SIP URI (
-					<a href="https://tools.ietf.org/html/rfc3261#section-19.1" rel="noopener noreferrer" target="_blank">
-						RFC 3261 §19.1 準拠
+					<a className="underline" href="https://tools.ietf.org/html/rfc3261#section-19.1">
+						RFC 3261 セクション19.1
 					</a>
-					)
+					&nbsp;準拠)
 				</>
 			}
 		>

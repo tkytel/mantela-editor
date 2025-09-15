@@ -11,7 +11,7 @@ export function FormFieldWithAction({ actionButton, children, id, label }: FormF
 	return (
 		<div className="mb-5">
 			<div className="flex items-center justify-between mb-2">
-				<label className="text-sm font-medium text-gray-900" htmlFor={id}>
+				<label className="text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
 					{label}
 				</label>
 				{actionButton}

@@ -13,7 +13,7 @@ export function CheckboxField({ checked, description, id, label, onChange }: Che
 				<input
 					aria-describedby={description ? `${id}-text` : undefined}
 					checked={checked}
-					className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+					className="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-600 border-gray-300 dark:border-gray-500 rounded-sm focus:ring-blue-500 focus:ring-2 dark:focus:ring-blue-600"
 					id={id}
 					onChange={(e) => {
 						onChange?.(e.target.checked);
@@ -22,11 +22,11 @@ export function CheckboxField({ checked, description, id, label, onChange }: Che
 				/>
 			</div>
 			<div className="ms-2 text-sm">
-				<label className="font-medium text-gray-900" htmlFor={id}>
+				<label className="font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
 					{label}
 				</label>
 				{description && (
-					<p className="text-xs font-normal text-gray-500" id={`${id}-text`}>
+					<p className="text-xs font-normal text-gray-500 dark:text-gray-400" id={`${id}-text`}>
 						{description}
 					</p>
 				)}
