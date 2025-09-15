@@ -10,12 +10,12 @@
         "@codemirror/lang-json": "^6.0.1",
         "@codemirror/lint": "^6.8.5",
         "@codemirror/view": "^6.38.2",
-        "@fortawesome/free-brands-svg-icons": "^6.7.2",
+        "@fortawesome/free-brands-svg-icons": "^7.0.1",
         "@uiw/codemirror-extensions-langs": "^4.23.10",
         "@uiw/react-codemirror": "^4.23.10",
         "codemirror-json-schema": "^0.8.1",
         "flowbite": "^3.1.2",
-        "flowbite-react": "^0.11.7",
+        "flowbite-react": "^0.12.9",
         "immer": "^10.1.1",
         "jotai": "^2.12.2",
         "jotai-immer": "^0.4.1",
@@ -276,9 +276,9 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
 
-    "@fortawesome/fontawesome-common-types": ["@fortawesome/fontawesome-common-types@6.7.2", "", {}, "sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg=="],
+    "@fortawesome/fontawesome-common-types": ["@fortawesome/fontawesome-common-types@7.0.1", "", {}, "sha512-0VpNtO5cNe1/HQWMkl4OdncYK/mv9hnBte0Ew0n6DMzmo3Q3WzDFABHm6LeNTipt5zAyhQ6Ugjiu8aLaEjh1gg=="],
 
-    "@fortawesome/free-brands-svg-icons": ["@fortawesome/free-brands-svg-icons@6.7.2", "", { "dependencies": { "@fortawesome/fontawesome-common-types": "6.7.2" } }, "sha512-zu0evbcRTgjKfrr77/2XX+bU+kuGfjm0LbajJHVIgBWNIDzrhpRxiCPNT8DW5AdmSsq7Mcf9D1bH0aSeSUSM+Q=="],
+    "@fortawesome/free-brands-svg-icons": ["@fortawesome/free-brands-svg-icons@7.0.1", "", { "dependencies": { "@fortawesome/fontawesome-common-types": "7.0.1" } }, "sha512-6xPmn5SrND/GM0+W33E77x05+aDn6RpR02eWd8eLdN0IxY0vXa5yU/ugaAKloOVxiG9w2330TSRsbJYL6c57Ow=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
@@ -1054,7 +1054,7 @@
 
     "flowbite-datepicker": ["flowbite-datepicker@1.3.2", "", { "dependencies": { "@rollup/plugin-node-resolve": "^15.2.3", "flowbite": "^2.0.0" } }, "sha512-6Nfm0MCVX3mpaR7YSCjmEO2GO8CDt6CX8ZpQnGdeu03WUCWtEPQ/uy0PUiNtIJjJZWnX0Cm3H55MOhbD1g+E/g=="],
 
-    "flowbite-react": ["flowbite-react@0.11.9", "", { "dependencies": { "@floating-ui/core": "1.6.9", "@floating-ui/react": "0.27.3", "@iarna/toml": "2.2.5", "@typescript-eslint/typescript-estree": "8.26.0", "chokidar": "4.0.3", "classnames": "2.5.1", "comment-json": "4.2.5", "debounce": "2.2.0", "deepmerge-ts": "7.1.4", "klona": "2.0.6", "package-manager-detector": "0.2.9", "recast": "0.23.11", "tailwind-merge-v2": "npm:tailwind-merge@2.6.0", "tailwind-merge-v3": "npm:tailwind-merge@3.0.1" }, "peerDependencies": { "react": "^18 || ^19", "react-dom": "^18 || ^19", "tailwindcss": "^3 || ^4" }, "bin": { "flowbite-react": "dist/cli/bin.js" } }, "sha512-S8KwzbR2PcVv+iJDpIp62NrIjSkKIm6ZrwdssK0k4mDU8SvYSuecKstATrIxdHAIL3/FiT4VGNuCoTUSj4OcEQ=="],
+    "flowbite-react": ["flowbite-react@0.12.9", "", { "dependencies": { "@floating-ui/core": "1.6.9", "@floating-ui/react": "0.27.3", "@iarna/toml": "2.2.5", "@typescript-eslint/typescript-estree": "8.26.0", "chokidar": "4.0.3", "classnames": "2.5.1", "comment-json": "4.2.5", "debounce": "2.2.0", "deepmerge-ts": "7.1.4", "klona": "2.0.6", "package-manager-detector": "0.2.9", "recast": "0.23.11", "tailwind-merge-v2": "npm:tailwind-merge@2.6.0", "tailwind-merge-v3": "npm:tailwind-merge@3.0.1" }, "peerDependencies": { "react": "^18 || ^19", "react-dom": "^18 || ^19", "tailwindcss": "^3 || ^4" }, "bin": { "flowbite-react": "dist/cli/bin.js" } }, "sha512-8Zm0aOQn1ocTTzDVYARpzUGdBuXg4W2HYLPHXDHKUeNsVePIfYKQiQkh7JbqLbzvlKdYChmQEayljFVbZ1sU5A=="],
 
     "for-each": ["for-each@0.3.5", "", { "dependencies": { "is-callable": "^1.2.7" } }, "sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg=="],
 
