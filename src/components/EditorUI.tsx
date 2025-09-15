@@ -24,12 +24,12 @@ export default function EditorUI() {
 
 	return (
 		<div className="overflow-y-auto">
-			<p className="text-right">
+			<p className="text-right text-gray-800 dark:text-gray-200">
 				<span className="text-pink-500">*</span>
 				と表示されている項目は、必須です。
 			</p>
 			<div className="pl-1 max-h-[70vh] max-w-[95%]">
-				<p className="text-xl mb-2">局</p>
+				<p className="text-xl mb-2 text-gray-900 dark:text-gray-100">局</p>
 				<Identifier />
 				<Name />
 				<PreferredPrefix />
@@ -39,14 +39,14 @@ export default function EditorUI() {
 				<Image />
 				<DeprecatedSip />
 
-				<hr />
+				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="text-xl mb-2 mt-2">内線番号</p>
+				<p className="text-xl mb-2 mt-2 text-gray-900 dark:text-gray-100">内線番号</p>
 				<Extensions />
 
-				<hr />
+				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="text-xl mb-2 mt-2">外線</p>
+				<p className="text-xl mb-2 mt-2 text-gray-900 dark:text-gray-100">外線</p>
 				<Providers />
 			</div>
 		</div>

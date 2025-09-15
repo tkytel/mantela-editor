@@ -16,13 +16,13 @@ type RadioOption = {
 export function RadioGroup({ label, name, onChange, options, value }: RadioGroupProps) {
 	return (
 		<div className="mb-4">
-			<label className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
+			<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">{label}</label>
 			<div className="flex space-x-4">
 				{options.map((option) => (
 					<label className="flex items-center" key={option.value}>
 						<input
 							checked={value === option.value}
-							className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+							className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-400"
 							name={name}
 							onChange={(e) => {
 								onChange?.(e.target.value);
@@ -30,7 +30,7 @@ export function RadioGroup({ label, name, onChange, options, value }: RadioGroup
 							type="radio"
 							value={option.value}
 						/>
-						<span className="ml-2 text-sm font-medium text-gray-900">{option.label}</span>
+						<span className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{option.label}</span>
 					</label>
 				))}
 			</div>
