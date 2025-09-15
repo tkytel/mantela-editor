@@ -14,7 +14,7 @@ export default function Nav() {
 						記述を行うためのヘルパー UI を提供します。
 					</p>
 				</div>
-				<div className="ml-4 flex-shrink-0">
+				<div className="ml-4 shrink-0">
 					<ThemeToggle />
 				</div>
 			</div>

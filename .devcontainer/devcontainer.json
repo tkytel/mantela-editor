@@ -60,6 +60,7 @@
           "editorIndentGuide.activeBackground5": "#fff",
           "editorIndentGuide.activeBackground6": "#fff"
         },
+        "tailwindCSS.validate": true,
         "files.associations": {
           "*.css": "tailwindcss"
         }
