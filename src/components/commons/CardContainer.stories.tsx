@@ -30,7 +30,7 @@ export const WithForm: Story = {
 							名前 <span className="text-red-500">*</span>
 						</label>
 						<input
-							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
 							id="name"
 							placeholder="名前を入力してください"
 							type="text"
@@ -41,7 +41,7 @@ export const WithForm: Story = {
 							メールアドレス
 						</label>
 						<input
-							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+							className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
 							id="email"
 							placeholder="email@example.com"
 							type="email"

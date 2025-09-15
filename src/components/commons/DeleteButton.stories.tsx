@@ -26,7 +26,7 @@ export const InCard: Story = {
 	},
 	decorators: [
 		(Story) => (
-			<div className="relative bg-white border border-gray-200 rounded-lg shadow-sm p-6 w-80">
+			<div className="relative bg-white border border-gray-200 rounded-lg shadow-xs p-6 w-80">
 				<h3 className="text-lg font-medium text-gray-900 mb-2">サンプルカード</h3>
 				<p className="text-gray-600 mb-4">これは削除可能なカードです。右上の×ボタンで削除できます。</p>
 				<Story />
@@ -46,7 +46,7 @@ export const MultipleCards: Story = {
 		(Story) => (
 			<div className="space-y-4">
 				{[1, 2, 3].map((i) => (
-					<div className="relative bg-white border border-gray-200 rounded-lg shadow-sm p-6 w-80" key={i}>
+					<div className="relative bg-white border border-gray-200 rounded-lg shadow-xs p-6 w-80" key={i}>
 						<h3 className="text-lg font-medium text-gray-900 mb-2">カード {i}</h3>
 						<p className="text-gray-600 mb-4">これは削除可能なカード{i}です。</p>
 						<Story />

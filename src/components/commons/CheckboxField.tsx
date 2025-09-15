@@ -13,7 +13,7 @@ export function CheckboxField({ checked, description, id, label, onChange }: Che
 				<input
 					aria-describedby={description ? `${id}-text` : undefined}
 					checked={checked}
-					className="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-600 border-gray-300 dark:border-gray-500 rounded-sm focus:ring-blue-500 focus:ring-2 dark:focus:ring-blue-600"
+					className="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-600 border-gray-300 dark:border-gray-500 rounded-xs focus:ring-blue-500 focus:ring-2 dark:focus:ring-blue-600"
 					id={id}
 					onChange={(e) => {
 						onChange?.(e.target.checked);
