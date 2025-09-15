@@ -2,6 +2,7 @@ import globals from "globals";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import perfectionist from "eslint-plugin-perfectionist";
 import reactRefresh from "eslint-plugin-react-refresh";
+import tailwindcss from "eslint-plugin-tailwindcss";
 import unusedImports from "eslint-plugin-unused-imports";
 
 /** @type import('xo').FlatXoConfig */
@@ -26,6 +27,7 @@ const xoConfig = [
 		plugins: {
 			perfectionist,
 			"react-refresh": reactRefresh,
+			tailwindcss,
 			"unused-imports": unusedImports,
 		},
 		prettier: true,
@@ -54,6 +56,8 @@ const xoConfig = [
 
 			"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
+			"tailwindcss/classnames-order": "error",
+
 			"unicorn/filename-case": "off",
 			"unicorn/prefer-module": "off",
 			"unicorn/prevent-abbreviations": "off",
@@ -68,6 +72,11 @@ const xoConfig = [
 					varsIgnorePattern: "^_",
 				},
 			],
+		},
+		settings: {
+			tailwindcss: {
+				config: "./tailwind.config.ts",
+			},
 		},
 	},
 	{
