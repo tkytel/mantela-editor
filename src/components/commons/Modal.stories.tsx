@@ -36,10 +36,10 @@ export const WithFooter: Story = {
 		children: "この操作を実行してもよろしいですか？",
 		footer: (
 			<div className="flex gap-2">
-				<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button">
+				<button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" type="button">
 					OK
 				</button>
-				<button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button">
+				<button className="rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700" type="button">
 					キャンセル
 				</button>
 			</div>
@@ -55,8 +55,8 @@ export const LargeContent: Story = {
 			<div>
 				<p className="mb-4">これは長いコンテンツを含むモーダルの例です。</p>
 				<p className="mb-4">複数の段落や要素を含む場合のレイアウトを確認できます。</p>
-				<div className="bg-gray-100 p-4 rounded">
-					<h4 className="font-semibold mb-2">サブセクション</h4>
+				<div className="rounded bg-gray-100 p-4">
+					<h4 className="mb-2 font-semibold">サブセクション</h4>
 					<p>追加の情報やフォームなどを含めることができます。</p>
 				</div>
 			</div>
@@ -74,7 +74,7 @@ export const Interactive: Story = {
 		return (
 			<div className="p-8">
 				<button
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+					className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
 					onClick={() => {
 						setIsOpen(true);
 					}}
@@ -85,7 +85,7 @@ export const Interactive: Story = {
 					{...args}
 					footer={
 						<button
-							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+							className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
 							onClick={() => {
 								setIsOpen(false);
 							}}

@@ -22,7 +22,7 @@ export function LabeledCreatableSelect({
 }: LabeledCreatableSelectProps) {
 	return (
 		<div className="mb-5">
-			<label className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray-100 items-center gap-1" htmlFor={id}>
+			<label className="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
 				{label}
 				{required && <span className="text-pink-500">*</span>}
 				{note && <small>{note}</small>}

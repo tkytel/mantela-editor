@@ -6,7 +6,7 @@ type ErrorMessageProps = {
 
 export function ErrorMessage({ children }: ErrorMessageProps) {
 	return (
-		<div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-200 px-4 py-3 rounded relative mb-4">
+		<div className="relative mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-700 dark:border-red-700 dark:bg-red-900 dark:text-red-200">
 			<span className="block sm:inline">{children}</span>
 		</div>
 	);

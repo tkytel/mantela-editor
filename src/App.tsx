@@ -9,7 +9,7 @@ function App() {
 	return (
 		<Provider>
 			<ThemeProvider>
-				<div className="container mx-auto min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+				<div className="container mx-auto min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 					<Nav />
 					<Editor />
 					<Footer />

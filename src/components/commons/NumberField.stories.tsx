@@ -72,7 +72,7 @@ export const Longitude: Story = {
 export const Coordinates: Story = {
 	decorators: [
 		() => (
-			<div className="space-y-4 w-80">
+			<div className="w-80 space-y-4">
 				<NumberField id="lat" label="緯度" max={90} min={-90} placeholder="緯度" value="35.6762" />
 				<NumberField id="lng" label="経度" max={180} min={-180} placeholder="経度" value="139.6503" />
 				<NumberField id="alt" label="海抜高度 [m]" placeholder="高度（メートル）" value="40" />

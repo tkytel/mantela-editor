@@ -23,12 +23,12 @@ export function FormField({
 }: FormFieldProps) {
 	return (
 		<div className="mb-5">
-			<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
+			<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
 				{label} {required && <span className="text-pink-500">*</span>}
 			</label>
 			<div className="relative w-full">
 				<input
-					className="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder:text-gray-400"
 					disabled={disabled}
 					id={id}
 					onChange={(e) => {

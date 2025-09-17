@@ -25,7 +25,7 @@ export default function Alert() {
 
 	return (
 		<div
-			className="absolute top-0 left-1/4 transform -translate-x-1/2 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 max-w-2xl opacity-[.85]"
+			className="absolute top-0 left-1/4 max-w-2xl -translate-x-1/2 rounded-lg border border-gray-300 bg-gray-50 p-4 opacity-[.85] dark:border-gray-600 dark:bg-gray-800"
 			id="top-alert-additional-content-5"
 			role="alert"
 		>
@@ -38,7 +38,7 @@ export default function Alert() {
 			</div>
 
 			<div className="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-200">
-				<ul className="space-y-1 text-gray-500 dark:text-gray-400 list-disc list-inside">{errorMessages}</ul>
+				<ul className="list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">{errorMessages}</ul>
 			</div>
 		</div>
 	);

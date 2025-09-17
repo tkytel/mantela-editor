@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		actionButton: (
-			<button className="text-blue-600 hover:text-blue-800 text-sm font-medium" type="button">
+			<button className="text-sm font-medium text-blue-600 hover:text-blue-800" type="button">
 				追加
 			</button>
 		),
@@ -38,7 +38,7 @@ export const Default: Story = {
 export const WithDeleteButton: Story = {
 	args: {
 		actionButton: (
-			<button className="text-red-600 hover:text-red-800 text-sm font-medium" type="button">
+			<button className="text-sm font-medium text-red-600 hover:text-red-800" type="button">
 				削除
 			</button>
 		),
@@ -59,10 +59,10 @@ export const WithMultipleActions: Story = {
 	args: {
 		actionButton: (
 			<div className="flex gap-2">
-				<button className="text-blue-600 hover:text-blue-800 text-sm font-medium" type="button">
+				<button className="text-sm font-medium text-blue-600 hover:text-blue-800" type="button">
 					編集
 				</button>
-				<button className="text-red-600 hover:text-red-800 text-sm font-medium" type="button">
+				<button className="text-sm font-medium text-red-600 hover:text-red-800" type="button">
 					削除
 				</button>
 			</div>

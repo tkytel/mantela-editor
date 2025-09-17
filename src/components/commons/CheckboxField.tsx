@@ -8,12 +8,12 @@ type CheckboxFieldProps = {
 
 export function CheckboxField({ checked, description, id, label, onChange }: CheckboxFieldProps) {
 	return (
-		<div className="flex mb-3">
-			<div className="flex items-center h-5">
+		<div className="mb-3 flex">
+			<div className="flex h-5 items-center">
 				<input
 					aria-describedby={description ? `${id}-text` : undefined}
 					checked={checked}
-					className="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-600 border-gray-300 dark:border-gray-500 rounded-xs focus:ring-blue-500 focus:ring-2 dark:focus:ring-blue-600"
+					className="h-4 w-4 rounded-xs border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:focus:ring-blue-600"
 					id={id}
 					onChange={(e) => {
 						onChange?.(e.target.checked);

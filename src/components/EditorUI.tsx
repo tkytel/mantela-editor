@@ -28,8 +28,8 @@ export default function EditorUI() {
 				<span className="text-pink-500">*</span>
 				と表示されている項目は、必須です。
 			</p>
-			<div className="pl-1 max-h-[70vh] max-w-[95%]">
-				<p className="text-xl mb-2 text-gray-900 dark:text-gray-100">局</p>
+			<div className="max-h-[70vh] max-w-[95%] pl-1">
+				<p className="mb-2 text-xl text-gray-900 dark:text-gray-100">局</p>
 				<Identifier />
 				<Name />
 				<PreferredPrefix />
@@ -41,12 +41,12 @@ export default function EditorUI() {
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="text-xl mb-2 mt-2 text-gray-900 dark:text-gray-100">内線番号</p>
+				<p className="mt-2 mb-2 text-xl text-gray-900 dark:text-gray-100">内線番号</p>
 				<Extensions />
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="text-xl mb-2 mt-2 text-gray-900 dark:text-gray-100">外線</p>
+				<p className="mt-2 mb-2 text-xl text-gray-900 dark:text-gray-100">外線</p>
 				<Providers />
 			</div>
 		</div>

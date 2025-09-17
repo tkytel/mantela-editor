@@ -8,7 +8,7 @@ export default function Nav() {
 					<p className="text-3xl text-gray-900 dark:text-gray-100">☎️ Mantela Editor</p>
 					<p className="text-gray-700 dark:text-gray-300">
 						Mantela Editor は、
-						<a className="text-blue-600 dark:text-blue-400 hover:underline" href="https://github.com/tkytel/mantela">
+						<a className="text-blue-600 hover:underline dark:text-blue-400" href="https://github.com/tkytel/mantela">
 							Mantela
 						</a>{" "}
 						記述を行うためのヘルパー UI を提供します。

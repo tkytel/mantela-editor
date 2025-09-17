@@ -57,6 +57,13 @@ const xoConfig = [
 			"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
 			"tailwindcss/classnames-order": "error",
+			"tailwindcss/enforces-negative-arbitrary-values": "error",
+			"tailwindcss/enforces-shorthand": "error",
+			"tailwindcss/migration-from-tailwind-2": "error",
+			"tailwindcss/no-arbitrary-value": "off",
+			"tailwindcss/no-contradicting-classname": "error",
+			"tailwindcss/no-custom-classname": "error",
+			"tailwindcss/no-unnecessary-arbitrary-value": "error",
 
 			"unicorn/filename-case": "off",
 			"unicorn/prefer-module": "off",
@@ -74,8 +81,11 @@ const xoConfig = [
 			],
 		},
 		settings: {
+			react: {
+				version: "detect",
+			},
 			tailwindcss: {
-				config: "./tailwind.config.ts",
+				config: `${import.meta.dirname}/src/index.css`,
 			},
 		},
 	},
