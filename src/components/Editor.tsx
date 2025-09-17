@@ -4,7 +4,7 @@ import EditorUI from "./EditorUI";
 
 export default function Editor() {
 	return (
-		<div className="grid grid-cols-2 gap-4 mt-3 relative">
+		<div className="relative mt-3 grid grid-cols-2 gap-4">
 			<div>
 				<EditorUI />
 				<Alert />

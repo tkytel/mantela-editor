@@ -6,7 +6,7 @@ type CardContainerProps = {
 
 export function CardContainer({ children }: CardContainerProps) {
 	return (
-		<div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-xs mb-3 relative dark:bg-gray-800 dark:border-gray-700">
+		<div className="relative mb-3 block rounded-lg border border-gray-200 bg-white p-6 shadow-xs dark:border-gray-700 dark:bg-gray-800">
 			{children}
 		</div>
 	);

@@ -55,7 +55,7 @@ export const CheckedWithDescription: Story = {
 export const MultipleCheckboxes: Story = {
 	decorators: [
 		() => (
-			<div className="space-y-4 w-80">
+			<div className="w-80 space-y-4">
 				<CheckboxField checked={true} description="最初のオプションです。" id="option1" label="オプション 1" />
 				<CheckboxField checked={false} description="2番目のオプションです。" id="option2" label="オプション 2" />
 				<CheckboxField checked={false} id="option3" label="オプション 3" />

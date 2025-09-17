@@ -9,7 +9,6 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 export default defineConfig({
 	base: "/mantela-editor/",
 	build: {
-		chunkSizeWarningLimit: 550,
 		rollupOptions: {
 			output: {
 				manualChunks: {

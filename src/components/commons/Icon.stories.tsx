@@ -64,19 +64,19 @@ export const AllVariants: Story = {
 export const InButtons: Story = {
 	render: () => (
 		<div className="flex gap-2">
-			<button className="flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+			<button className="flex items-center gap-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
 				<Icon variant="info" />
 				情報
 			</button>
-			<button className="flex items-center gap-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+			<button className="flex items-center gap-2 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700">
 				<Icon variant="refresh" />
 				更新
 			</button>
-			<button className="flex items-center gap-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+			<button className="flex items-center gap-2 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700">
 				<Icon variant="delete" />
 				削除
 			</button>
-			<button className="flex items-center gap-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+			<button className="flex items-center gap-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700">
 				<Icon variant="cancel" />
 				キャンセル
 			</button>

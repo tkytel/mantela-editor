@@ -41,28 +41,28 @@ export const Advanced: Story = {
 export const MultipleSections: Story = {
 	decorators: [
 		() => (
-			<div className="space-y-8 w-80">
+			<div className="w-80 space-y-8">
 				<div>
 					<SectionHeader>基本情報</SectionHeader>
 					<div className="mt-4 space-y-2">
-						<div className="h-8 bg-gray-200 rounded"></div>
-						<div className="h-8 bg-gray-200 rounded"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
 					</div>
 				</div>
 
 				<div>
 					<SectionHeader>詳細設定</SectionHeader>
 					<div className="mt-4 space-y-2">
-						<div className="h-8 bg-gray-200 rounded"></div>
-						<div className="h-8 bg-gray-200 rounded"></div>
-						<div className="h-8 bg-gray-200 rounded"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
 					</div>
 				</div>
 
 				<div>
 					<SectionHeader>セキュリティ</SectionHeader>
 					<div className="mt-4 space-y-2">
-						<div className="h-8 bg-gray-200 rounded"></div>
+						<div className="h-8 rounded bg-gray-200"></div>
 					</div>
 				</div>
 			</div>

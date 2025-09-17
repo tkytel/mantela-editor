@@ -96,7 +96,7 @@ export default function Json() {
 	return (
 		<>
 			{parseErr !== "" && (
-				<div className="px-4 pt-3 border border-gray-300 rounded-lg bg-gray-50 mb-2" role="alert">
+				<div className="mb-2 rounded-lg border border-gray-300 bg-gray-50 px-4 pt-3" role="alert">
 					<div className="flex items-center">
 						<Icon variant="info" />
 						<span className="sr-only">Info</span>

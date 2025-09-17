@@ -52,7 +52,7 @@ export const ShortLabel: Story = {
 
 export const AllVariants: Story = {
 	render: () => (
-		<div className="space-y-4 w-64">
+		<div className="w-64 space-y-4">
 			<AddButton label="プライマリ" variant="primary" />
 			<AddButton label="セカンダリ" variant="secondary" />
 			<AddButton label="パープル" variant="purple" />

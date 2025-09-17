@@ -15,7 +15,7 @@ export function AddButton({ label, onClick, variant = "primary" }: AddButtonProp
 
 	return (
 		<button
-			className={`${variantClasses[variant]} font-medium rounded-lg text-base px-5 py-2.5 text-center me-2 mb-2 w-full`}
+			className={`${variantClasses[variant]} me-2 mb-2 w-full rounded-lg px-5 py-2.5 text-center text-base font-medium`}
 			onClick={onClick}
 			type="button"
 		>
