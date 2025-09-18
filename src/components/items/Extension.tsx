@@ -196,7 +196,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 			{/* 利用不可 */}
 			<CheckboxField
 				checked={json.data.extensions[idx].unavailable ?? false}
-				description="その交換局との通信が（一時的に）利用できないとき、有効にしてください。"
+				description="その端末との通信が（一時的に）利用できないとき、有効にしてください。"
 				id={`extensions[${idx}].unavailable`}
 				label="利用不可"
 				onChange={(checked) => {
