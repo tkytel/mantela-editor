@@ -1,4 +1,4 @@
-import { useImmerAtom } from "jotai-immer";
+import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type z from "zod";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
@@ -19,7 +19,7 @@ type CoordinatesProps =
 
 export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) {
 	const [json, setJson] = useImmerAtom(BodyAtom);
-	const [_, setAlerts] = useImmerAtom(AlertAtom);
+	const setAlerts = useSetImmerAtom(AlertAtom);
 
 	const [isSetCoord, setIsSetCoord] = useState(false);
 

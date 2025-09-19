@@ -1,4 +1,4 @@
-import { useImmerAtom } from "jotai-immer";
+import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
@@ -6,7 +6,7 @@ import { FormFieldWithButton, Icon } from "../commons";
 
 export default function Identifier() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
-	const [_alerts, setAlerts] = useImmerAtom(AlertAtom);
+	const setAlerts = useSetImmerAtom(AlertAtom);
 
 	useEffect(() => {
 		const { identifier } = json.data.aboutMe;
