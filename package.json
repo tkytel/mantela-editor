@@ -40,7 +40,6 @@
     "@storybook/react": "^9.1.6",
     "@storybook/react-vite": "^9.1.6",
     "@swc-jotai/react-refresh": "^0.3.0",
-    "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/vite": "^4.1.13",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
