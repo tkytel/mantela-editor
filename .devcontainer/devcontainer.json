@@ -1,6 +1,6 @@
 {
   "name": "mantela-editor",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/playwright:v1.55.0-noble",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "forwardPorts": [
     5173,
