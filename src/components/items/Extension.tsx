@@ -1,5 +1,5 @@
 import { type MultiValue } from "react-select";
-import { useImmerAtom } from "jotai-immer";
+import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { useEffect } from "react";
 import { generateExtensionIdentifier } from "../../helpers/Randomness";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
@@ -55,7 +55,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 		});
 	};
 
-	const [_, setAlerts] = useImmerAtom(AlertAtom);
+	const setAlerts = useSetImmerAtom(AlertAtom);
 
 	useEffect(() => {
 		const { identifier } = json.data.extensions[idx];
@@ -184,7 +184,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 				label="端末に関連する画像の URL"
 				onChange={(value) => {
 					setJson((draft) => {
-						draft.data.extensions[idx].image = value;
+						draft.data.extensions[idx].image = value || undefined;
 					});
 				}}
 				placeholder="画像のURLを入力してください"
