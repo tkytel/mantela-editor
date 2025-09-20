@@ -25,6 +25,7 @@
         "oven.bun-vscode",
         "redhat.vscode-yaml",
         "samverschueren.linter-xo",
+        "vitest.explorer",
         "yoavbls.pretty-ts-errors"
       ],
       "settings": {
