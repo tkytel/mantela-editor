@@ -23,6 +23,7 @@
         "github.copilot",
         "hverlin.mise-vscode",
         "oven.bun-vscode",
+        "redhat.vscode-yaml",
         "samverschueren.linter-xo",
         "yoavbls.pretty-ts-errors"
       ],
@@ -46,6 +47,8 @@
           "editor.defaultFormatter": "samverschueren.linter-xo",
           "editor.formatOnSave": true
         },
+        "yaml.schemaStore.enable": true,
+        "redhat.telemetry.enabled": false,
         "workbench.colorCustomizations": {
           "editorIndentGuide.background1": "#b22222",
           "editorIndentGuide.background2": "#ff4500",
