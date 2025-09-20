@@ -18,7 +18,6 @@ export default function Extensions() {
 						draft.data.extensions.push({
 							extension: "",
 							identifier: "",
-							image: "",
 							model: "",
 							name: "",
 							type: "phone",
