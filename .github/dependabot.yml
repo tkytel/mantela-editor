@@ -5,6 +5,8 @@ updates:
   directory: /
   schedule:
     interval: monthly
+  cooldown:
+    default-days: 7
 - package-ecosystem: bun
   directory: /
   schedule:
@@ -14,3 +16,5 @@ updates:
       dependency-type: production
     dev-dependencies:
       dependency-type: development
+  cooldown:
+    default-days: 7

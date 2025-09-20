@@ -1,6 +1,6 @@
 {
   "name": "mantela-editor",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/playwright:v1.55.0-noble",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "forwardPorts": [
     5173,
@@ -23,7 +23,9 @@
         "github.copilot",
         "hverlin.mise-vscode",
         "oven.bun-vscode",
+        "redhat.vscode-yaml",
         "samverschueren.linter-xo",
+        "vitest.explorer",
         "yoavbls.pretty-ts-errors"
       ],
       "settings": {
@@ -46,6 +48,8 @@
           "editor.defaultFormatter": "samverschueren.linter-xo",
           "editor.formatOnSave": true
         },
+        "yaml.schemaStore.enable": true,
+        "redhat.telemetry.enabled": false,
         "workbench.colorCustomizations": {
           "editorIndentGuide.background1": "#b22222",
           "editorIndentGuide.background2": "#ff4500",

@@ -11,6 +11,8 @@ mise install
 eval "$(mise activate zsh)"
 bun i
 
+bunx playwright install chromium
+
 mise settings experimental=true
 mise generate git-pre-commit --write --task=format
 
