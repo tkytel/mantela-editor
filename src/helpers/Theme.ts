@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-type Theme = "dark" | "light" | "system";
+type Theme = "dark" | "light" | undefined;
 
-export const ThemeAtom = atomWithStorage<Theme>("theme", "system");
+export const ThemeAtom = atomWithStorage<Theme>("theme", undefined);
 
 export const SystemThemeAtom = atom<"dark" | "light">(() => {
 	if (globalThis.window?.matchMedia) {
@@ -17,7 +17,7 @@ export const ResolvedThemeAtom = atom<"dark" | "light">((get) => {
 	const theme = get(ThemeAtom);
 	const systemTheme = get(SystemThemeAtom);
 
-	if (theme === "system") {
+	if (!theme) {
 		return systemTheme;
 	}
 
@@ -27,12 +27,11 @@ export const ResolvedThemeAtom = atom<"dark" | "light">((get) => {
 export const ToggleThemeAtom = atom(null, (get, set) => {
 	const currentTheme = get(ThemeAtom);
 	const systemTheme = get(SystemThemeAtom);
-
-	if (currentTheme === "system") {
-		set(ThemeAtom, systemTheme === "dark" ? "light" : "dark");
+	if (currentTheme === "dark") {
+		set(ThemeAtom, "light");
 	} else if (currentTheme === "light") {
 		set(ThemeAtom, "dark");
 	} else {
-		set(ThemeAtom, "system");
+		set(ThemeAtom, systemTheme === "dark" ? "light" : "dark");
 	}
 });

@@ -5,22 +5,15 @@ import { ResolvedThemeAtom, ThemeAtom, ToggleThemeAtom } from "../../helpers/The
 export default function ThemeToggle() {
 	const toggleTheme = useSetAtom(ToggleThemeAtom);
 	const [theme, setThemeAtom] = useAtom(ThemeAtom);
+	const systemTheme = useAtomValue(ResolvedThemeAtom);
 	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
 
 	const themeIcon = useMemo(() => {
-		if (theme === "system") {
-			return "🖥️";
-		}
-
-		if (resolvedTheme) {
-			return resolvedTheme === "dark" ? "🌙" : "☀️";
-		}
-
-		return "🖥️";
+		return resolvedTheme === "dark" ? "🌙" : "☀️";
 	}, [theme, resolvedTheme]);
 
 	useEffect(() => {
-		setThemeAtom("system");
+		setThemeAtom(systemTheme);
 	}, [setThemeAtom]);
 
 	return (
