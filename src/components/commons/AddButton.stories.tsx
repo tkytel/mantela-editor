@@ -22,9 +22,7 @@ export const Primary: Story = {
 		onClick: fn(),
 		variant: "primary",
 	},
-	async play({ args, canvasElement, userEvent }) {
-		const canvas = within(canvasElement);
-
+	async play({ args, canvas, userEvent }) {
 		const button = canvas.getByRole("button", { name: args.label });
 		await expect(button).toBeInTheDocument();
 
@@ -41,9 +39,7 @@ export const Secondary: Story = {
 		onClick: fn(),
 		variant: "secondary",
 	},
-	async play({ args, canvasElement, userEvent }) {
-		const canvas = within(canvasElement);
-
+	async play({ args, canvas, userEvent }) {
 		const button = canvas.getByRole("button", { name: args.label });
 		await expect(button).toBeInTheDocument();
 
@@ -60,9 +56,7 @@ export const Purple: Story = {
 		onClick: fn(),
 		variant: "purple",
 	},
-	async play({ args, canvasElement, userEvent }) {
-		const canvas = within(canvasElement);
-
+	async play({ args, canvas, userEvent }) {
 		const button = canvas.getByRole("button", { name: args.label });
 		await expect(button).toBeInTheDocument();
 
@@ -79,9 +73,7 @@ export const LongLabel: Story = {
 		onClick: fn(),
 		variant: "primary",
 	},
-	async play({ args, canvasElement, userEvent }) {
-		const canvas = within(canvasElement);
-
+	async play({ args, canvas, userEvent }) {
 		const button = canvas.getByRole("button", { name: args.label });
 		await expect(button).toBeInTheDocument();
 
