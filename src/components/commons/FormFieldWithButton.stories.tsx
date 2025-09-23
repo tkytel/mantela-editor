@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn } from "storybook/test";
 import { FormFieldWithButton } from "./FormFieldWithButton";
 
 const meta: Meta<typeof FormFieldWithButton> = {
@@ -13,14 +14,35 @@ export const Default: Story = {
 		buttonContent: "実行",
 		id: "field-with-button",
 		label: "ボタン付きフィールド",
-		onButtonClick() {
-			/* eslint-disable-next-line no-alert */
-			alert("ボタンがクリックされました！");
-		},
+		onButtonClick: fn(),
+		onChange: fn(),
 		placeholder: "テキストを入力してください",
 		required: false,
 		type: "text",
 		value: "",
+	},
+	async play({ args, canvas, userEvent }) {
+		// フィールドの存在確認
+		const inputField = canvas.getByRole("textbox");
+		await expect(inputField).toBeInTheDocument();
+		await expect(inputField).toHaveAttribute("type", "text");
+
+		// ラベルの存在確認
+		const label = canvas.getByText("ボタン付きフィールド");
+		await expect(label).toBeInTheDocument();
+
+		// ボタンの存在確認
+		const button = canvas.getByRole("button", { name: "実行" });
+		await expect(button).toBeInTheDocument();
+		await expect(button).toHaveClass("bg-blue-700");
+
+		// 入力フィールドの動作確認
+		await userEvent.type(inputField, "テスト入力");
+		await expect(args.onChange).toHaveBeenCalled();
+
+		// ボタンクリックの動作確認
+		await userEvent.click(button);
+		await expect(args.onButtonClick).toHaveBeenCalled();
 	},
 };
 
@@ -33,14 +55,36 @@ export const GenerateId: Story = {
 		),
 		id: "generate-id",
 		label: "識別子",
-		onButtonClick() {
-			/* eslint-disable-next-line no-alert */
-			alert("新しい識別子を生成しました！");
-		},
+		onButtonClick: fn(),
+		onChange: fn(),
 		placeholder: "識別子を入力またはボタンで生成",
 		required: false,
 		type: "text",
 		value: "AUTO_GEN_123456",
+	},
+	async play({ args, canvas, userEvent }) {
+		// フィールドの存在確認
+		const inputField = canvas.getByRole("textbox");
+		await expect(inputField).toBeInTheDocument();
+		await expect(inputField).toHaveAttribute("type", "text");
+
+		// ラベルの存在確認
+		const label = canvas.getByText("識別子");
+		await expect(label).toBeInTheDocument();
+
+		// ボタンの存在確認
+		const button = canvas.getByRole("button");
+		await expect(button).toBeInTheDocument();
+		await expect(button).toHaveClass("bg-blue-700");
+
+		// 入力フィールドの動作確認
+		await userEvent.clear(inputField);
+		await userEvent.type(inputField, "AAA-BBB-CCC");
+		await expect(args.onChange).toHaveBeenCalled();
+
+		// ボタンクリックの動作確認
+		await userEvent.click(button);
+		await expect(args.onButtonClick).toHaveBeenCalled();
 	},
 };
 
@@ -64,14 +108,36 @@ export const SearchField: Story = {
 		),
 		id: "search-field",
 		label: "検索",
-		onButtonClick() {
-			/* eslint-disable-next-line no-alert */
-			alert("検索を実行しました！");
-		},
+		onButtonClick: fn(),
+		onChange: fn(),
 		placeholder: "検索キーワードを入力",
 		required: false,
 		type: "text",
 		value: "React コンポーネント",
+	},
+	async play({ args, canvas, userEvent }) {
+		// フィールドの存在確認
+		const inputField = canvas.getByRole("textbox");
+		await expect(inputField).toBeInTheDocument();
+		await expect(inputField).toHaveAttribute("type", "text");
+
+		// ラベルの存在確認
+		const label = canvas.getByText("検索");
+		await expect(label).toBeInTheDocument();
+
+		// ボタンの存在確認
+		const button = canvas.getByRole("button");
+		await expect(button).toBeInTheDocument();
+		await expect(button).toHaveClass("bg-blue-700");
+
+		// 入力フィールドの動作確認
+		await userEvent.clear(inputField);
+		await userEvent.type(inputField, "新しいキーワード");
+		await expect(args.onChange).toHaveBeenCalled();
+
+		// ボタンクリックの動作確認
+		await userEvent.click(button);
+		await expect(args.onButtonClick).toHaveBeenCalled();
 	},
 };
 
@@ -80,14 +146,37 @@ export const URLFetch: Story = {
 		buttonContent: "取得",
 		id: "url-fetch",
 		label: "URL取得",
-		onButtonClick() {
-			/* eslint-disable-next-line no-alert */
-			alert("URLからデータを取得しました！");
-		},
+		onButtonClick: fn(),
+		onChange: fn(),
 		placeholder: "URLを入力してください",
 		required: true,
 		type: "url",
 		value: "https://api.example.com/data",
+	},
+	async play({ args, canvas, userEvent }) {
+		// フィールドの存在確認
+		const inputField = canvas.getByRole("textbox");
+		await expect(inputField).toBeInTheDocument();
+		await expect(inputField).toHaveAttribute("type", "url");
+
+		// ラベルの存在確認
+		const label = canvas.getByText("URL取得");
+		await expect(label).toBeInTheDocument();
+		await expect(label).toContainHTML("<span"); // 必須マークの存在確認
+
+		// ボタンの存在確認
+		const button = canvas.getByRole("button", { name: "取得" });
+		await expect(button).toBeInTheDocument();
+		await expect(button).toHaveClass("bg-blue-700");
+
+		// 入力フィールドの動作確認
+		await userEvent.clear(inputField);
+		await userEvent.type(inputField, "https://newapi.example.com/info");
+		await expect(args.onChange).toHaveBeenCalled();
+
+		// ボタンクリックの動作確認
+		await userEvent.click(button);
+		await expect(args.onButtonClick).toHaveBeenCalled();
 	},
 };
 
@@ -96,13 +185,37 @@ export const Required: Story = {
 		buttonContent: "送信",
 		id: "required-field",
 		label: "必須フィールド",
-		onButtonClick() {
-			/* eslint-disable-next-line no-alert */
-			alert("処理を実行しました！");
-		},
+		onButtonClick: fn(),
+		onChange: fn(),
 		placeholder: "必須項目を入力してください",
 		required: true,
 		type: "text",
 		value: "",
+	},
+	async play({ args, canvas, userEvent }) {
+		// フィールドの存在確認
+		const inputField = canvas.getByRole("textbox");
+		await expect(inputField).toBeInTheDocument();
+		await expect(inputField).toHaveAttribute("type", "text");
+
+		// ラベルの存在確認
+		const label = canvas.getByText("必須フィールド");
+		await expect(label).toBeInTheDocument();
+		const requiredMark = canvas.getByText("*");
+		await expect(requiredMark).toBeInTheDocument();
+		await expect(requiredMark).toHaveClass("text-pink-500");
+
+		// ボタンの存在確認
+		const button = canvas.getByRole("button", { name: "送信" });
+		await expect(button).toBeInTheDocument();
+		await expect(button).toHaveClass("bg-blue-700");
+
+		// 入力フィールドの動作確認
+		await userEvent.type(inputField, "必須項目の入力");
+		await expect(args.onChange).toHaveBeenCalled();
+
+		// ボタンクリックの動作確認
+		await userEvent.click(button);
+		await expect(args.onButtonClick).toHaveBeenCalled();
 	},
 };

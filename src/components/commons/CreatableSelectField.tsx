@@ -51,7 +51,7 @@ export function CreatableSelectField({
 	);
 
 	return (
-		<div className="relative w-full">
+		<div className="relative w-full" role="group">
 			<Creatable
 				className="text-sm"
 				classNamePrefix="react-select"

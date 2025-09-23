@@ -9,7 +9,7 @@ type FormFieldWithActionProps = {
 
 export function FormFieldWithAction({ actionButton, children, id, label }: FormFieldWithActionProps) {
 	return (
-		<div className="mb-5">
+		<div className="mb-5" role="group">
 			<div className="mb-2 flex items-center justify-between">
 				<label className="text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
 					{label}

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { FormFieldWithAction } from "./FormFieldWithAction";
 
 const meta: Meta<typeof FormFieldWithAction> = {
@@ -33,6 +34,25 @@ export const Default: Story = {
 		id: "field-with-action",
 		label: "サンプルフィールド",
 	},
+	async play({ canvas }) {
+		// フィールドの存在確認
+		const formField = canvas.getByRole("group");
+		await expect(formField).toBeInTheDocument();
+
+		// ラベルの存在確認
+		const label = canvas.getByText("サンプルフィールド");
+		await expect(label).toBeInTheDocument();
+
+		// 入力欄の存在確認
+		const input = canvas.getByRole("textbox");
+		await expect(input).toBeInTheDocument();
+		await expect(input).toHaveAttribute("placeholder", "テキストを入力してください");
+		await expect(input).toHaveValue("");
+
+		// アクションボタンの存在確認
+		const actionButton = canvas.getByRole("button", { name: "追加" });
+		await expect(actionButton).toBeInTheDocument();
+	},
 };
 
 export const WithDeleteButton: Story = {
@@ -52,6 +72,25 @@ export const WithDeleteButton: Story = {
 		),
 		id: "delete-action",
 		label: "削除可能なフィールド",
+	},
+	async play({ canvas }) {
+		// フィールドの存在確認
+		const formField = canvas.getByRole("group");
+		await expect(formField).toBeInTheDocument();
+
+		// ラベルの存在確認
+		const label = canvas.getByText("削除可能なフィールド");
+		await expect(label).toBeInTheDocument();
+
+		// 入力欄の存在確認
+		const input = canvas.getByRole("textbox");
+		await expect(input).toBeInTheDocument();
+		await expect(input).toHaveAttribute("placeholder", "削除可能なテキスト");
+		await expect(input).toHaveValue("サンプルテキスト");
+
+		// アクションボタンの存在確認
+		const actionButton = canvas.getByRole("button", { name: "削除" });
+		await expect(actionButton).toBeInTheDocument();
 	},
 };
 
@@ -77,6 +116,27 @@ export const WithMultipleActions: Story = {
 		id: "multiple-actions",
 		label: "複数アクション",
 	},
+	async play({ canvas }) {
+		// フィールドの存在確認
+		const formField = canvas.getByRole("group");
+		await expect(formField).toBeInTheDocument();
+
+		// ラベルの存在確認
+		const label = canvas.getByText("複数アクション");
+		await expect(label).toBeInTheDocument();
+
+		// 入力欄の存在確認
+		const input = canvas.getByRole("textbox");
+		await expect(input).toBeInTheDocument();
+		await expect(input).toHaveAttribute("placeholder", "複数行のテキストを入力してください");
+
+		// アクションボタンの存在確認
+		const editButton = canvas.getByRole("button", { name: "編集" });
+		await expect(editButton).toBeInTheDocument();
+
+		const deleteButton = canvas.getByRole("button", { name: "削除" });
+		await expect(deleteButton).toBeInTheDocument();
+	},
 };
 
 export const NoAction: Story = {
@@ -90,5 +150,23 @@ export const NoAction: Story = {
 		),
 		id: "no-action",
 		label: "アクションなしフィールド",
+	},
+	async play({ canvas }) {
+		// フィールドの存在確認
+		const formField = canvas.getByRole("group");
+		await expect(formField).toBeInTheDocument();
+
+		// ラベルの存在確認
+		const label = canvas.getByText("アクションなしフィールド");
+		await expect(label).toBeInTheDocument();
+
+		// 入力欄の存在確認
+		const input = canvas.getByRole("textbox");
+		await expect(input).toBeInTheDocument();
+		await expect(input).toHaveAttribute("placeholder", "通常のフィールド");
+
+		// アクションボタンが存在しないことを確認
+		const actionButton = canvas.queryByRole("button");
+		await expect(actionButton).toBeNull();
 	},
 };
