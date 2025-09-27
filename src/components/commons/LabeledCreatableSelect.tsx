@@ -2,6 +2,7 @@ import { type ReactNode } from "react";
 import { CreatableSelectField } from "./CreatableSelectField";
 
 type LabeledCreatableSelectProps = {
+	actionButton?: ReactNode;
 	id: string;
 	label: ReactNode;
 	note?: ReactNode;
@@ -12,6 +13,7 @@ type LabeledCreatableSelectProps = {
 };
 
 export function LabeledCreatableSelect({
+	actionButton,
 	id,
 	label,
 	note,
@@ -22,11 +24,15 @@ export function LabeledCreatableSelect({
 }: LabeledCreatableSelectProps) {
 	return (
 		<div className="mb-5">
-			<label className="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
-				{label}
-				{required && <span className="text-pink-500">*</span>}
-				{note && <small>{note}</small>}
-			</label>
+			<div className="mb-2 flex items-center justify-between">
+				<label className="flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
+					{label}
+					{required && <span className="text-pink-500">*</span>}
+					{note && <small>{note}</small>}
+				</label>
+				{actionButton}
+			</div>
+
 			<CreatableSelectField id={id} onChange={onChange} placeholder={placeholder} value={value} />
 		</div>
 	);
