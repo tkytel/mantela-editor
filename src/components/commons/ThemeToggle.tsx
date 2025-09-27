@@ -5,7 +5,6 @@ import { ResolvedThemeAtom, ThemeAtom, ToggleThemeAtom } from "../../helpers/The
 export default function ThemeToggle() {
 	const toggleTheme = useSetAtom(ToggleThemeAtom);
 	const [theme, setThemeAtom] = useAtom(ThemeAtom);
-	const systemTheme = useAtomValue(ResolvedThemeAtom);
 	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
 
 	const themeIcon = useMemo(() => {
@@ -13,7 +12,7 @@ export default function ThemeToggle() {
 	}, [theme, resolvedTheme]);
 
 	useEffect(() => {
-		setThemeAtom(systemTheme);
+		setThemeAtom(resolvedTheme);
 	}, [setThemeAtom]);
 
 	return (
