@@ -97,6 +97,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 					</button>
 				</>
 			}
+			id="sip-uri-config"
 			isOpen={isOpen}
 			onClose={handleClose}
 			title="SIP設定"
