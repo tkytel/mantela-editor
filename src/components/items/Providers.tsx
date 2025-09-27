@@ -1,10 +1,11 @@
-import { useImmerAtom } from "jotai-immer";
-import { BodyAtom } from "../../helpers/Jotai";
+import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
+import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
 import { MantelaSchema } from "../../types/mantela";
 import { AddButton, CardContainer, CheckboxField, DeleteButton, FormField, FormFieldWithButton } from "../commons";
 
 export default function Providers() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
+	const setAlert = useSetImmerAtom(AlertAtom);
 
 	const fetchMantelaData = async (url: string, idx: number) => {
 		try {
@@ -19,9 +20,13 @@ export default function Providers() {
 				draft.data.providers[idx].name = validatedData.aboutMe.name;
 				draft.data.providers[idx].identifier = validatedData.aboutMe.identifier;
 			});
-		} catch (error: unknown) {
-			/* eslint-disable-next-line no-alert */
-			alert(`mantela.jsonの取得に失敗しました。\n${error instanceof Error ? error.message : String(error)}`);
+			setAlert((draft) => {
+				delete draft.alerts[`providers[${idx}].mantela`];
+			});
+		} catch {
+			setAlert((draft) => {
+				draft.alerts[`providers[${idx}].mantela`] = "mantela.jsonの取得に失敗しました。URLが正しいか確認してください。";
+			});
 		}
 	};
 

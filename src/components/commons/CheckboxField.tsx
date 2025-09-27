@@ -8,7 +8,7 @@ type CheckboxFieldProps = {
 
 export function CheckboxField({ checked, description, id, label, onChange }: CheckboxFieldProps) {
 	return (
-		<div className="mb-3 flex">
+		<div aria-labelledby={`${id}-label`} className="mb-3 flex" role="group">
 			<div className="flex h-5 items-center">
 				<input
 					aria-describedby={description ? `${id}-text` : undefined}
@@ -22,11 +22,11 @@ export function CheckboxField({ checked, description, id, label, onChange }: Che
 				/>
 			</div>
 			<div className="ms-2 text-sm">
-				<label className="font-medium text-gray-900 dark:text-gray-100" htmlFor={id}>
+				<label className="font-medium text-gray-900 dark:text-gray-100" htmlFor={id} id={`${id}-label`}>
 					{label}
 				</label>
 				{description && (
-					<p className="text-xs font-normal text-gray-500 dark:text-gray-400" id={`${id}-text`}>
+					<p className="text-xs font-normal text-gray-500 dark:text-gray-400" id={`${id}-text`} role="note">
 						{description}
 					</p>
 				)}
