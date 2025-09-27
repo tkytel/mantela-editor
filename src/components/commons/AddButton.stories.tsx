@@ -23,7 +23,7 @@ export const Primary: Story = {
 		variant: "primary",
 	},
 	async play({ args, canvas, userEvent }) {
-		const button = canvas.getByRole("button", { name: args.label });
+		const button = canvas.getByRole("button", { name: "追加" });
 		await expect(button).toBeInTheDocument();
 
 		await expect(button).toHaveClass("from-cyan-500");
@@ -40,7 +40,7 @@ export const Secondary: Story = {
 		variant: "secondary",
 	},
 	async play({ args, canvas, userEvent }) {
-		const button = canvas.getByRole("button", { name: args.label });
+		const button = canvas.getByRole("button", { name: "セカンダリボタン" });
 		await expect(button).toBeInTheDocument();
 
 		await expect(button).toHaveClass("bg-blue-700");
@@ -57,7 +57,7 @@ export const Purple: Story = {
 		variant: "purple",
 	},
 	async play({ args, canvas, userEvent }) {
-		const button = canvas.getByRole("button", { name: args.label });
+		const button = canvas.getByRole("button", { name: "パープルボタン" });
 		await expect(button).toBeInTheDocument();
 
 		await expect(button).toHaveClass("from-purple-600");
@@ -74,7 +74,7 @@ export const LongLabel: Story = {
 		variant: "primary",
 	},
 	async play({ args, canvas, userEvent }) {
-		const button = canvas.getByRole("button", { name: args.label });
+		const button = canvas.getByRole("button", { name: "とても長いラベルのボタン" });
 		await expect(button).toBeInTheDocument();
 
 		await expect(button).toHaveClass("from-cyan-500");
@@ -93,7 +93,7 @@ export const ShortLabel: Story = {
 	async play({ args, canvasElement, userEvent }) {
 		const canvas = within(canvasElement);
 
-		const button = canvas.getByRole("button", { name: args.label });
+		const button = canvas.getByRole("button", { name: "+" });
 		await expect(button).toBeInTheDocument();
 
 		await expect(button).toHaveClass("from-cyan-500");

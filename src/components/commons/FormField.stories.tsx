@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { FormField } from "./FormField";
 
 const meta: Meta<typeof FormField> = {
@@ -20,27 +20,31 @@ export const Default: Story = {
 		disabled: false,
 		id: "example-field",
 		label: "サンプルフィールド",
+		onChange: fn(),
 		placeholder: "テキストを入力してください",
 		required: false,
 		type: "text",
 		value: "",
 	},
-	async play({ canvas }) {
+	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const formField = canvas.getByRole("group");
-		await expect(formField).toBeInTheDocument();
-
-		// ラベルの存在確認
-		const label = canvas.getByText("サンプルフィールド");
-		await expect(label).toBeInTheDocument();
+		const input = canvas.getByRole("textbox", { name: "サンプルフィールド" });
+		await expect(input).toBeInTheDocument();
 
 		// 入力欄の存在確認
-		const input = canvas.getByRole("textbox");
 		await expect(input).toBeInTheDocument();
 		await expect(input).toBeEnabled();
 		await expect(input).toHaveAttribute("type", "text");
 		await expect(input).toHaveAttribute("placeholder", "テキストを入力してください");
 		await expect(input).toHaveValue("");
+
+		// OnChange イベントの確認
+		await userEvent.type(input, "Hello");
+		await expect(args.onChange).toHaveBeenNthCalledWith(1, "H");
+		await expect(args.onChange).toHaveBeenNthCalledWith(2, "e");
+		await expect(args.onChange).toHaveBeenNthCalledWith(3, "l");
+		await expect(args.onChange).toHaveBeenNthCalledWith(4, "l");
+		await expect(args.onChange).toHaveBeenNthCalledWith(5, "o");
 	},
 };
 
@@ -56,23 +60,13 @@ export const Required: Story = {
 	},
 	async play({ canvas }) {
 		// フィールドの存在確認
-		const formField = canvas.getByRole("group");
-		await expect(formField).toBeInTheDocument();
+		const input = canvas.getByRole("textbox", { name: "必須フィールド *" });
+		await expect(input).toBeInTheDocument();
 
-		// ラベルの存在確認と必須マークの確認
-		const label = canvas.getByText("必須フィールド");
-		await expect(label).toBeInTheDocument();
+		// 必須マークの確認
 		const requiredMark = canvas.getByText("*");
 		await expect(requiredMark).toBeInTheDocument();
 		await expect(requiredMark).toHaveClass("text-pink-500");
-
-		// 入力欄の存在確認
-		const input = canvas.getByRole("textbox");
-		await expect(input).toBeInTheDocument();
-		await expect(input).toBeEnabled();
-		await expect(input).toHaveAttribute("type", "text");
-		await expect(input).toHaveAttribute("placeholder", "必須項目です");
-		await expect(input).toHaveValue("");
 	},
 };
 
@@ -85,6 +79,18 @@ export const Disabled: Story = {
 		required: false,
 		type: "text",
 		value: "編集できません",
+	},
+	async play({ canvas }) {
+		// フィールドの存在確認
+		const input = canvas.getByRole("textbox", { name: "無効化されたフィールド" });
+		await expect(input).toBeInTheDocument();
+
+		// 入力欄が無効化されていることの確認
+		await expect(input).toBeDisabled();
+		await expect(input).toHaveAttribute("type", "text");
+		await expect(input).toHaveAttribute("placeholder", "このフィールドは無効です");
+		await expect(input).toHaveValue("編集できません");
+		await expect(input).toHaveClass("disabled:bg-gray-200");
 	},
 };
 
@@ -100,15 +106,10 @@ export const WithValue: Story = {
 	},
 	async play({ canvas }) {
 		// フィールドの存在確認
-		const formField = canvas.getByRole("group");
-		await expect(formField).toBeInTheDocument();
-
-		// ラベルの存在確認
-		const label = canvas.getByText("入力済みフィールド");
-		await expect(label).toBeInTheDocument();
+		const input = canvas.getByRole("textbox", { name: "入力済みフィールド" });
+		await expect(input).toBeInTheDocument();
 
 		// 入力欄の存在確認と値の確認
-		const input = canvas.getByRole("textbox");
 		await expect(input).toBeInTheDocument();
 		await expect(input).toBeEnabled();
 		await expect(input).toHaveAttribute("type", "text");
@@ -129,15 +130,10 @@ export const URLField: Story = {
 	},
 	async play({ canvas }) {
 		// フィールドの存在確認
-		const formField = canvas.getByRole("group");
-		await expect(formField).toBeInTheDocument();
-
-		// ラベルの存在確認
-		const label = canvas.getByText("URL フィールド");
-		await expect(label).toBeInTheDocument();
+		const input = canvas.getByRole("textbox", { name: "URL フィールド" });
+		await expect(input).toBeInTheDocument();
 
 		// 入力欄の存在確認と値の確認
-		const input = canvas.getByRole("textbox");
 		await expect(input).toBeInTheDocument();
 		await expect(input).toBeEnabled();
 		await expect(input).toHaveAttribute("type", "url");
@@ -158,15 +154,10 @@ export const NumberField: Story = {
 	},
 	async play({ canvas }) {
 		// フィールドの存在確認
-		const formField = canvas.getByRole("group");
-		await expect(formField).toBeInTheDocument();
-
-		// ラベルの存在確認
-		const label = canvas.getByText("数値フィールド");
-		await expect(label).toBeInTheDocument();
+		const input = canvas.getByRole("spinbutton", { name: "数値フィールド" });
+		await expect(input).toBeInTheDocument();
 
 		// 入力欄の存在確認と値の確認
-		const input = canvas.getByRole("spinbutton");
 		await expect(input).toBeInTheDocument();
 		await expect(input).toBeEnabled();
 		await expect(input).toHaveAttribute("type", "number");

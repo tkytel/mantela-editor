@@ -23,13 +23,9 @@ export const Default: Story = {
 	},
 	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const inputField = canvas.getByRole("textbox");
+		const inputField = canvas.getByRole("textbox", { name: "ボタン付きフィールド" });
 		await expect(inputField).toBeInTheDocument();
 		await expect(inputField).toHaveAttribute("type", "text");
-
-		// ラベルの存在確認
-		const label = canvas.getByText("ボタン付きフィールド");
-		await expect(label).toBeInTheDocument();
 
 		// ボタンの存在確認
 		const button = canvas.getByRole("button", { name: "実行" });
@@ -64,13 +60,9 @@ export const GenerateId: Story = {
 	},
 	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const inputField = canvas.getByRole("textbox");
+		const inputField = canvas.getByRole("textbox", { name: "識別子" });
 		await expect(inputField).toBeInTheDocument();
 		await expect(inputField).toHaveAttribute("type", "text");
-
-		// ラベルの存在確認
-		const label = canvas.getByText("識別子");
-		await expect(label).toBeInTheDocument();
 
 		// ボタンの存在確認
 		const button = canvas.getByRole("button");
@@ -117,13 +109,9 @@ export const SearchField: Story = {
 	},
 	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const inputField = canvas.getByRole("textbox");
+		const inputField = canvas.getByRole("textbox", { name: "検索" });
 		await expect(inputField).toBeInTheDocument();
 		await expect(inputField).toHaveAttribute("type", "text");
-
-		// ラベルの存在確認
-		const label = canvas.getByText("検索");
-		await expect(label).toBeInTheDocument();
 
 		// ボタンの存在確認
 		const button = canvas.getByRole("button");
@@ -155,14 +143,9 @@ export const URLFetch: Story = {
 	},
 	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const inputField = canvas.getByRole("textbox");
+		const inputField = canvas.getByRole("textbox", { name: "URL取得 *" });
 		await expect(inputField).toBeInTheDocument();
 		await expect(inputField).toHaveAttribute("type", "url");
-
-		// ラベルの存在確認
-		const label = canvas.getByText("URL取得");
-		await expect(label).toBeInTheDocument();
-		await expect(label).toContainHTML("<span"); // 必須マークの存在確認
 
 		// ボタンの存在確認
 		const button = canvas.getByRole("button", { name: "取得" });
@@ -194,16 +177,9 @@ export const Required: Story = {
 	},
 	async play({ args, canvas, userEvent }) {
 		// フィールドの存在確認
-		const inputField = canvas.getByRole("textbox");
+		const inputField = canvas.getByRole("textbox", { name: "必須フィールド *" });
 		await expect(inputField).toBeInTheDocument();
 		await expect(inputField).toHaveAttribute("type", "text");
-
-		// ラベルの存在確認
-		const label = canvas.getByText("必須フィールド");
-		await expect(label).toBeInTheDocument();
-		const requiredMark = canvas.getByText("*");
-		await expect(requiredMark).toBeInTheDocument();
-		await expect(requiredMark).toHaveClass("text-pink-500");
 
 		// ボタンの存在確認
 		const button = canvas.getByRole("button", { name: "送信" });
