@@ -104,8 +104,8 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 			{error && <ErrorMessage>{error}</ErrorMessage>}
 
 			<RadioGroup
+				id="sipScheme"
 				label="プロトコル"
-				name="sipScheme"
 				onChange={(value) => {
 					setSipFormData((prev) => ({ ...prev, scheme: value as "sip" | "sips" }));
 				}}
