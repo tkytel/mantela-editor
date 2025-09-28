@@ -111,7 +111,7 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 			/>
 			{isSetCoord && (
 				<>
-					<SectionHeader>設置場所</SectionHeader>
+					<SectionHeader level={3} text="設置場所" />
 					<p className="mb-2 text-sm">
 						これらの値は、
 						<a className="underline" href="https://tkytel.github.io/cocokano/">

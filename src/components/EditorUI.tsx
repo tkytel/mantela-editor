@@ -10,6 +10,7 @@ import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
 import DeprecatedSip from "./items/DeprecatedSip";
+import { SectionHeader } from "./commons";
 
 export default function EditorUI() {
 	const [json] = useImmerAtom(BodyAtom);
@@ -41,12 +42,12 @@ export default function EditorUI() {
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="mt-2 mb-2 text-xl text-gray-900 dark:text-gray-100">内線番号</p>
+				<SectionHeader level={2} text="内線番号" />
 				<Extensions />
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<p className="mt-2 mb-2 text-xl text-gray-900 dark:text-gray-100">外線</p>
+				<SectionHeader level={2} text="外線" />
 				<Providers />
 			</div>
 		</div>

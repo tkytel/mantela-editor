@@ -8,19 +8,11 @@ export default function ThemeToggle() {
 	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
 
 	const themeIcon = useMemo(() => {
-		if (theme === "system") {
-			return "🖥️";
-		}
-
-		if (resolvedTheme) {
-			return resolvedTheme === "dark" ? "🌙" : "☀️";
-		}
-
-		return "🖥️";
+		return resolvedTheme === "dark" ? "🌙" : "☀️";
 	}, [theme, resolvedTheme]);
 
 	useEffect(() => {
-		setThemeAtom("system");
+		setThemeAtom(resolvedTheme);
 	}, [setThemeAtom]);
 
 	return (

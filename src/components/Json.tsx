@@ -1,19 +1,9 @@
 import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "@uiw/react-codemirror";
-import {
-	handleRefresh,
-	jsonCompletion,
-	jsonSchemaHover,
-	jsonSchemaLinter,
-	stateExtensions,
-	updateSchema,
-} from "codemirror-json-schema";
+import { jsonSchema, updateSchema } from "codemirror-json-schema";
 import { $RefParser } from "@apidevtools/json-schema-ref-parser";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useImmerAtom } from "jotai-immer";
 import { useAtomValue } from "jotai";
-import { linter } from "@codemirror/lint";
-import { hoverTooltip } from "@codemirror/view";
-import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
 import { MantelaSchema } from "../types/mantela";
 import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
 import { ResolvedThemeAtom } from "../helpers/Theme";
@@ -22,18 +12,7 @@ import { Icon } from "./commons";
 // JSONSchema7
 type Schema = NonNullable<Parameters<typeof updateSchema>[1]>;
 
-const extensions = [
-	jsonLang(),
-	linter(jsonParseLinter()),
-	linter(jsonSchemaLinter(), {
-		needsRefresh: handleRefresh,
-	}),
-	jsonLanguage.data.of({
-		autocomplete: jsonCompletion(),
-	}),
-	hoverTooltip(jsonSchemaHover()),
-	stateExtensions(),
-];
+const extensions = jsonSchema();
 
 export default function Json() {
 	const [json, setJson] = useImmerAtom(BodyAtom);

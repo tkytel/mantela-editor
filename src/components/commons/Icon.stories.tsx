@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Icon } from "./Icon";
 
 const meta: Meta<typeof Icon> = {
@@ -18,11 +19,27 @@ export const Info: Story = {
 	args: {
 		variant: "info",
 	},
+	async play({ canvas }) {
+		// Iconの存在確認
+		const icon = canvas.getByTestId("icon-info");
+		await expect(icon).toBeInTheDocument();
+
+		// 必要なCSSクラスが適用されているかテスト
+		await expect(icon).toHaveClass("me-2", "h-4", "w-4", "shrink-0");
+	},
 };
 
 export const Refresh: Story = {
 	args: {
 		variant: "refresh",
+	},
+	async play({ canvas }) {
+		// Iconの存在確認
+		const icon = canvas.getByTestId("icon-refresh");
+		await expect(icon).toBeInTheDocument();
+
+		// 必要なCSSクラスが適用されているかテスト
+		await expect(icon).toHaveClass("h-4", "w-4");
 	},
 };
 
@@ -30,11 +47,27 @@ export const Delete: Story = {
 	args: {
 		variant: "delete",
 	},
+	async play({ canvas }) {
+		// Iconの存在確認
+		const icon = canvas.getByTestId("icon-delete");
+		await expect(icon).toBeInTheDocument();
+
+		// 必要なCSSクラスが適用されているかテスト
+		await expect(icon).toHaveClass("h-7", "w-7");
+	},
 };
 
 export const Cancel: Story = {
 	args: {
 		variant: "cancel",
+	},
+	async play({ canvas }) {
+		// Iconの存在確認
+		const icon = canvas.getByTestId("icon-cancel");
+		await expect(icon).toBeInTheDocument();
+
+		// 必要なCSSクラスが適用されているかテスト
+		await expect(icon).toHaveClass("h-3", "w-3");
 	},
 };
 

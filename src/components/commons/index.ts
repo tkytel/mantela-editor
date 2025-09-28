@@ -5,7 +5,6 @@ export { CreatableSelectField } from "./CreatableSelectField";
 export { DeleteButton } from "./DeleteButton";
 export { ErrorMessage } from "./ErrorMessage";
 export { FormField } from "./FormField";
-export { FormFieldWithAction } from "./FormFieldWithAction";
 export { FormFieldWithButton } from "./FormFieldWithButton";
 export { Icon } from "./Icon";
 export { LabeledCreatableSelect } from "./LabeledCreatableSelect";
