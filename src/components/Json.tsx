@@ -1,18 +1,35 @@
 import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "@uiw/react-codemirror";
-import { jsonSchema, updateSchema } from "codemirror-json-schema";
+import { handleRefresh, jsonCompletion, jsonSchemaHover, stateExtensions, updateSchema } from "codemirror-json-schema";
 import { $RefParser } from "@apidevtools/json-schema-ref-parser";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useImmerAtom } from "jotai-immer";
 import { useAtomValue } from "jotai";
+import { linter, lintGutter } from "@codemirror/lint";
+import { hoverTooltip, lineNumbers } from "@codemirror/view";
+import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
 import { MantelaSchema } from "../types/mantela";
 import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
 import { ResolvedThemeAtom } from "../helpers/Theme";
+import { customJsonSchemaLinter } from "../helpers/JsonSchemaLinter";
 import { Icon } from "./commons";
 
 // JSONSchema7
 type Schema = NonNullable<Parameters<typeof updateSchema>[1]>;
 
-const extensions = jsonSchema();
+const extensions = [
+	lintGutter(),
+	jsonLang(),
+	lineNumbers(),
+	linter(jsonParseLinter()),
+	linter(customJsonSchemaLinter(), {
+		needsRefresh: handleRefresh,
+	}),
+	jsonLanguage.data.of({
+		autocomplete: jsonCompletion(),
+	}),
+	hoverTooltip(jsonSchemaHover()),
+	stateExtensions(),
+];
 
 export default function Json() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
