@@ -16,7 +16,6 @@ const config: StorybookConfig = {
 				"@codemirror/view",
 				"@uiw/react-codemirror",
 				"codemirror-json-schema",
-				"flowbite-react/store/init",
 				"jotai-immer",
 				"react-dom/client",
 				"uuid",
