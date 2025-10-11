@@ -24,12 +24,12 @@ export default function EditorUI() {
 	}
 
 	return (
-		<div className="overflow-y-auto">
+		<>
 			<p className="text-right text-gray-800 dark:text-gray-200">
 				<span className="text-pink-500">*</span>
 				と表示されている項目は、必須です。
 			</p>
-			<div className="max-h-[70vh] max-w-[95%] pl-1">
+			<div className="max-w-[95%] pl-1">
 				<p className="mb-2 text-xl text-gray-900 dark:text-gray-100">局</p>
 				<Identifier />
 				<Name />
@@ -50,6 +50,6 @@ export default function EditorUI() {
 				<SectionHeader level={2} text="外線" />
 				<Providers />
 			</div>
-		</div>
+		</>
 	);
 }

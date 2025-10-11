@@ -92,22 +92,22 @@ export default function Json() {
 	return (
 		<>
 			{parseErr !== "" && (
-				<div className="mb-2 rounded-lg border border-gray-300 bg-gray-50 px-4 pt-3" role="alert">
+				<div className="mb-2 shrink-0 rounded-lg border border-gray-300 bg-gray-50 px-4 pt-3" role="alert">
 					<div className="flex items-center">
 						<Icon variant="info" />
 						<span className="sr-only">Info</span>
 						<h3 className="text-lg font-medium text-gray-800">不正な mantela.json です！</h3>
 					</div>
 					<div className="mt-2 mb-4 text-sm text-gray-800">
-						<p className="mt-2">この状態で左側の UI を操作すると、変更が失われることがある点に留意してください。</p>
+						<p className="mt-2">この状態でフォームを操作すると、変更が失われることがある点に留意してください。</p>
 					</div>
 				</div>
 			)}
 
 			<CodeMirror
-				className="text-base"
+				className="h-full text-base"
 				extensions={extensions}
-				height="70vh"
+				height="100%"
 				onChange={handleChange}
 				placeholder="ここに mantela.json を入力..."
 				ref={editorRef}
