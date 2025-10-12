@@ -50,13 +50,9 @@ export default function SipUri() {
 				}
 				id="aboutMe.sipUri"
 				label={
-					<>
-						SIP URI (
-						<a className="underline" href="https://tools.ietf.org/html/rfc3261#section-19.1">
-							RFC 3261 セクション19.1
-						</a>
-						&nbsp;準拠)
-					</>
+					<a className="underline" href="https://tools.ietf.org/html/rfc3261#section-19.1">
+						SIP URI
+					</a>
 				}
 				onChange={handleChange}
 				placeholder="SIP URI を入力して、リターンキーを押してください..."

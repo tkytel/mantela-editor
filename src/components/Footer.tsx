@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="m-4 rounded-lg bg-white shadow-xs dark:bg-gray-800">
+		<footer className="my-4 rounded-lg bg-white shadow-xs dark:bg-gray-800">
 			<div className="mx-auto w-full max-w-(--breakpoint-xl) p-4 md:flex md:items-center md:justify-between">
 				<span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
 					&copy; 2025 yude &lt;i@yude.jp&gt;, by courtesy of Tokyo Wide Area Telephony Network.
