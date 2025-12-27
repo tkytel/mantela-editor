@@ -181,7 +181,7 @@ function getEnhancedJsonPointers(view: EditorView): Map<string, PointerInfo> {
 				let valueNode: SyntaxNode | undefined = type.node.nextSibling?.node;
 
 				// コロンをスキップして値を取得
-				if (valueNode && valueNode.name === ":") {
+				if (valueNode?.name === ":") {
 					valueNode = valueNode.nextSibling?.node;
 				}
 
