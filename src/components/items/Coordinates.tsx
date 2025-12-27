@@ -2,7 +2,7 @@ import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type z from "zod";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
-import { CheckboxField, NumberField, SectionHeader } from "../commons";
+import { CheckboxField, NumberField } from "../commons";
 import { type geolocationCoordinatesSchema } from "../../types/mantela";
 
 type CoordinatesField = keyof z.infer<typeof geolocationCoordinatesSchema>;
@@ -111,7 +111,9 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 			/>
 			{isSetCoord && (
 				<>
-					<SectionHeader level={3} text="設置場所" />
+					<div aria-level={3} className="mt-5 mb-3 text-sm font-medium text-gray-900 dark:text-gray-100" role="heading">
+						設置場所
+					</div>
 					<p className="mb-2 text-sm">
 						これらの値は、
 						<a className="underline" href="https://tkytel.github.io/cocokano/">

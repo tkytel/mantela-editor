@@ -11,6 +11,6 @@ export { LabeledCreatableSelect } from "./LabeledCreatableSelect";
 export { Modal } from "./Modal";
 export { NumberField } from "./NumberField";
 export { RadioGroup } from "./RadioGroup";
-export { SectionHeader } from "./SectionHeader";
+export { Section } from "./Section";
 export { SelectField } from "./SelectField";
 export { default as ThemeToggle } from "./ThemeToggle";
