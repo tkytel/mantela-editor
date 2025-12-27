@@ -10,7 +10,7 @@ import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
 import Image from "./items/Image";
 import DeprecatedSip from "./items/DeprecatedSip";
-import { SectionHeader } from "./commons";
+import { Section } from "./commons";
 
 export default function EditorUI() {
 	const [json] = useImmerAtom(BodyAtom);
@@ -30,25 +30,28 @@ export default function EditorUI() {
 				と表示されている項目は、必須です。
 			</p>
 			<div className="max-w-[95%] pl-1">
-				<p className="mb-2 text-xl text-gray-900 dark:text-gray-100">局</p>
-				<Identifier />
-				<Name />
-				<PreferredPrefix />
-				<SipUri />
-				<Coordinates mode="aboutMe" />
-				<Unavailable />
-				<Image />
-				<DeprecatedSip />
+				<Section text="局">
+					<Identifier />
+					<Name />
+					<PreferredPrefix />
+					<SipUri />
+					<Coordinates mode="aboutMe" />
+					<Unavailable />
+					<Image />
+					<DeprecatedSip />
+				</Section>
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<SectionHeader level={2} text="内線番号" />
-				<Extensions />
+				<Section text="内線番号">
+					<Extensions />
+				</Section>
 
 				<hr className="border-gray-300 dark:border-gray-600" />
 
-				<SectionHeader level={2} text="外線" />
-				<Providers />
+				<Section text="外線">
+					<Providers />
+				</Section>
 			</div>
 		</>
 	);
