@@ -1,20 +1,35 @@
 version: 2
-enable-beta-ecosystems: true
 updates:
-- package-ecosystem: github-actions
-  directory: /
-  schedule:
-    interval: monthly
-  cooldown:
-    default-days: 7
-- package-ecosystem: bun
-  directory: /
-  schedule:
-    interval: monthly
-  groups:
-    dependencies:
-      dependency-type: production
-    dev-dependencies:
-      dependency-type: development
-  cooldown:
-    default-days: 7
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dependencies:
+        dependency-type: production
+      dev-dependencies:
+        dependency-type: development
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: devcontainers
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7

@@ -1,8 +1,87 @@
-[tools]
-bun = "latest"
+[plugins]
+# https://github.com/voidzero-dev/vite-plus/issues/943
+vite-plus = "https://github.com/markmals/mise-vite-plus"
 
-[tasks.format]
-run = "bun format"
+[settings.github]
+use_git_credentials = true
+
+[tools]
+"aqua:azu/dockerfile-pin" = "latest" # [skip ci]
+claude = "latest" # [skip ci]
+gh = "latest" # [skip ci]
+ghalint = "latest"
+node = "24"
+pinact = "latest" # [skip ci]
+shfmt = "latest" # [skip ci]
+usage = "latest" # [skip ci]
+vite-plus = "latest"
+
+[tasks.install]
+description = "Install dependencies"
+run = "vp install"
+
+[tasks.dev]
+description = "Start the dev server"
+run = "vp dev --host"
+depends = ["install"]
+
+[tasks.sb]
+description = "Start Storybook"
+run = "vpr sb"
+depends = ["install"]
+
+[tasks.check]
+description = "Run Oxlint (type-aware) and Oxfmt"
+run = "vp check"
+depends = ["install"]
+
+[tasks.fix]
+description = "Fix lint and format issues"
+run = "vp check --fix"
+depends = ["install"]
+
+[tasks.knip]
+description = "Find unused files, dependencies and exports"
+run = "vpx knip"
+depends = ["install"]
+
+[tasks.ghalint]
+description = "Lint GitHub Actions workflows"
+run = "ghalint run"
+
+[tasks.shfmt]
+description = "Format shell scripts"
+run = "shfmt -s -w .devcontainer"
+
+[tasks.setup-playwright]
+description = "Install Playwright Chromium with system dependencies"
+run = "vpr sb:setup-playwright"
+depends = ["install"]
+
+[tasks.test]
+description = "Run Storybook tests with coverage"
+run = "vp test --run --coverage"
+depends = ["install"]
+
+[tasks.build]
+description = "Build for production"
+run = "vp build"
+depends = ["install"]
 
 [tasks.lint]
-run = "bun lint"
+description = "Run all linters"
+depends = ["check", "knip", "ghalint"]
+
+[tasks.pin]
+description = "Pin and update action and image digests"
+depends = ["dockerfile-pin", "pinact"]
+
+[tasks.dockerfile-pin]
+run = "dockerfile-pin run --write --update --min-age 7"
+
+[tasks.pinact]
+run = "pinact run -u -min-age 7"
+
+[tasks.pre-commit]
+description = "Run checks on pre-commit"
+depends = ["ghalint", "fix", "knip"]
