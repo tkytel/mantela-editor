@@ -60,12 +60,12 @@ depends = ["install"]
 
 [tasks.test]
 description = "Run Storybook tests with coverage"
-run = "vp test --run --coverage"
+run = "vpr test --run --coverage"
 depends = ["install"]
 
 [tasks.build]
 description = "Build for production"
-run = "vp build"
+run = "vpr build"
 depends = ["install"]
 
 [tasks.lint]
