@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const ExtensionTypeEnum = z.enum([
+const ExtensionTypeEnum = z.enum([
 	"alias",
 	"application",
 	"cellphone",
@@ -29,7 +29,7 @@ export const geolocationCoordinatesSchema = z.object({
 	longitude: z.number().min(-180).max(180).optional(),
 });
 
-export const AboutMeSchema = z.object({
+const AboutMeSchema = z.object({
 	geolocationCoordinates: geolocationCoordinatesSchema.optional(),
 	identifier: z.string(),
 	image: z.url().optional(),
@@ -43,7 +43,7 @@ export const AboutMeSchema = z.object({
 	unavailable: z.boolean().optional(),
 });
 
-export const ExtensionSchema = z.object({
+const ExtensionSchema = z.object({
 	extension: z.string(),
 	geolocationCoordinates: geolocationCoordinatesSchema.optional(),
 	identifier: z.string().optional(),
@@ -55,7 +55,7 @@ export const ExtensionSchema = z.object({
 	unavailable: z.boolean().optional(),
 });
 
-export const ProviderSchema = z.object({
+const ProviderSchema = z.object({
 	identifier: z.string().optional(),
 	mantela: z.string().optional(),
 	name: z.string(),

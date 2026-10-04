@@ -5,7 +5,7 @@ type Theme = "dark" | "light" | undefined;
 
 export const ThemeAtom = atomWithStorage<Theme>("theme", undefined);
 
-export const SystemThemeAtom = atom<"dark" | "light">(() => {
+const SystemThemeAtom = atom<"dark" | "light">(() => {
 	if (globalThis.window?.matchMedia) {
 		return globalThis.window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 	}

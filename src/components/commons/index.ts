@@ -1,7 +1,6 @@
 export { AddButton } from "./AddButton";
 export { CardContainer } from "./CardContainer";
 export { CheckboxField } from "./CheckboxField";
-export { CreatableSelectField } from "./CreatableSelectField";
 export { DeleteButton } from "./DeleteButton";
 export { ErrorMessage } from "./ErrorMessage";
 export { FormField } from "./FormField";

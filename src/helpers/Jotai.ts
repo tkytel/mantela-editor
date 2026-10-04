@@ -3,7 +3,7 @@ import type { Mantela } from "../types/mantela";
 
 export const defaultMantelaSchemaUrl = "https://tkytel.github.io/mantela/0.1.x/mantela.schema.json";
 
-export const getInitialMantela = (): Mantela => ({
+const getInitialMantela = (): Mantela => ({
 	$schema: defaultMantelaSchemaUrl,
 	aboutMe: {
 		identifier: "",
