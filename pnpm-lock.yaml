@@ -4,16 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    vite-plus:
-      specifier: ^1.0.0
-      version: 1.0.0
-
-overrides:
-  vite: npm:@voidzero-dev/vite-plus-core@^1.0.0
-  vitest: 5.0.1
-
 importers:
 
   .:
@@ -125,7 +115,7 @@ importers:
         specifier: ^0.28.0
         version: 0.28.0(@voidzero-dev/vite-plus-core@1.0.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2)(yaml@2.9.1))
       vite-plus:
-        specifier: 'catalog:'
+        specifier: ^1.0.0
         version: 1.0.0(@vitest/browser-playwright@5.0.1)(@vitest/coverage-v8@5.0.1)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2)(yaml@2.9.1)
       vitest:
         specifier: 5.0.1
@@ -1416,7 +1406,7 @@ packages:
       '@vitest/browser-playwright': ^4.0.0 || ^5.0.0
       '@vitest/runner': ^3.0.0 || ^4.0.0 || ^5.0.0
       storybook: ^10.6.1
-      vitest: 5.0.1
+      vitest: ^3.0.0 || ^4.0.0 || ^5.0.0
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
