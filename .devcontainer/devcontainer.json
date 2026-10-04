@@ -1,11 +1,8 @@
 {
   "name": "mantela-editor",
-  "image": "mcr.microsoft.com/playwright:v1.58.0-noble",
+  "image": "mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
-  "forwardPorts": [
-    5173,
-    6006
-  ],
+  "forwardPorts": [5173, 6006],
   "features": {
     "ghcr.io/devcontainers-extra/features/mise:1": {},
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -20,34 +17,32 @@
       "extensions": [
         "bradlc.vscode-tailwindcss",
         "EditorConfig.EditorConfig",
-        "github.copilot",
+        "-dbaeumer.vscode-eslint",
+        "foxundermoon.shell-format",
         "hverlin.mise-vscode",
-        "oven.bun-vscode",
         "redhat.vscode-yaml",
-        "samverschueren.linter-xo",
-        "vitest.explorer",
+        "VoidZero.vite-plus-extension-pack",
+        "webpro.vscode-knip",
         "yoavbls.pretty-ts-errors"
       ],
       "settings": {
-        "bun.runtime": "/home/vscode/.local/share/mise/shims/bun",
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.oxc": "explicit"
+        },
+        "js/ts.tsdk.path": "node_modules/typescript/lib",
+        "oxc.path.oxlint": "/home/vscode/.vite-plus/current/node_modules/.bin/oxlint",
+        "oxc.path.oxfmt": "/home/vscode/.vite-plus/current/node_modules/.bin/oxfmt",
+        "oxc.fmt.configPath": "./vite.config.ts",
+        "oxc.typeAware": true,
+        "[shellscript]": {
+          "editor.defaultFormatter": "foxundermoon.shell-format"
+        },
+        "shellformat.flag": "-s",
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.scrollback": 100000,
-        "xo.enable": true,
-        "xo.format.enable": true,
-        "[javascript][typescript][typescriptreact]": {
-          "editor.codeActionsOnSave": {
-            "source.fixAll.xo": "explicit"
-          },
-          "editor.defaultFormatter": "samverschueren.linter-xo",
-          "editor.formatOnSave": true
-        },
-        "[json][yaml][markdown]": {
-          "editor.codeActionsOnSave": {
-            "source.fixAll.xo": "explicit"
-          },
-          "editor.defaultFormatter": "samverschueren.linter-xo",
-          "editor.formatOnSave": true
-        },
         "yaml.schemaStore.enable": true,
         "redhat.telemetry.enabled": false,
         "workbench.colorCustomizations": {

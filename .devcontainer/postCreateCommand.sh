@@ -2,18 +2,17 @@
 
 set -euxo pipefail
 
-if ! grep -q "mise" ~/.zshrc; then
-  echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+if ! grep -q mise ~/.zshrc; then
+	# shellcheck disable=SC2016
+	echo 'eval "$(mise activate zsh)"' >>~/.zshrc
 fi
 
 mise trust
 mise install
+mise generate git-pre-commit -w
 eval "$(mise activate zsh)"
-bun i
 
-bunx playwright install chromium
-
-mise settings experimental=true
-mise generate git-pre-commit --write --task=format
+mise run install
+mise run setup-playwright
 
 sed -i ~/.zshrc -e 's/^ZSH_THEME=.*/ZSH_THEME="refined"/'
