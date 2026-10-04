@@ -32,12 +32,12 @@ depends = ["install"]
 
 [tasks.check]
 description = "Run Oxlint (type-aware) and Oxfmt"
-run = "vp check"
+run = "vpr check"
 depends = ["install"]
 
 [tasks.fix]
 description = "Fix lint and format issues"
-run = "vp check --fix"
+run = "vpr check --fix"
 depends = ["install"]
 
 [tasks.knip]
