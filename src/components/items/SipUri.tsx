@@ -17,22 +17,28 @@ export default function SipUri() {
 		value,
 	}));
 
-	const handleChange = useCallback((selected: Array<{ label: string; value: string }>) => {
-		const values = selected ? selected.map((opt) => opt.value) : [];
-		setJson((draft) => {
-			draft.data.aboutMe.sipUri = values;
-		});
-	}, []);
+	const handleChange = useCallback(
+		(selected: Array<{ label: string; value: string }>) => {
+			const values = selected ? selected.map((opt) => opt.value) : [];
+			setJson((draft) => {
+				draft.data.aboutMe.sipUri = values;
+			});
+		},
+		[setJson],
+	);
 
-	const handleSipConfirm = useCallback<SipUriModalProps["onConfirm"]>((sipUri) => {
-		setJson((draft) => {
-			draft.data.aboutMe.sipUri ??= [];
+	const handleSipConfirm = useCallback<SipUriModalProps["onConfirm"]>(
+		(sipUri) => {
+			setJson((draft) => {
+				draft.data.aboutMe.sipUri ??= [];
 
-			draft.data.aboutMe.sipUri.push(sipUri);
-		});
+				draft.data.aboutMe.sipUri.push(sipUri);
+			});
 
-		setIsModalOpen(false);
-	}, []);
+			setIsModalOpen(false);
+		},
+		[setJson],
+	);
 
 	return (
 		<>

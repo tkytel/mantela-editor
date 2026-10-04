@@ -67,7 +67,7 @@ export default function SipUriModal({ isOpen, onClose, onConfirm }: SipUriModalP
 		setError("");
 		onConfirm(sipUri);
 		setSipFormData({ ...initialSipData });
-	}, [sipFormData, onConfirm]);
+	}, [sipFormData, sipUri, onConfirm]);
 
 	const handleClose = useCallback(() => {
 		setSipFormData({ ...initialSipData });

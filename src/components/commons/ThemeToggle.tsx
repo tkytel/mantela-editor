@@ -1,19 +1,18 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useEffect, useMemo } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { useEffect } from "react";
 import { ResolvedThemeAtom, ThemeAtom, ToggleThemeAtom } from "../../helpers/Theme";
 
 export default function ThemeToggle() {
 	const toggleTheme = useSetAtom(ToggleThemeAtom);
-	const [theme, setThemeAtom] = useAtom(ThemeAtom);
+	const setThemeAtom = useSetAtom(ThemeAtom);
 	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
 
-	const themeIcon = useMemo(() => {
-		return resolvedTheme === "dark" ? "🌙" : "☀️";
-	}, [theme, resolvedTheme]);
+	const themeIcon = resolvedTheme === "dark" ? "🌙" : "☀️";
 
+	// 初回に解決済みのテーマを保存する。以降は ThemeAtom と同値になるため再実行しても変化しない
 	useEffect(() => {
 		setThemeAtom(resolvedTheme);
-	}, [setThemeAtom]);
+	}, [setThemeAtom, resolvedTheme]);
 
 	return (
 		<button

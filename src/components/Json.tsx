@@ -6,7 +6,7 @@ import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "
 import { handleRefresh, jsonCompletion, jsonSchemaHover, stateExtensions, updateSchema } from "codemirror-json-schema";
 import { useAtomValue } from "jotai";
 import { useImmerAtom } from "jotai-immer";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
 import { customJsonSchemaLinter } from "../helpers/JsonSchemaLinter";
 import { ResolvedThemeAtom } from "../helpers/Theme";
@@ -33,7 +33,6 @@ const extensions = [
 
 export default function Json() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
-	const [jsonStr, setJsonStr] = useState("");
 	const [parseErr, setParseErr] = useState("");
 	const [schemaUrl, setSchemaUrl] = useState<string>(defaultMantelaSchemaUrl);
 	const resolvedTheme = useAtomValue(ResolvedThemeAtom);
@@ -61,9 +60,7 @@ export default function Json() {
 		[setJson],
 	);
 
-	useEffect(() => {
-		setJsonStr(JSON.stringify(json.data, null, 2));
-	}, [json]);
+	const jsonStr = useMemo(() => JSON.stringify(json.data, null, 2), [json]);
 
 	useEffect(() => {
 		const fetchSchema = async () => {

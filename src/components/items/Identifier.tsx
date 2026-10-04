@@ -8,8 +8,9 @@ export default function Identifier() {
 	const [json, setJson] = useImmerAtom(BodyAtom);
 	const setAlerts = useSetImmerAtom(AlertAtom);
 
+	const { identifier } = json.data.aboutMe;
+
 	useEffect(() => {
-		const { identifier } = json.data.aboutMe;
 		if (identifier && /^[\u0021-\u007E]+$/.test(identifier)) {
 			setJson((draft) => {
 				draft.data.aboutMe.identifier = identifier;
@@ -27,7 +28,7 @@ export default function Identifier() {
 					"局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。";
 			});
 		}
-	}, [json.data.aboutMe.identifier, setJson, setAlerts]);
+	}, [identifier, setJson, setAlerts]);
 
 	return (
 		<FormFieldWithButton

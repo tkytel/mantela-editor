@@ -57,8 +57,9 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 
 	const setAlerts = useSetImmerAtom(AlertAtom);
 
+	const { identifier } = json.data.extensions[idx];
+
 	useEffect(() => {
-		const { identifier } = json.data.extensions[idx];
 		if (identifier && /^[\u0021-\u007E]+$/.test(identifier)) {
 			setJson((draft) => {
 				draft.data.extensions[idx].identifier = identifier;
@@ -76,7 +77,7 @@ export default function Extension({ extension, idx }: { extension: MantelaExtens
 					"局の識別子は半角英数字と記号 (!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) のみを使用してください。";
 			});
 		}
-	}, [json.data.extensions[idx].identifier, idx, setJson, setAlerts]);
+	}, [identifier, idx, setJson, setAlerts]);
 
 	return (
 		<CardContainer key={idx}>

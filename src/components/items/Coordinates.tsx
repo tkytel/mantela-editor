@@ -21,8 +21,6 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 	const [json, setJson] = useImmerAtom(BodyAtom);
 	const setAlerts = useSetImmerAtom(AlertAtom);
 
-	const [isSetCoord, setIsSetCoord] = useState(false);
-
 	const targetPath = useMemo(
 		() =>
 			mode === "aboutMe" ? "aboutMe.geolocationCoordinates" : `extensions[${extensionIndex}].geolocationCoordinates`,
@@ -35,6 +33,16 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 				: json.data.extensions[extensionIndex]?.geolocationCoordinates,
 		[mode, extensionIndex, json.data.aboutMe.geolocationCoordinates, json.data.extensions],
 	);
+
+	const [isSetCoord, setIsSetCoord] = useState(Boolean(targetObject));
+	// 座標が JSON 側から設定されたら、チェックボックスを有効にする
+	const [prevTargetObject, setPrevTargetObject] = useState(targetObject);
+	if (targetObject !== prevTargetObject) {
+		setPrevTargetObject(targetObject);
+		if (targetObject) {
+			setIsSetCoord(true);
+		}
+	}
 
 	const handleChange = useCallback(
 		(field: CoordinatesField, value: string) => {
@@ -69,7 +77,7 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 				}
 			});
 		},
-		[setAlerts, setJson, mode, extensionIndex],
+		[setAlerts, setJson, mode, extensionIndex, targetPath],
 	);
 
 	useEffect(() => {
@@ -91,12 +99,6 @@ export default function Coordinates({ extensionIndex, mode }: CoordinatesProps) 
 			});
 		}
 	}, [isSetCoord, setJson, mode, extensionIndex, targetObject]);
-
-	useEffect(() => {
-		if (targetObject) {
-			setIsSetCoord(true);
-		}
-	}, [mode, extensionIndex, targetObject]);
 
 	return (
 		<>
