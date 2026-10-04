@@ -1,16 +1,16 @@
 import { useImmerAtom } from "jotai-immer";
 import { BodyAtom } from "../helpers/Jotai";
+import { Section } from "./commons";
+import Coordinates from "./items/Coordinates";
+import DeprecatedSip from "./items/DeprecatedSip";
+import Extensions from "./items/Extensions";
 import Identifier from "./items/Identifier";
+import Image from "./items/Image";
 import Name from "./items/Name";
 import PreferredPrefix from "./items/PreferredPrefix";
-import Extensions from "./items/Extensions";
 import Providers from "./items/Providers";
 import SipUri from "./items/SipUri";
-import Coordinates from "./items/Coordinates";
 import Unavailable from "./items/Unavailable";
-import Image from "./items/Image";
-import DeprecatedSip from "./items/DeprecatedSip";
-import { Section } from "./commons";
 
 export default function EditorUI() {
 	const [json] = useImmerAtom(BodyAtom);

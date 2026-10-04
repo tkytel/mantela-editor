@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-	@apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+	@apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
 }
 
 /* Scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
@@ -16,7 +16,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-gray-400 dark:bg-gray-600 rounded-md;
+	@apply rounded-md bg-gray-400 dark:bg-gray-600;
 }
 
 ::-webkit-scrollbar-thumb:hover {

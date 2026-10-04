@@ -3,10 +3,10 @@
  * 値ノードに対するポインターも含む拡張ポインターマップを生成するようにした。
  */
 import { syntaxTree } from "@codemirror/language";
-import type { EditorView } from "@codemirror/view";
 import type { Diagnostic, LintSource } from "@codemirror/lint";
-import { compileSchema, draft07, type JsonError } from "json-schema-library";
+import type { EditorView } from "@codemirror/view";
 import { getJSONSchema } from "codemirror-json-schema";
+import { compileSchema, draft07, type JsonError } from "json-schema-library";
 
 type SyntaxNode = ReturnType<typeof syntaxTree>["topNode"];
 

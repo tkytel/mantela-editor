@@ -1,8 +1,8 @@
 import { Provider, useAtomValue } from "jotai";
 import { useEffect } from "react";
-import Nav from "./components/Nav";
 import Editor from "./components/Editor";
 import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 import { ResolvedThemeAtom } from "./helpers/Theme";
 
 function App() {

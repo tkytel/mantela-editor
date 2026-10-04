@@ -1,8 +1,9 @@
-import { type MultiValue } from "react-select";
 import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { useEffect } from "react";
-import { generateExtensionIdentifier } from "../../helpers/Randomness";
+import { type MultiValue } from "react-select";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
+import { generateExtensionIdentifier } from "../../helpers/Randomness";
+import type { MantelaExtension } from "../../types/mantela";
 import {
 	CardContainer,
 	CheckboxField,
@@ -13,7 +14,6 @@ import {
 	LabeledCreatableSelect,
 	SelectField,
 } from "../commons";
-import type { MantelaExtension } from "../../types/mantela";
 import Coordinates from "./Coordinates";
 
 type Option = { label: string; value: string };

@@ -2,8 +2,8 @@ import { useImmerAtom, useSetImmerAtom } from "jotai-immer";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type z from "zod";
 import { AlertAtom, BodyAtom } from "../../helpers/Jotai";
-import { CheckboxField, NumberField } from "../commons";
 import { type geolocationCoordinatesSchema } from "../../types/mantela";
+import { CheckboxField, NumberField } from "../commons";
 
 type CoordinatesField = keyof z.infer<typeof geolocationCoordinatesSchema>;
 

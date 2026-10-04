@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
-import Creatable from "react-select/creatable";
 import { useCallback } from "react";
 import { type Theme } from "react-select";
+import Creatable from "react-select/creatable";
 import { ResolvedThemeAtom } from "../../helpers/Theme";
 
 type CreatableSelectFieldProps = {

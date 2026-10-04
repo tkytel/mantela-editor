@@ -1,6 +1,6 @@
 import Alert from "../components/Alert";
-import Json from "./Json";
 import EditorUI from "./EditorUI";
+import Json from "./Json";
 
 export default function Editor() {
 	return (
