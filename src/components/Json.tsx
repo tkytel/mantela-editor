@@ -1,16 +1,16 @@
-import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "@uiw/react-codemirror";
-import { handleRefresh, jsonCompletion, jsonSchemaHover, stateExtensions, updateSchema } from "codemirror-json-schema";
 import { $RefParser } from "@apidevtools/json-schema-ref-parser";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useImmerAtom } from "jotai-immer";
-import { useAtomValue } from "jotai";
+import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
 import { linter, lintGutter } from "@codemirror/lint";
 import { hoverTooltip, lineNumbers } from "@codemirror/view";
-import { json as jsonLang, jsonLanguage, jsonParseLinter } from "@codemirror/lang-json";
-import { MantelaSchema } from "../types/mantela";
+import CodeMirror, { type ReactCodeMirrorProps, type ReactCodeMirrorRef } from "@uiw/react-codemirror";
+import { handleRefresh, jsonCompletion, jsonSchemaHover, stateExtensions, updateSchema } from "codemirror-json-schema";
+import { useAtomValue } from "jotai";
+import { useImmerAtom } from "jotai-immer";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BodyAtom, defaultMantelaSchemaUrl } from "../helpers/Jotai";
-import { ResolvedThemeAtom } from "../helpers/Theme";
 import { customJsonSchemaLinter } from "../helpers/JsonSchemaLinter";
+import { ResolvedThemeAtom } from "../helpers/Theme";
+import { MantelaSchema } from "../types/mantela";
 import { Icon } from "./commons";
 
 // JSONSchema7
@@ -84,9 +84,7 @@ export default function Json() {
 			}
 		};
 
-		(async () => {
-			await fetchSchema();
-		})();
+		void fetchSchema();
 	}, [schemaUrl]);
 
 	return (

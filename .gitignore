@@ -28,3 +28,6 @@ dist-ssr
 storybook-static
 
 stats.html
+
+# AI agent worktrees
+.claude/worktrees/
